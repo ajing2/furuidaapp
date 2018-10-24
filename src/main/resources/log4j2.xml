@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO" name="defaultLogConfig"
+	packages="">
+	<properties> 
+		<property name="LOG_HOME">/Logs/controller.furuida.com</property>
+ 
+		<property name="patternlayout">%-d{yyyy-MM-dd HH:mm:ss}[ %t:%r ] - [%-5p] %c-%M:%L - %m%n%throwable{full}</property> 
+		<property name="filename">${LOG_HOME}/proj.log </property>   
+	</properties>
+	<Appenders> 
+		<Console name="Console" target="SYSTEM_OUT" follow="true">
+			<PatternLayout pattern="${patternlayout}" />
+		</Console>
+		<RollingFile name="asynchRollingFile" fileName="${filename}" filePattern="${LOG_HOME}/\$$\{date:yyyyMMdd\}/java-%d{yyyyMMdd}-%i.log.gz">
+            <PatternLayout pattern="${patternlayout}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="5"/>
+        </RollingFile>
+        
+        <RollingFile name="SpringAsynchRollingFile" fileName="${LOG_HOME}/spring.log" filePattern="${LOG_HOME}/\$$\{date:yyyyMMdd\}/spring-%d{yyyyMMdd}-%i.log.gz">
+            <PatternLayout pattern="${patternlayout}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="5"/>
+        </RollingFile>
+        
+        
+	</Appenders>
+	<Loggers>
+		
+		<!-- spring log -->
+		<AsyncLogger name="org.springframework" level="info">
+			<AppenderRef ref="SpringAsynchRollingFile" />		
+			<AppenderRef ref="Console" />
+		</AsyncLogger>
+		
+		<AsyncLogger name="org.springframework.web" level="info">
+			<AppenderRef ref="SpringAsynchRollingFile" />
+			<AppenderRef ref="Console" /> 	
+		</AsyncLogger>
+		<AsyncLogger name="org.apache.commons" level="info">
+			<AppenderRef ref="SpringAsynchRollingFile" />		
+			<AppenderRef ref="Console" /> 	
+		</AsyncLogger>
+		
+		<!-- mybatis log -->
+		<AsyncLogger name="com.ibatis" level="info">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="SpringAsynchRollingFile" />
+			<AppenderRef ref="asynchRollingFile" />		
+		</AsyncLogger>
+		<!-- activiti log -->
+		<AsyncLogger name="org.activiti" level="info">
+			<AppenderRef ref="Console" /> 		
+		</AsyncLogger>
+
+        <AsyncLogger name="org.mybatis" level="info">
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="asynchRollingFile" />
+        </AsyncLogger>
+        <AsyncLogger name="org.apache" level="info">
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="asynchRollingFile" />
+        </AsyncLogger>
+
+		<AsyncLogger name="com.jd" level="info"
+			additivity="false">
+			<AppenderRef ref="asynchRollingFile" />
+		    <AppenderRef ref="Console" /> 		
+		</AsyncLogger>
+		
+		<Root level="info">
+			<AppenderRef ref="asynchRollingFile" />	 
+			<AppenderRef ref="Console"/> 		
+		</Root>
+	</Loggers>
+</Configuration>
