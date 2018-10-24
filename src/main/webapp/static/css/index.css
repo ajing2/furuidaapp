@@ -1,0 +1,43 @@
+.indexitem {
+    padding-bottom:4px; padding-top:0px
+}
+
+body {
+    padding-bottom: 35px !important;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+}
+
+img {
+    border: 0 none
+}
+
+i, em {
+    font-style: normal
+}
+
+
+.sub-nav.nav-b5 dd a {
+    color: #666;
+}
+
+.icon-home {
+    color: #666;
+}
+
+.icon-sitemap {
+    color: #666;
+}
+
+.icon-user {
+    color: #666;
+}
+
+.icon-shopping-cart {
+    color: #666;
+}
