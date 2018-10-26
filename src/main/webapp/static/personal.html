@@ -1,0 +1,226 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <title>我的资料 - 美澳省油1号</title>
+    <link type="text/css" rel="stylesheet" href="/static/css/comman.css" media="all" />
+    <link type="text/css" rel="stylesheet" href="/static/css/jquery_dialog.css" media="all" />
+    <link type="text/css" rel="stylesheet" href="/static/css/style.css?v=v21" media="all" />
+    <link type="text/css" rel="stylesheet" href="/static/css/user2015.css" media="all" />
+    <script> var SITE_URL="/static/";</script>
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery_dialog.js?v=1"></script>
+    <script type="text/javascript" src="/static/js/common.js?v=21"></script>
+    <script type="text/javascript" src="/static/js/jquery.json-1.3.js"></script>
+    <script type="text/javascript" src="/static/js/user.js?v=v1"></script>
+    <script src="/static/js/layer.js"></script>
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+</head>
+<body>
+<link type="text/css" rel="stylesheet" href="/static/tpl/31/css/weui.css" media="all" />
+<link type="text/css" rel="stylesheet" href="/static/tpl/31/css/weui.min.css" media="all" />
+<link type="text/css" rel="stylesheet" href="/static/tpl/31/css.css" media="all" />
+<link rel="stylesheet" href="/static/tpl/31/css/font-awesome.min.css">
+
+<i class=""></i>
+<div id="home" style="background-color: #50;">
+    <div id="header">
+        <div class="logo" style="height:28px; padding-top:10px;  "><span onclick=" history.go(-1);" class="fa fa-arrow-left" style=" float:left; width:auto; font-weight:normal; padding:0px; margin-left:10%; ">&nbsp;</span></div>
+        <div class="shoptitle"><span>我的资料</span></div>
+        <div class="logoright">
+            <div style="background-image:none; float:right;">
+                <a href="javascript:;" class="fa fa-list-ul" style="background-image:none; color:#fff; font-size:25px; float:right; width:auto; margin-right:10%;" onclick="ajax_show_menu()"></a>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function ajax_show_menu(){
+        $(".showmenu").toggle();
+    }
+</script>
+<form enctype="multipart/form-data" action="" method="post" id='ssumit'  >
+    <div class="weui-cells weui-cells_form">
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">名字：</label></div>
+            <div class="weui-cell__bd">
+                <input name="uname" class="weui-input" type="text" value=""  placeholder="名字"/>
+            </div>
+        </div>
+        <div class="weui-cell">
+
+            <div class="weui-cell__hd"><label class="weui-label">微信号：</label></div>
+            <div class="weui-cell__bd">
+                <input name="weixin" class="weui-input" type="text"  placeholder="请输入微信号" value=""/>
+            </div>
+        </div>    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">手机号：</label></div>
+        <div class="weui-cell__bd">
+            <input name="phone" class="weui-input" type="text" placeholder="请输入手机号" value=""/>
+        </div>
+    </div>
+
+
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">App登录密码</label></div>
+            <div class="weui-cell__bd">
+                <input name="apppassword" class="weui-input" type="password"  placeholder="请输入App密码" value=""/>
+            </div>
+        </div>
+
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">我的地址</label></div>
+            <div class="weui-cell__bd">
+                <input name="apppassword" class="weui-input" type="password"  placeholder="我的地址" value=""/>
+            </div>
+        </div>
+
+
+        </div>
+
+
+
+    </div>
+
+    <div class="weui-btn-area">
+        <a class="weui-btn weui-btn_primary" href="javascript:" id="showTooltips" style="color:#fff;background: #e13935;" onclick="return check_senddata()">保存</a>
+    </div>
+</form>
+<script type="text/javascript">
+    var InterValObj; //timer变量，控制时间
+    var count =120; //间隔函数，1秒执行
+    var curCount;//当前剩余秒数
+    function sendMessage(){
+        phone = '';
+        phone = $('input[name="phone"]').val();
+        if(phone=="" || typeof(phone)=='undefinde'){
+            layer.msg("手机号不能为空");
+            return false;
+        }
+        var partten=/^(13[0-9]|15[0-9]|19[0-9]|18[0-9]|17[0-9]|14[0-9])\d{8}$/;
+        if (!partten.test(phone)) {
+            layer.msg('请输入正确的手机号码');
+            return  false;
+        }
+
+        $.post('/static/user.php',{action:'ajax_getcode',phone:phone},function(data){
+            if(data!=''){
+                alert(data);
+                return  false;
+            }
+        })
+
+        curCount = count;
+        //设置button效果，开始计时
+        $("#btnSendCode").attr("disabled", "true");
+        $("#btnSendCode").val("请在" + curCount + "秒内输入");
+        InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+    }
+    //timer处理函数
+    function SetRemainTime() {
+        if (curCount == 0) {
+            window.clearInterval(InterValObj);//停止计时器
+            $("#btnSendCode").removeAttr("disabled");//启用按钮
+            $("#btnSendCode").val("重新发送验证码");
+        }
+        else {
+            curCount--;
+            $("#btnSendCode").val("请在" + curCount + "秒内输入");
+        }
+    }
+
+    function check_senddata(){
+        weixin = $('input[name="weixin"]').val();
+        if(weixin=="" || typeof(weixin)=='undefinde'){
+            layer.msg("微信号不能为空");
+            return false;
+        }
+        phone = '';
+        phone = $('input[name="phone"]').val();
+        if(phone=="" || typeof(phone)=='undefinde'){
+            layer.msg("手机号不能为空");
+            return false;
+        }
+        var partten=/^(13[0-9]|15[0-9]|19[0-9]|18[0-9]|17[0-9]|14[0-9])\d{8}$/;
+        if (!partten.test(phone)) {
+            layer.msg('请输入正确的手机号码');
+            return  false;
+        }
+
+
+        apppassword = $('input[name="apppassword"]').val();
+        if(apppassword=="" || typeof(apppassword)=='undefinde'){
+            layer.msg("请输入app登录密码");
+            return false;
+        }
+        userid=0;    createwindow();
+        $.post('/static/user.php',{action:'ajax_user_bank',weixin:weixin,phone:phone,apppassword:apppassword},function(data){
+            if(data=='1'){
+                alert("保存成功");
+                window.location.href="/static/user.php";
+            }else{
+                //alert(data);
+                alert(data);
+            }
+            removewindow();
+        });
+
+        return true;
+    }
+
+
+
+</script>
+<!--QUYU-->
+<link rel="stylesheet" href="/static/tpl/31/style/font-awesome.min.css">
+
+
+<style type="text/css">
+    body { padding-bottom:35px !important; }
+</style>
+
+<style type="text/css">
+    #collectBox{width:100px;height:40px;z-index:-2;position:fixed;bottom:0px;right:0px;background:none;}
+    *{margin:0;padding:0;vertical-align:baseline;-webkit-tap-highlight-color:rgba(0,0,0,0)}
+    img{border:0 none}
+    i,em{font-style:normal}
+</style>
+<div id="collectBox"></div>
+
+<link rel="stylesheet" type="text/css" href="/static/tpl/31/css/font-awesome.css">
+<link rel="stylesheet" type="text/css" href="/static/tpl/31/css/PreFoot.css?v=2">
+<style>
+    .sub-nav.nav-b5 dd a{color: #666;}
+    .icon-home{color: #666;}
+    .icon-sitemap{color: #666;}
+    .icon-user{color: #666;}
+    .icon-shopping-cart{color: #666;}
+</style>
+
+<div class="fixed bottom">
+    <dl class="sub-nav nav-b5">
+        <dd class="active">
+            <div class="nav-b5-relative"><a href="index.html"><i class="icon-home fa-2x"></i>首页</a>
+            </div>
+        </dd>
+        <dd>
+            <div class="nav-b5-relative"><a href="#"><i
+                    class="icon-shopping-cart fa-2x"></i>购物车</a></div>
+        </dd>
+
+        <dd>
+            <div class="nav-b5-relative"><a href="user.html"><i class="icon-user fa-2x"></i>我的</a>
+            </div>
+        </dd>
+    </dl>
+</div>
+</body>
+</html>
