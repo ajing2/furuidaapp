@@ -205,7 +205,7 @@
     }
 
     function _report(a,c){
-        $.post('product.php',{action:'ajax_share',type:a,msg:c,thisurl:'/static/product.php?id=1',imgurl:'http://sy.longemont.net/photos/syrfygwkcom/goods/201806/thumb_b/15301816401530181640.jpg',title:'美澳省油1号(汽油版 / 一盒20瓶+2瓶)'},function(data){
+        $.post('product.php',{action:'ajax_share',type:a,msg:c,thisurl:'/static/product.php?id=1',imgurl:'http://sy.longemont.net/photos/syrfygwkcom/goods/201806/thumb_b/15301816401530181640.jpg',title:'福瑞达洗眼液(汽油版 / 一盒20瓶+2瓶)'},function(data){
         });
     }
 
@@ -244,8 +244,8 @@
             window.shareData = {
                 "imgUrl": "http://sy.longemont.net/photos/syrfygwkcom/goods/201806/thumb_b/15301816401530181640.jpg",
                 "LineLink": '/static/product.php?id=1',
-                "Title": "美澳省油1号(汽油版 / 一盒20瓶+2瓶)",
-                "Content": "美澳省油1号(汽油版 / 一盒20瓶+2瓶)"
+                "Title": "福瑞达洗眼液(汽油版 / 一盒20瓶+2瓶)",
+                "Content": "福瑞达洗眼液(汽油版 / 一盒20瓶+2瓶)"
             };
             // 发送给好友
             WeixinJSBridge.on('menu:share:appmessage', function (argv) {
@@ -295,8 +295,8 @@
 
     wx.ready(function () {
         wx.onMenuShareAppMessage({
-            title: '美澳省油1号(汽油版 / 一盒20瓶+2瓶)', // 分享标题
-            desc: '美澳省油1号(汽油版 / 一盒20瓶+2瓶)', // 分享描述
+            title: '福瑞达洗眼液(汽油版 / 一盒20瓶+2瓶)', // 分享标题
+            desc: '福瑞达洗眼液(汽油版 / 一盒20瓶+2瓶)', // 分享描述
             link: '/static/product.php?id=1', // 分享链接
             imgUrl: 'http://sy.longemont.net/photos/syrfygwkcom/goods/201806/thumb_b/15301816401530181640.jpg', // 分享图标
             success: function () {
@@ -310,7 +310,7 @@
     });
 
     wx.onMenuShareTimeline({
-        title: '美澳省油1号(汽油版 / 一盒20瓶+2瓶)', // 分享标题
+        title: '福瑞达洗眼液(汽油版 / 一盒20瓶+2瓶)', // 分享标题
         link: '/static/product.php?id=1', // 分享链接
         imgUrl: 'http://sy.longemont.net/photos/syrfygwkcom/goods/201806/thumb_b/15301816401530181640.jpg', // 分享图标
         success: function () {
