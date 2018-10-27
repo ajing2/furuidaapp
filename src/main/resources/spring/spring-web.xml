@@ -12,11 +12,21 @@
     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
     <mvc:annotation-driven/>
     <context:component-scan base-package="com.furuida.**"/>
-    <context:property-placeholder ignore-resource-not-found="true" location="classpath:prop/runtime.properties"
+    <context:property-placeholder ignore-resource-not-found="true" location="classpath:prop/jdbc.properties"
                                   file-encoding="utf-8"/>
     <mvc:resources location="/static/" mapping="/static/**" cache-period="864000"/>
     <!--<mvc:resources location="classpath:/META-INF/resources" mapping="/resources/**"/>-->
     <mvc:default-servlet-handler/>
+
+    <bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+        <property name="locations">
+            <list>
+                <value>classpath:prop/jdbc.properties</value>
+            </list>
+        </property>
+    </bean>
     <util:list id="messageConverters">
         <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
             <property name="supportedMediaTypes">
@@ -30,6 +40,7 @@
         </bean>
     </util:list>
 
+    <import resource="classpath:/spring/spring-dao.xml"/>
     <!--<aop:aspectj-autoproxy/>
     <bean id="controllerAop" class="com.jd.base.common.aop.ControllerAOP"/>
 

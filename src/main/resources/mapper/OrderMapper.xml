@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.furuida.mapper.OrderMapper">
+  <resultMap id="BaseResultMap" type="com.furuida.model.Order">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="order_num" jdbcType="VARCHAR" property="orderNum" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="pay_price" jdbcType="INTEGER" property="payPrice" />
+    <result column="is_pay" jdbcType="BIT" property="isPay" />
+    <result column="pay_time" jdbcType="INTEGER" property="payTime" />
+    <result column="is_ship" jdbcType="BIT" property="isShip" />
+    <result column="ship_time" jdbcType="INTEGER" property="shipTime" />
+    <result column="is_receipt" jdbcType="BIT" property="isReceipt" />
+    <result column="receipt_time" jdbcType="INTEGER" property="receiptTime" />
+    <result column="ship_num" jdbcType="VARCHAR" property="shipNum" />
+    <result column="create_time" jdbcType="INTEGER" property="createTime" />
+    <result column="update_time" jdbcType="INTEGER" property="updateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, order_num, user_id, pay_price, is_pay, pay_time, is_ship, ship_time, is_receipt, 
+    receipt_time, ship_num, create_time, update_time
+  </sql>
+  <select id="selectByExample" parameterType="com.furuida.model.OrderExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.furuida.model.OrderExample">
+    delete from t_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.furuida.model.Order">
+    insert into t_order (id, order_num, user_id, 
+      pay_price, is_pay, pay_time, 
+      is_ship, ship_time, is_receipt, 
+      receipt_time, ship_num, create_time, 
+      update_time)
+    values (#{id,jdbcType=BIGINT}, #{orderNum,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{payPrice,jdbcType=INTEGER}, #{isPay,jdbcType=BIT}, #{payTime,jdbcType=INTEGER}, 
+      #{isShip,jdbcType=BIT}, #{shipTime,jdbcType=INTEGER}, #{isReceipt,jdbcType=BIT}, 
+      #{receiptTime,jdbcType=INTEGER}, #{shipNum,jdbcType=VARCHAR}, #{createTime,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="map">
+    insert into t_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="order.id != null">
+        id,
+      </if>
+      <if test="order.orderNum != null">
+        order_num,
+      </if>
+      <if test="order.userId != null">
+        user_id,
+      </if>
+      <if test="order.payPrice != null">
+        pay_price,
+      </if>
+      <if test="order.isPay != null">
+        is_pay,
+      </if>
+      <if test="order.payTime != null">
+        pay_time,
+      </if>
+      <if test="order.isShip != null">
+        is_ship,
+      </if>
+      <if test="order.shipTime != null">
+        ship_time,
+      </if>
+      <if test="order.isReceipt != null">
+        is_receipt,
+      </if>
+      <if test="order.receiptTime != null">
+        receipt_time,
+      </if>
+      <if test="order.shipNum != null">
+        ship_num,
+      </if>
+      <if test="order.createTime != null">
+        create_time,
+      </if>
+      <if test="order.updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="order.id != null">
+        #{order.id,jdbcType=BIGINT},
+      </if>
+      <if test="order.orderNum != null">
+        #{order.orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="order.userId != null">
+        #{order.userId,jdbcType=VARCHAR},
+      </if>
+      <if test="order.payPrice != null">
+        #{order.payPrice,jdbcType=INTEGER},
+      </if>
+      <if test="order.isPay != null">
+        #{order.isPay,jdbcType=BIT},
+      </if>
+      <if test="order.payTime != null">
+        #{order.payTime,jdbcType=INTEGER},
+      </if>
+      <if test="order.isShip != null">
+        #{order.isShip,jdbcType=BIT},
+      </if>
+      <if test="order.shipTime != null">
+        #{order.shipTime,jdbcType=INTEGER},
+      </if>
+      <if test="order.isReceipt != null">
+        #{order.isReceipt,jdbcType=BIT},
+      </if>
+      <if test="order.receiptTime != null">
+        #{order.receiptTime,jdbcType=INTEGER},
+      </if>
+      <if test="order.shipNum != null">
+        #{order.shipNum,jdbcType=VARCHAR},
+      </if>
+      <if test="order.createTime != null">
+        #{order.createTime,jdbcType=INTEGER},
+      </if>
+      <if test="order.updateTime != null">
+        #{order.updateTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.furuida.model.OrderExample" resultType="java.lang.Long">
+    select count(*) from t_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_order
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.orderNum != null">
+        order_num = #{record.orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payPrice != null">
+        pay_price = #{record.payPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.isPay != null">
+        is_pay = #{record.isPay,jdbcType=BIT},
+      </if>
+      <if test="record.payTime != null">
+        pay_time = #{record.payTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.isShip != null">
+        is_ship = #{record.isShip,jdbcType=BIT},
+      </if>
+      <if test="record.shipTime != null">
+        ship_time = #{record.shipTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.isReceipt != null">
+        is_receipt = #{record.isReceipt,jdbcType=BIT},
+      </if>
+      <if test="record.receiptTime != null">
+        receipt_time = #{record.receiptTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.shipNum != null">
+        ship_num = #{record.shipNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_order
+    set id = #{record.id,jdbcType=BIGINT},
+      order_num = #{record.orderNum,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=VARCHAR},
+      pay_price = #{record.payPrice,jdbcType=INTEGER},
+      is_pay = #{record.isPay,jdbcType=BIT},
+      pay_time = #{record.payTime,jdbcType=INTEGER},
+      is_ship = #{record.isShip,jdbcType=BIT},
+      ship_time = #{record.shipTime,jdbcType=INTEGER},
+      is_receipt = #{record.isReceipt,jdbcType=BIT},
+      receipt_time = #{record.receiptTime,jdbcType=INTEGER},
+      ship_num = #{record.shipNum,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=INTEGER},
+      update_time = #{record.updateTime,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.furuida.model.Order">
+    update t_order
+    <set>
+      <if test="orderNum != null">
+        order_num = #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="payPrice != null">
+        pay_price = #{payPrice,jdbcType=INTEGER},
+      </if>
+      <if test="isPay != null">
+        is_pay = #{isPay,jdbcType=BIT},
+      </if>
+      <if test="payTime != null">
+        pay_time = #{payTime,jdbcType=INTEGER},
+      </if>
+      <if test="isShip != null">
+        is_ship = #{isShip,jdbcType=BIT},
+      </if>
+      <if test="shipTime != null">
+        ship_time = #{shipTime,jdbcType=INTEGER},
+      </if>
+      <if test="isReceipt != null">
+        is_receipt = #{isReceipt,jdbcType=BIT},
+      </if>
+      <if test="receiptTime != null">
+        receipt_time = #{receiptTime,jdbcType=INTEGER},
+      </if>
+      <if test="shipNum != null">
+        ship_num = #{shipNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.furuida.model.Order">
+    update t_order
+    set order_num = #{orderNum,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      pay_price = #{payPrice,jdbcType=INTEGER},
+      is_pay = #{isPay,jdbcType=BIT},
+      pay_time = #{payTime,jdbcType=INTEGER},
+      is_ship = #{isShip,jdbcType=BIT},
+      ship_time = #{shipTime,jdbcType=INTEGER},
+      is_receipt = #{isReceipt,jdbcType=BIT},
+      receipt_time = #{receiptTime,jdbcType=INTEGER},
+      ship_num = #{shipNum,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
