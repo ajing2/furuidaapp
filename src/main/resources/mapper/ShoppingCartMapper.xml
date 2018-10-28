@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.furuida.model.ShoppingCart">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="user_id" jdbcType="VARCHAR" property="userId" />
-    <result column="goods_id" jdbcType="TINYINT" property="goodsId" />
+    <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
     <result column="num" jdbcType="INTEGER" property="num" />
     <result column="create_time" jdbcType="INTEGER" property="createTime" />
     <result column="update_time" jdbcType="INTEGER" property="updateTime" />
