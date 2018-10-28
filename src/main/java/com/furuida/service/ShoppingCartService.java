@@ -2,6 +2,8 @@ package com.furuida.service;
 
 import com.furuida.model.ShoppingCart;
 
+import java.util.List;
+
 /**
  * @ClassName ShoppingCartService
  * @Description TODO
@@ -12,6 +14,11 @@ import com.furuida.model.ShoppingCart;
 public interface ShoppingCartService {
 
     public void addShoppingCart(ShoppingCart shoppingCart);
+
     public void deleteShoppingCart(Long id);
+
+    public void updateShoppingCart(ShoppingCart shoppingCart);
+
+    public List selectShoppingCart(ShoppingCart shoppingCart);
 
 }

@@ -9,6 +9,8 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @ClassName ShoppingCartController
@@ -47,6 +49,32 @@ public class ShoppingCartController {
             log.error(e.getMessage(), e);
             return "failed";
         }
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @ResponseBody
+    private String updateShoppingCart(@RequestBody ShoppingCart shoppingCart) {
+        try {
+            shoppingCartService.updateShoppingCart(shoppingCart);
+            return "ok";
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            return "failed";
+        }
+    }
+
+
+    @RequestMapping(value = "/select", method = RequestMethod.GET)
+    @ResponseBody
+    private List selectShoppingCart(@RequestBody ShoppingCart shoppingCart) {
+        try {
+            ArrayList<ShoppingCart> data = (ArrayList<ShoppingCart>) shoppingCartService.selectShoppingCart(shoppingCart);
+            return data;
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            return null;
+        }
+
     }
 
 }

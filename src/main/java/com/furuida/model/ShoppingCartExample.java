@@ -244,12 +244,12 @@ public class ShoppingCartExample {
             return (Criteria) this;
         }
 
-        public Criteria andGoodsIdEqualTo(Byte value) {
+        public Criteria andGoodsIdEqualTo(Integer value) {
             addCriterion("goods_id =", value, "goodsId");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsIdNotEqualTo(Byte value) {
+        public Criteria andGoodsIdNotEqualTo(Integer value) {
             addCriterion("goods_id <>", value, "goodsId");
             return (Criteria) this;
         }

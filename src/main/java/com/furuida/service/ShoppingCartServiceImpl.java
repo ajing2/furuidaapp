@@ -4,9 +4,12 @@ import com.furuida.mapper.OrderMapper;
 import com.furuida.mapper.ShoppingCartMapper;
 import com.furuida.model.Order;
 import com.furuida.model.ShoppingCart;
+import com.furuida.model.ShoppingCartExample;
+import com.jd.jsf.gd.util.StringUtils;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @ClassName ShoppingCartServiceImpl
@@ -29,5 +32,26 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Override
     public void deleteShoppingCart(Long id){
         shoppingCartMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public void updateShoppingCart(ShoppingCart shoppingCart){
+        shoppingCartMapper.updateByPrimaryKeySelective(shoppingCart);
+    }
+
+    @Override
+    public List selectShoppingCart(ShoppingCart shoppingCart){
+        ShoppingCartExample shoppingCartExample = new ShoppingCartExample();
+        ShoppingCartExample.Criteria criteria = shoppingCartExample.createCriteria();
+        if (StringUtils.isNotEmpty(shoppingCart.getUserId())){
+            criteria.andUserIdEqualTo(shoppingCart.getUserId());
+        }
+        if (shoppingCart.getGoodsId() != null){
+            criteria.andGoodsIdEqualTo(shoppingCart.getGoodsId());
+        }
+        if (shoppingCart.getNum() != null){
+            criteria.andNumEqualTo(shoppingCart.getNum());
+        }
+        return shoppingCartMapper.selectByExample(shoppingCartExample);
     }
 }
