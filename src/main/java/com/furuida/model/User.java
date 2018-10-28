@@ -13,6 +13,12 @@ public class User {
 
     private String receiveAddr;
 
+    /**
+     * 职务
+     * level1:组长，level2:，主管，level3:副经理，level4:经理，level5:总经理
+     */
+    private int level;
+
     public Long getId() {
         return id;
     }
@@ -59,5 +65,13 @@ public class User {
 
     public void setReceiveAddr(String receiveAddr) {
         this.receiveAddr = receiveAddr == null ? null : receiveAddr.trim();
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 }

@@ -20,4 +20,11 @@ public class OrderServiceImpl implements OrderService {
     public void addOrder(Order order) {
         orderMapper.insertSelective(order);
     }
+
+    @Override
+    public boolean pay() {
+        //1、pay
+        //2、打钱升级逻辑
+        return false;
+    }
 }
