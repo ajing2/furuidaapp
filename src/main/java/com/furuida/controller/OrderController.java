@@ -4,6 +4,7 @@ import com.furuida.model.Order;
 import com.furuida.service.OrderService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -31,4 +32,43 @@ public class OrderController {
             return "failed";
         }
     }
+
+
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @ResponseBody
+    private String deleteOrder(@RequestParam Long id) {
+        try {
+            orderService.deleteOrder(id);
+            return "ok";
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            return "failed";
+        }
+    }
+
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @ResponseBody
+    private String updateOrder(@RequestBody Order order) {
+        try {
+            orderService.updateOrder(order);
+            return "ok";
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            return "failed";
+        }
+    }
+
+    @RequestMapping(value = "/select", method = RequestMethod.GET)
+    @ResponseBody
+    private String selectOrder(@RequestBody Order order) {
+        try {
+            orderService.selectOrder(order);
+            return "ok";
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            return "failed";
+        }
+    }
+
 }
