@@ -1,11 +1,16 @@
 package com.furuida.service;
 
+import com.furuida.mapper.UserMapper;
 import com.furuida.model.Node;
 import com.furuida.model.User;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @program: furuidaapp
@@ -15,9 +20,38 @@ import java.util.Map;
  **/
 @Component("modeService")
 public class NodeServiceImpl implements NodeService {
+    @Resource
+    UserMapper userMapper;
+
+    /**
+     * 加载数据库数据，初始化NODE
+     * @return
+     */
     @Override
     public Map<String, Node> getALLNode() {
-        return null;
+        List<User> uList = userMapper.selectAll();
+        if (null == uList)
+            return null;
+        final Map<String, Node> nMap = new HashMap<>();
+        uList.forEach(user->{
+            Node n = new Node();
+//            n.setParent;
+            n.setData(user);
+            List<User> child = uList.stream().filter(user1->user.getLevel()==1).collect(Collectors.toList());
+            List<Node> childNodeList = new ArrayList<>();
+            if (null != child) {
+                for (User u : child) {
+                    Node nc = new Node();
+                    nc.setParent(n);
+                    nc.setData(u);
+//                    nc.setChildList();
+                    childNodeList.add(nc);
+                }
+            }
+            n.setChildList(childNodeList);
+            nMap.put(user.getUserId(), n);
+        });
+        return nMap;
     }
 
     @Override
@@ -36,19 +70,19 @@ public class NodeServiceImpl implements NodeService {
 
             if (null != list1 && (levelCount(list1, 2) >= 2)) {
                 //升主管
-
+                current = current.getParent();
                 List<Node> list2 = current.getAllLeafs(current, 2);
                 if (null != list2 && (levelCount(list2, 3) >= 4)) {
                     //升副经理
-
+                    current = current.getParent();
                     List<Node> list3 = current.getAllLeafs(current, 3);
                     if (null != list3 && (levelCount(list3, 4) >= 4)) {
                         //升经理
-
+                        current = current.getParent();
                         List<Node> list4 = current.getAllLeafs(current, 4);
                         if (null != list4 && (levelCount(list4, 5) >= 4)) {
                             //升总经理
-
+                            current = current.getParent();
 
                         }
                     }

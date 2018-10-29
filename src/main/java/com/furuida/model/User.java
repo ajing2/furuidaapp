@@ -13,6 +13,7 @@ public class User {
 
     private String receiveAddr;
 
+    private String parentId;
     /**
      * 职务
      * level1:组长，level2:，主管，level3:副经理，level4:经理，level5:总经理
@@ -73,5 +74,13 @@ public class User {
 
     public void setLevel(int level) {
         this.level = level;
+    }
+
+    public String getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
     }
 }
