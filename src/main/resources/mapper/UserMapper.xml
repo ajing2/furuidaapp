@@ -5,7 +5,7 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="user_id" jdbcType="VARCHAR" property="userId" />
     <result column="webchat" jdbcType="VARCHAR" property="webchat" />
-    <result column="phone" jdbcType="INTEGER" property="phone" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="receive_name" jdbcType="VARCHAR" property="receiveName" />
     <result column="receive_addr" jdbcType="VARCHAR" property="receiveAddr" />
     <result column="parent_id" jdbcType="VARCHAR" property="parentId" />
@@ -107,7 +107,7 @@
       phone, receive_name, receive_addr
       )
     values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=VARCHAR}, #{webchat,jdbcType=VARCHAR}, 
-      #{phone,jdbcType=INTEGER}, #{receiveName,jdbcType=VARCHAR}, #{receiveAddr,jdbcType=VARCHAR}
+      #{phone,jdbcType=VARCHAR}, #{receiveName,jdbcType=VARCHAR}, #{receiveAddr,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.furuida.model.User">
@@ -143,7 +143,7 @@
         #{webchat,jdbcType=VARCHAR},
       </if>
       <if test="phone != null">
-        #{phone,jdbcType=INTEGER},
+        #{phone,jdbcType=VARCHAR},
       </if>
       <if test="receiveName != null">
         #{receiveName,jdbcType=VARCHAR},
@@ -175,7 +175,7 @@
         webchat = #{record.webchat,jdbcType=VARCHAR},
       </if>
       <if test="record.phone != null">
-        phone = #{record.phone,jdbcType=INTEGER},
+        phone = #{record.phone,jdbcType=VARCHAR},
       </if>
       <if test="record.receiveName != null">
         receive_name = #{record.receiveName,jdbcType=VARCHAR},
@@ -193,7 +193,7 @@
     set id = #{record.id,jdbcType=BIGINT},
       user_id = #{record.userId,jdbcType=VARCHAR},
       webchat = #{record.webchat,jdbcType=VARCHAR},
-      phone = #{record.phone,jdbcType=INTEGER},
+      phone = #{record.phone,jdbcType=VARCHAR},
       receive_name = #{record.receiveName,jdbcType=VARCHAR},
       receive_addr = #{record.receiveAddr,jdbcType=VARCHAR}
     <if test="_parameter != null">
@@ -210,7 +210,7 @@
         webchat = #{webchat,jdbcType=VARCHAR},
       </if>
       <if test="phone != null">
-        phone = #{phone,jdbcType=INTEGER},
+        phone = #{phone,jdbcType=VARCHAR},
       </if>
       <if test="receiveName != null">
         receive_name = #{receiveName,jdbcType=VARCHAR},
@@ -225,7 +225,7 @@
     update t_user
     set user_id = #{userId,jdbcType=VARCHAR},
       webchat = #{webchat,jdbcType=VARCHAR},
-      phone = #{phone,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=VARCHAR},
       receive_name = #{receiveName,jdbcType=VARCHAR},
       receive_addr = #{receiveAddr,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
