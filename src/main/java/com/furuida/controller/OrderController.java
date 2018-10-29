@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @program: furuidaapp
@@ -61,13 +62,12 @@ public class OrderController {
 
     @RequestMapping(value = "/select", method = RequestMethod.GET)
     @ResponseBody
-    private String selectOrder(@RequestBody Order order) {
+    private List<Order> selectOrder(@RequestBody Order order) {
         try {
-            orderService.selectOrder(order);
-            return "ok";
+            return orderService.selectOrder(order);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            return "failed";
+            return null;
         }
     }
 
