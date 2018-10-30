@@ -9,6 +9,7 @@
     <result column="receive_name" jdbcType="VARCHAR" property="receiveName" />
     <result column="receive_addr" jdbcType="VARCHAR" property="receiveAddr" />
     <result column="parent_id" jdbcType="VARCHAR" property="parentId" />
+    <result column="level" jdbcType="INTEGER" property="level" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -69,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, user_id, webchat, phone, receive_name, receive_addr
+    id, user_id, webchat, phone, receive_name, receive_addr, parent_id, level
   </sql>
   <select id="selectByExample" parameterType="com.furuida.model.UserExample" resultMap="BaseResultMap">
     select
@@ -104,10 +105,10 @@
   </delete>
   <insert id="insert" parameterType="com.furuida.model.User">
     insert into t_user (id, user_id, webchat, 
-      phone, receive_name, receive_addr
+      phone, receive_name, receive_addr, parent_id, level
       )
     values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=VARCHAR}, #{webchat,jdbcType=VARCHAR}, 
-      #{phone,jdbcType=VARCHAR}, #{receiveName,jdbcType=VARCHAR}, #{receiveAddr,jdbcType=VARCHAR}
+      #{phone,jdbcType=VARCHAR}, #{receiveName,jdbcType=VARCHAR}, #{receiveAddr,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.furuida.model.User">
@@ -131,6 +132,12 @@
       <if test="receiveAddr != null">
         receive_addr,
       </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -151,6 +158,12 @@
       <if test="receiveAddr != null">
         #{receiveAddr,jdbcType=VARCHAR},
       </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=INTEGER},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.furuida.model.UserExample" resultType="java.lang.Long">
@@ -159,8 +172,10 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-    <select id="selectAll" resultType="com.furuida.model.User">
-      select * from t_user
+    <select id="selectAll" resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List" />
+       from t_user
     </select>
     <update id="updateByExampleSelective" parameterType="map">
     update t_user
@@ -227,7 +242,8 @@
       webchat = #{webchat,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
       receive_name = #{receiveName,jdbcType=VARCHAR},
-      receive_addr = #{receiveAddr,jdbcType=VARCHAR}
+      receive_addr = #{receiveAddr,jdbcType=VARCHAR},
+      level = #{level,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

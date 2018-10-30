@@ -1,5 +1,6 @@
 package com.furuida.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,25 +11,26 @@ import java.util.List;
  **/
 public class Node {
     private User data;
-    private Node parent;
-    private List<Node> childList;
+    private String parent;
+    private List<String> childList;
 
-    List<Node> allDownLeafs;
+    List<String> allDownLeafs = new ArrayList<>();
     /**
      * 获取向上深度为dep的所有节点.
      * 即同级节点
      * @param dep
      * @return
      */
-    public List<Node> getAllLeafs(Node node, int dep) {
+    public List<String> getAllLeafs(Node node, int dep) {
         if (null == node) return null;
         for (int i = 0; i < dep; i++) {
-            node = node.parent;
+            node = NodeCache.nMap.get(node.parent);
             if (null == node) {
                 return null;
             }
         }
         //get add childs
+        allDownLeafs.clear();
         return getAllDownLeafs(node, dep);
     }
 
@@ -38,20 +40,37 @@ public class Node {
      * @param dep
      * @return
      */
-    List<Node> getAllDownLeafs(Node node, int dep) {
+    List<String> getAllDownLeafs(Node node, int dep) {
         if (null == node) return null;
-        List<Node> nodeList = node.childList;
+        List<String> userList = node.childList;
+        List<Node> nodeList = getNodeListByIdList(userList);
         if (dep == 1) {
-            allDownLeafs.addAll(nodeList);
+            List<String> sl = new ArrayList<>();
+            nodeList.forEach(n->{
+                sl.add(n.getData().getUserId());
+            });
+            allDownLeafs.addAll(sl);
+            return allDownLeafs;
         }
-        dep--;
-        if (null == nodeList) {
+        if (null == nodeList || nodeList.size() == 0) {
             return null;
         }
+        dep--;
+        int i = dep;
         for (Node n : nodeList) {
-            return getAllDownLeafs(n, dep);
+            getAllDownLeafs(n, i);
         }
         return allDownLeafs;
+    }
+    List<Node> getNodeListByIdList(List<String> userList) {
+        if (null == userList) {
+            return null;
+        }
+        List<Node> nodeList = new ArrayList<>();
+        userList.forEach(userId->{
+            nodeList.add(NodeCache.nMap.get(userId));
+        });
+        return nodeList;
     }
 
     public User getData() {
@@ -62,19 +81,33 @@ public class Node {
         this.data = data;
     }
 
-    public Node getParent() {
+    public String getParent() {
         return parent;
     }
+    public Node getParentNode() {
+        return NodeCache.nMap.get(parent);
+    }
 
-    public void setParent(Node parent) {
+    public void setParent(String parent) {
         this.parent = parent;
     }
 
-    public List<Node> getChildList() {
+    public List<String> getChildList() {
         return childList;
     }
 
-    public void setChildList(List<Node> childList) {
+    public void setChildList(List<String> childList) {
         this.childList = childList;
+    }
+
+    @Override
+    public String toString() {
+        return "Node{" +
+                "id=" + data.getUserId() +
+                ", parent='" + parent + '\'' +
+                ", childList=" + childList +
+                ", allDownLeafs=" + allDownLeafs +
+                ", level=" + data.getLevel() +
+                '}';
     }
 }

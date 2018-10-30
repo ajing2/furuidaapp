@@ -1,6 +1,7 @@
 package com.furuida.utils;
 
 import com.furuida.model.Node;
+import com.furuida.model.NodeCache;
 
 /**
  * @program: furuidaapp
@@ -19,7 +20,7 @@ public class NodeUtil {
     int getLevelCount(Node node, int dep, int level) {
         if (node==null) return 0;
         for (int i = 0; i < dep; i++) {
-            node = node.getParent();
+            node = NodeCache.nMap.get(node.getParent());
             if (null == node) {
                 return 0;
             }
