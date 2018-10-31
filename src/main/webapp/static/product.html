@@ -314,7 +314,7 @@
             msg: c,
             thisurl: '/static/product.php?id=1',
             imgurl: 'http://sy.longemont.net/photos/syrfygwkcom/goods/201806/thumb_b/15301816401530181640.jpg',
-            title: '福瑞达洗眼液(汽油版 / 一盒20瓶+2瓶)'
+            title: '福瑞达洗眼液'
         }, function (data) {
         });
     }
@@ -566,10 +566,10 @@
                     class="icon-home"></label>
                 <p style="float:left; margin:0px; padding-top:3px; width:100%; text-align:center;">首页</p></a></li>
             <li class="li2" style="width:30%">
-                <a id="btnCart" onclick="return addToCart('1')" class="butt-cart" style="border:none">加入购物车</a>
+                <a id="btnCart" onclick="return addToCart('1', 'shoppingcart')" class="butt-cart" style="border:none">加入购物车</a>
             </li>
             <li class="li4" style="width:30%">
-                <a id="btnBuy" onclick="return addToCart('1','jumpshopping','')" class="butt-buy" style="border:none">立即购买</a>
+                <a id="btnBuy" onclick="return addToCart('1','shoppingbuy','')" class="butt-buy" style="border:none">立即购买</a>
                 <!--<a href="/static/mycart.html" id="btnBuy" onclick="return addToCart('1','jumpshopping','')"-->
                    <!--class="butt-buy" style="border:none">立即购买</a>-->
             </li>
