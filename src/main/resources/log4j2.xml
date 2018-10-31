@@ -68,7 +68,7 @@
             <AppenderRef ref="asynchRollingFile" />
         </AsyncLogger>
 
-		<AsyncLogger name="com.furuida" level="debug"
+		<AsyncLogger name="com.furuida" level="info"
 			additivity="false">
 			<AppenderRef ref="asynchRollingFile" />
 		    <AppenderRef ref="Console" />
