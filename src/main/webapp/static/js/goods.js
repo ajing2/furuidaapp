@@ -9,7 +9,7 @@ var goods = new Object();
  * tt:标记的页面类型
  * obj:
  */
-function addToCart(goodsid, tt, pf) {
+function addToCart(goodsid, tt) {
 //     if (tt == "jifen_cartlist" || tt == "jifen") {
 //         if (confirm("你确定兑换吗？兑换后你的积分将会相应减少！")) {
 //         } else {

@@ -66,7 +66,7 @@ public class ShoppingCartController {
 
     @RequestMapping(value = "/select", method = RequestMethod.GET)
     @ResponseBody
-    private List selectShoppingCart(@RequestBody ShoppingCart shoppingCart) {
+    private List selectShoppingCart(ShoppingCart shoppingCart) {
         try {
             ArrayList<ShoppingCart> data = (ArrayList<ShoppingCart>) shoppingCartService.selectShoppingCart(shoppingCart);
             return data;

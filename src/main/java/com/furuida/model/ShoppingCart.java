@@ -13,6 +13,16 @@ public class ShoppingCart {
 
     private Integer updateTime;
 
+    private Integer price;
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
     public Long getId() {
         return id;
     }

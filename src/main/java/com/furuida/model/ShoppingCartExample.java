@@ -473,6 +473,74 @@ public class ShoppingCartExample {
             addCriterion("update_time not between", value1, value2, "updateTime");
             return (Criteria) this;
         }
+
+
+        public Criteria andPriceTimeIsNull() {
+            addCriterion("price_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPriceTimeIsNotNull() {
+            addCriterion("price_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPriceTimeEqualTo(Integer value) {
+            addCriterion("price_time =", value, "priceTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPriceTimeNotEqualTo(Integer value) {
+            addCriterion("price_time <>", value, "priceTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPriceTimeGreaterThan(Integer value) {
+            addCriterion("price_time >", value, "priceTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPriceTimeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("price_time >=", value, "priceTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPriceTimeLessThan(Integer value) {
+            addCriterion("price_time <", value, "priceTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPriceTimeLessThanOrEqualTo(Integer value) {
+            addCriterion("price_time <=", value, "priceTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPriceTimeIn(List<Integer> values) {
+            addCriterion("price_time in", values, "priceTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPriceTimeNotIn(List<Integer> values) {
+            addCriterion("price_time not in", values, "priceTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPriceTimeBetween(Integer value1, Integer value2) {
+            addCriterion("price_time between", value1, value2, "priceTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPriceTimeNotBetween(Integer value1, Integer value2) {
+            addCriterion("price_time not between", value1, value2, "priceTime");
+            return (Criteria) this;
+        }
+
+
+
+
+
+
+
     }
 
     public static class Criteria extends GeneratedCriteria {

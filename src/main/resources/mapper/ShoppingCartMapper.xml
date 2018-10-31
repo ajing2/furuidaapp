@@ -8,6 +8,7 @@
     <result column="num" jdbcType="INTEGER" property="num" />
     <result column="create_time" jdbcType="INTEGER" property="createTime" />
     <result column="update_time" jdbcType="INTEGER" property="updateTime" />
+    <result column="price" jdbcType="INTEGER" property="price" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -68,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, user_id, goods_id, num, create_time, update_time
+    id, user_id, goods_id, num, create_time, update_time, price
   </sql>
   <select id="selectByExample" parameterType="com.furuida.model.ShoppingCartExample" resultMap="BaseResultMap">
     select
@@ -103,10 +104,11 @@
   </delete>
   <insert id="insert" parameterType="com.furuida.model.ShoppingCart">
     insert into t_shopping_cart (id, user_id, goods_id, 
-      num, create_time, update_time
+      num, create_time, update_time, price,
       )
     values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=VARCHAR}, #{goodsId,jdbcType=TINYINT}, 
-      #{num,jdbcType=INTEGER}, #{createTime,jdbcType=INTEGER}, #{updateTime,jdbcType=INTEGER}
+      #{num,jdbcType=INTEGER}, #{createTime,jdbcType=INTEGER}, #{updateTime,jdbcType=INTEGER},
+      #{price,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.furuida.model.ShoppingCart">
@@ -130,6 +132,9 @@
       <if test="updateTime != null">
         update_time,
       </if>
+      <if test="price != null">
+        price,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -149,6 +154,9 @@
       </if>
       <if test="updateTime != null">
         #{updateTime,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -179,6 +187,9 @@
       <if test="record.updateTime != null">
         update_time = #{record.updateTime,jdbcType=INTEGER},
       </if>
+      <if test="record.price != null">
+        price = #{record.price,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -191,7 +202,8 @@
       goods_id = #{record.goodsId,jdbcType=TINYINT},
       num = #{record.num,jdbcType=INTEGER},
       create_time = #{record.createTime,jdbcType=INTEGER},
-      update_time = #{record.updateTime,jdbcType=INTEGER}
+      update_time = #{record.updateTime,jdbcType=INTEGER},
+      price = #{record.price,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
