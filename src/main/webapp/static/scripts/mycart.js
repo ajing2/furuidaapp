@@ -45,13 +45,11 @@ $('.showaddress').live('click', function () {
     } else {
         $('.userreddinfo').hide();
     }
-
-    debugger;
     $("#city").citySelect({prov:"北京",nodata:"none"});
-    //$('.userreddinfo').toggle();
 });
 
 function checkvar() {
+
     debugger;
     var shoppingCartId = $("#shoppingCartId").val();
     var consignee = $('input[name="consignee"]').val();
@@ -60,33 +58,34 @@ function checkvar() {
         return false;
     }
 
-    provinces = $('#city[name="province"]').val();
-    if (provinces == '0') {
-        alert("请选择省份！");
+    var provinces = $('#city .prov').val();
+    if (provinces == '' || provinces == null) {
+        alert("请选择省或者直辖市！");
         return false;
     }
 
-    city = $('select[name="city"]').val();
-    if (city == '0') {
-        alert("请选择城市");
+    var city = $('#city .city').val();
+    if (city == '' || city == null) {
+        alert("请选择城市或者区县！");
         return false;
     }
 
-    district = $('select[name="district"]').val();
-    if (district == '0') {
-        alert("请完整选择收货地址！");
+    var district = $('#city .dist').val();
+
+    var lastAddress = $('input[name="address"]').val();
+    if (lastAddress == '' || lastAddress == null) {
+        alert("详细地址不能为空");
         return false;
     }
-
-    address = $('input[name="address"]').val();
-    if (typeof(address) == 'undefined' || address == "") {
-        alert("详细地址不能为空！");
-        return false;
+    if (district = null){
+        var address = provinces + city + lastAddress;
+    }else{
+        var address = provinces + city + district + lastAddress;
     }
 
-    mobile = $('input[name="mobile"]').val();
-    tel = $('input[name="tel"]').val();
-    if (mobile == "" && tel == "") {
+    var mobile = $('input[name="mobile"]').val();
+
+    if (mobile == "" || mobile == null) {
         alert("请输入手机或者电话号码！");
         return false;
     }
@@ -95,8 +94,14 @@ function checkvar() {
         alert('请输入正确的手机号码');
         return false;
     }
+    if (shoppingCartId != ''){
+        updateShoppingCart();
+    }else{
+        insertShoppingCart();
+    }
+    window.location.href = "/static/pay.html"
 
-return true;
+return false;
 }
 
 $('.delcartid').click(function () {
