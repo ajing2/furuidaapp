@@ -5,9 +5,12 @@ function selectShoppingCart(userId) {
         type : "GET",
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         success : function(data) {
-            if (data.length = 1){
+            if (data.length = 1 && data[0] != null){
+                debugger;
+                $("#shoppingCartId").val(data[0].id);
                 $("input[name='goods_number']").val(data[0].num);
-                $(".gzprice1").html(data[0].num*data[0].price);
+                $(".gzprice1").html(data[0].num * data[0].price);
+
             }else{
                 $("input[name='goods_number']").val(1);
                 $(".gzprice1").html(158);
@@ -15,7 +18,7 @@ function selectShoppingCart(userId) {
 
         },
         error: function (data) {
-
+            console.log(data);
         }
     });
 }
@@ -44,71 +47,56 @@ $('.showaddress').live('click', function () {
     }
 
     debugger;
-    $("#city").citySelect();
+    $("#city").citySelect({prov:"北京",nodata:"none"});
     //$('.userreddinfo').toggle();
 });
 
 function checkvar() {
-    createwindow();
-    pp = $('input[name="pay_id"]:checked').val();
-    if (typeof(pp) == 'undefined' || pp == "") {
-        alert("请选择支付方式！");
+    debugger;
+    var shoppingCartId = $("#shoppingCartId").val();
+    var consignee = $('input[name="consignee"]').val();
+    if (typeof(consignee) == 'undefined' || consignee == "") {
+        alert("收货人不能为空！");
         return false;
     }
 
-    ss = $('input[name="shipping_id"]:checked').val();
-    if (typeof(ss) == 'undefined' || ss == "") {
-        alert("请选择配送方式！");
+    provinces = $('#city[name="province"]').val();
+    if (provinces == '0') {
+        alert("请选择省份！");
         return false;
     }
 
-    userress_id = $('input[name="userress_id"]:checked').val();
-    if (userress_id == '0' || userress_id == '' || typeof(userress_id) == 'undefined') {
-        consignee = $('input[name="consignee"]').val();
-        if (typeof(consignee) == 'undefined' || consignee == "") {
-            alert("收货人不能为空！");
-            return false;
-        }
-
-        provinces = $('select[name="province"]').val();
-        if (provinces == '0') {
-            alert("请选择收货地址！");
-            return false;
-        }
-
-        city = $('select[name="city"]').val();
-        if (city == '0') {
-            alert("请完整选择收货地址！");
-            return false;
-        }
-
-        district = $('select[name="district"]').val();
-        if (district == '0') {
-            alert("请完整选择收货地址！");
-            return false;
-        }
-
-        address = $('input[name="address"]').val();
-        if (typeof(address) == 'undefined' || address == "") {
-            alert("详细地址不能为空！");
-            return false;
-        }
-
-        mobile = $('input[name="mobile"]').val();
-        tel = $('input[name="tel"]').val();
-        if (mobile == "" && tel == "") {
-            alert("请输入手机或者电话号码！");
-            return false;
-        }
-        var partten = /^(13[0-9]|15[0-9]|18[0-9]|17[0-9]|14[0-9])\d{8}$/;
-        if (!partten.test(mobile)) {
-            alert('请输入正确的手机号码');
-            return false;
-        }
+    city = $('select[name="city"]').val();
+    if (city == '0') {
+        alert("请选择城市");
+        return false;
     }
 
+    district = $('select[name="district"]').val();
+    if (district == '0') {
+        alert("请完整选择收货地址！");
+        return false;
+    }
 
-    return true;
+    address = $('input[name="address"]').val();
+    if (typeof(address) == 'undefined' || address == "") {
+        alert("详细地址不能为空！");
+        return false;
+    }
+
+    mobile = $('input[name="mobile"]').val();
+    tel = $('input[name="tel"]').val();
+    if (mobile == "" && tel == "") {
+        alert("请输入手机或者电话号码！");
+        return false;
+    }
+    var partten = /^(13[0-9]|15[0-9]|18[0-9]|17[0-9]|14[0-9])\d{8}$/;
+    if (!partten.test(mobile)) {
+        alert('请输入正确的手机号码');
+        return false;
+    }
+
+return true;
 }
 
 $('.delcartid').click(function () {
@@ -243,62 +231,22 @@ function ajax_show_menu() {
 }
 
 
-function ger_ress(type, obj, seobj) {
-    parent_id = $(obj).val();
-    if (parent_id == "" || typeof(parent_id) == 'undefined') {
-        return false;
-    }
-    $.post(SITE_URL + 'user.php', {
-        action: 'get_ress',
-        type: type,
-        parent_id: parent_id
-    }, function (data) {
-        if (data != "") {
-            $(obj).parent().find('#' + seobj).html(data);
 
-            if (type == 5) { //村
+function clearShoppingCart() {
+    debugger;
+    var id = $("#shoppingCartId").val();
+    $.ajax({
+        url : "http://www.gflat.cn:8088/shopping/delete?id=" + id,
+        type : "GET",
+        contentType : 'application/json;charset=UTF-8', //contentType很重要
+        success : function(data) {
+            debugger;
+            window.location.href = "http://www.gflat.cn:8088/static/shoppingcart.html";
 
-                $(obj).parent().find('#' + seobj).show();
-                $(obj).parent().find('#select_peisong').hide();
-
-            } else if (type == 4) { //城镇
-                $(obj).parent().find('#select_village').hide();
-                $(obj).parent().find('#select_village').html('<option value="0" >选择村</option>');
-                $(obj).parent().find('#select_peisong').hide();
-                $(obj).parent().find('#select_peisong').html('<option value="0" >选择配送店</option>');
-                $(obj).parent().find('#select_town').show();
-
-            } else if (type == 3) { //区
-                $(obj).parent().find('#select_peisong').hide();
-                $(obj).parent().find('#select_peisong').html('<option value="0" >选择配送店</option>');
-
-                $(obj).parent().find('#select_village').hide();
-                $(obj).parent().find('#select_village').html('<option value="0" >选择村</option>');
-
-                $(obj).parent().find('#select_town').hide();
-                $(obj).parent().find('#select_town').html('<option value="0" >选择城镇</option>');
-
-                $(obj).parent().find('#select_district').show();
-
-            } else if (type == 2) { //市
-                $(obj).parent().find('#select_peisong').hide();
-                $(obj).parent().find('#select_peisong').html('<option value="0" >选择配送店</option>');
-
-                $(obj).parent().find('#select_village').hide();
-                $(obj).parent().find('#select_village').html('<option value="0" >选择村</option>');
-
-                $(obj).parent().find('#select_town').hide();
-                $(obj).parent().find('#select_town').html('<option value="0" >选择城镇</option>');
-
-                $(obj).parent().find('#select_district').hide();
-                $(obj).parent().find('#select_district').html('<option value="0" >选择区</option>');
-            }
-
-        } else {
-            alert(data);
+        },
+        error: function (data) {
+            debugger;
         }
     });
 }
-
-//获取配送店
 

@@ -89,58 +89,6 @@
                             <tr>
                                 <td align="right">区域：</td>
                                 <td align="left">
-                                    <!--<select name="province" id="select_province"-->
-                                            <!--onchange="ger_ress('2',this,'select_city')" class="pw">-->
-                                        <!--<option value="0">选择省</option>-->
-                                        <!--<option value="2">北京</option>-->
-                                        <!--<option value="3">安徽</option>-->
-                                        <!--<option value="4">福建</option>-->
-                                        <!--<option value="5">甘肃</option>-->
-                                        <!--<option value="6">广东</option>-->
-                                        <!--<option value="7">广西</option>-->
-                                        <!--<option value="8">贵州</option>-->
-                                        <!--<option value="9">海南</option>-->
-                                        <!--<option value="10">河北</option>-->
-                                        <!--<option value="11">河南</option>-->
-                                        <!--<option value="12">黑龙江</option>-->
-                                        <!--<option value="13">湖北</option>-->
-                                        <!--<option value="14">湖南</option>-->
-                                        <!--<option value="15">吉林</option>-->
-                                        <!--<option value="16">江苏</option>-->
-                                        <!--<option value="17">江西</option>-->
-                                        <!--<option value="18">辽宁</option>-->
-                                        <!--<option value="19">内蒙古</option>-->
-                                        <!--<option value="20">宁夏</option>-->
-                                        <!--<option value="21">青海</option>-->
-                                        <!--<option value="22">山东</option>-->
-                                        <!--<option value="23">山西</option>-->
-                                        <!--<option value="24">陕西</option>-->
-                                        <!--<option value="25">上海</option>-->
-                                        <!--<option value="26">四川</option>-->
-                                        <!--<option value="27">天津</option>-->
-                                        <!--<option value="28">西藏</option>-->
-                                        <!--<option value="29">新疆</option>-->
-                                        <!--<option value="30">云南</option>-->
-                                        <!--<option value="31">浙江</option>-->
-                                        <!--<option value="32">重庆</option>-->
-                                        <!--<option value="33">香港</option>-->
-                                        <!--<option value="34">澳门</option>-->
-                                        <!--<option value="35">台湾</option>-->
-
-                                    <!--</select>-->
-
-                                    <!--<select name="city" id="select_city" onchange="ger_ress('3',this,'select_district')"-->
-                                            <!--class="pw">-->
-                                        <!--<option value="0">选择城市</option>-->
-
-                                    <!--</select>-->
-
-                                    <!--<select style="display: none;" name="district" id="select_district" class="pw">-->
-                                        <!--<option value="0">选择区</option>-->
-
-                                    <!--</select>-->
-                                    <!---->
-
                                     <div id="city">
                                         <select class="prov"></select>
                                         <select class="city" disabled="disabled"></select>
@@ -168,6 +116,9 @@
                    style="width:100%;margin-top:10px;border-top:1px solid #ededed;">
 
                 <tr>
+                    <td>
+                        <input id="shoppingCartId" hidden>
+                    </td>
                     <td style="width:80px; text-align:center; height:80px; padding-top:10px; overflow:hidden; border-bottom:1px solid #ededed;"
                         valign="top">
                         <img src="/static/images/14.jpg" title="心生爱目洗眼液" border="0"
@@ -238,13 +189,13 @@
                 <div class="goods-bottom-bar" data-reactid="130">
 
 
-                    <div class="goods-direct-btn" data-reactid="137">
+                    <div class="goods-direct-btn" data-reactid="137" onclick="clearShoppingCart()">
 
-                        <span data-reactid="141"><a href="/static/mycart.html?type=mycart_clear" style="color: #fff;">清空购物车</a></span>
+                        <span data-reactid="141" style="color: #fff;"> 清空购物车</span>
                     </div>
                     <div class="goods-group-btn" data-reactid="142">
 
-                        <a href="/static/pay.html"><span data-reactid="146"><input value="确认提交" type="submit" align="absmiddle" onclick="return checkvar()"></span></a></div>
+                        <a><span data-reactid="146"><input value="确认提交" type="submit" align="absmiddle" onclick="return checkvar()"></span></a></div>
                         <span data-reactid="146"><a href="/static/pay.html"><input value="确认提交" type="button"
                                                                                    align="absmiddle"></a></span></div>
                 </div>

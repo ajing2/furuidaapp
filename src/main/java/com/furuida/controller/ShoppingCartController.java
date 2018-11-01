@@ -39,7 +39,7 @@ public class ShoppingCartController {
         }
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
     @ResponseBody
     private String deleteShoppingCart(@RequestParam Long id) {
         try {
