@@ -1,6 +1,8 @@
 package com.furuida.service;
 
+import com.furuida.mapper.CashHistoryMapper;
 import com.furuida.mapper.UserMapper;
+import com.furuida.model.CashHistory;
 import com.furuida.model.Node;
 import com.furuida.model.NodeCache;
 import com.furuida.model.User;
@@ -9,23 +11,18 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * @program: furuidaapp
- * @description: NodeService
- * @author: fuzhengquan
- * @create: 2018-10-28 13:45
  **/
-@Component("modeService")
+@Component("nodeService")
 public class NodeServiceImpl implements NodeService {
     Log log = LogFactory.getLog(NodeServiceImpl.class);
     @Resource
     UserMapper userMapper;
+    @Resource
+    CashHistoryMapper cashHistoryMapper;
 
     /**
      * 加载数据库数据，初始化NODE
@@ -127,11 +124,13 @@ public class NodeServiceImpl implements NodeService {
         if (i == 1) {
             //组长,给自己80元
             log.info("*******给：" + NodeCache.nMap.get(u.getUserId()).toString() + " 打钱：80元");
+            pay(u, 80);
             return;
         }
         if (i == 5) {
             //总经理
             log.info("*******给：" + NodeCache.nMap.get(u.getUserId()).toString() + " 打钱：3200元");
+            pay(u, 3200);
             return;
         }
         if (ifChangeLevelPay(u, i)) { //需要打钱,满足升级打钱条件
@@ -144,6 +143,20 @@ public class NodeServiceImpl implements NodeService {
         }
     }
 
+    /**
+     * 打钱
+     * @param u
+     * @param i
+     */
+    private void pay(User u, int i) {
+        CashHistory cash = new CashHistory();
+        cash.setUserId(u.getUserId());
+        cash.setMoney(i);
+        cash.setTime((int) new Date().getTime());
+        cash.setAccNum(u.getWebchat());
+        cashHistoryMapper.insert(cash);
+    }
+
     private void pay(User u, int i, int type, int levelCount) {
         if (type == 1) {
             User user = find(u, i); //给谁打
@@ -153,6 +166,7 @@ public class NodeServiceImpl implements NodeService {
             int price = changeLevelPay(i, levelCount); //打多少
             //打钱
             log.info("*******给：" + NodeCache.nMap.get(user.getUserId()).toString() + " 打钱：" + price + "元");
+            pay(u, price);
         }
         if (type == 2) {
             User user = find(u, i); //给谁打
@@ -162,6 +176,7 @@ public class NodeServiceImpl implements NodeService {
             int price = newChangeLevelPay(u, i);
             //打钱
             log.info("*******给：" + NodeCache.nMap.get(user.getUserId()).toString() + " 打钱：" + price + "元");
+            pay(u, price);
         }
     }
 
@@ -229,6 +244,8 @@ public class NodeServiceImpl implements NodeService {
                 break;
             case 4:
                 price = 500 * levelCount - 800;
+                break;
+            default:
                 break;
         }
         return price;

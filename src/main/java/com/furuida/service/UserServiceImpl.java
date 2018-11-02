@@ -4,6 +4,8 @@ import com.furuida.mapper.UserMapper;
 import com.furuida.model.User;
 import com.furuida.model.UserExample;
 import com.jd.jsf.gd.util.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -17,11 +19,24 @@ import java.util.List;
  **/
 @Component
 public class UserServiceImpl implements UserService {
+    /**
+     * log
+     */
+    Log log = LogFactory.getLog(NodeServiceImpl.class);
     @Resource
     UserMapper userMapper;
+    @Resource
+    NodeService nodeService;
     @Override
     public void addUser(User user) {
-        userMapper.insertSelective(user);
+        try {
+            userMapper.insertSelective(user);
+            nodeService.initALLNode();
+            nodeService.payAndUpgrade(user.getParentId());
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
