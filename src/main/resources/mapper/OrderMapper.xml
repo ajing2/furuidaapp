@@ -7,14 +7,14 @@
     <result column="user_id" jdbcType="VARCHAR" property="userId" />
     <result column="pay_price" jdbcType="INTEGER" property="payPrice" />
     <result column="is_pay" jdbcType="BIT" property="isPay" />
-    <result column="pay_time" jdbcType="INTEGER" property="payTime" />
+    <result column="pay_time" jdbcType="VARCHAR" property="payTime" />
     <result column="is_ship" jdbcType="BIT" property="isShip" />
-    <result column="ship_time" jdbcType="INTEGER" property="shipTime" />
+    <result column="ship_time" jdbcType="VARCHAR" property="shipTime" />
     <result column="is_receipt" jdbcType="BIT" property="isReceipt" />
-    <result column="receipt_time" jdbcType="INTEGER" property="receiptTime" />
+    <result column="receipt_time" jdbcType="VARCHAR" property="receiptTime" />
     <result column="ship_num" jdbcType="VARCHAR" property="shipNum" />
-    <result column="create_time" jdbcType="INTEGER" property="createTime" />
-    <result column="update_time" jdbcType="INTEGER" property="updateTime" />
+    <result column="create_time" jdbcType="VARCHAR" property="createTime" />
+    <result column="update_time" jdbcType="VARCHAR" property="updateTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>

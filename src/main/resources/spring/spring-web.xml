@@ -15,7 +15,7 @@
     <context:property-placeholder ignore-resource-not-found="true" location="classpath:prop/jdbc.properties"
                                   file-encoding="utf-8"/>
     <mvc:resources location="/static/" mapping="/static/**" cache-period="864000"/>
-    <!--<mvc:resources location="classpath:/META-INF/resources" mapping="/resources/**"/>-->
+    <mvc:resources location="classpath:/META-INF/resources" mapping="/resources/**"/>
     <mvc:default-servlet-handler/>
 
     <bean id="propertyConfigurer"

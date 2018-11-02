@@ -2,6 +2,7 @@ package com.furuida.test;
 
 import com.furuida.model.User;
 import com.furuida.service.NodeService;
+import com.furuida.service.OrderService;
 import com.furuida.service.UserService;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -39,6 +40,15 @@ public class Test {
             userService.addUser(u);
             nodeService.initALLNode();
             nodeService.payAndUpgrade(u.getParentId());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @org.junit.Test
+    public void testTrans() {
+        try {
+            System.out.println("====================");
+            userService.testTrans();
         } catch (Exception e) {
             e.printStackTrace();
         }
