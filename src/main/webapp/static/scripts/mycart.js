@@ -99,13 +99,48 @@ function checkvar() {
     }else{
         insertShoppingCart("hello_word");
     }
-    addUser("hello_word", 'test', mobile, consignee, address, 46, 0);
+    debugger;
+    addUser("hello_word", 'test', mobile, consignee, address, '46', 0);
+    debugger;
+    addOrder("hello_word", parseInt($(".gzprice1").html()), 0, 1,);
     debugger;
     window.location.href = "http://www.gflat.cn:8088/static/pay.html";
 
 return false;
 }
 
+
+function addOrder(userId, payPrice, isPay, payTime) {
+    debugger;
+    var data = {
+        orderNum: null,
+        userId: userId,
+        payPrice: payPrice,
+        isPay: isPay,
+        payTime: payTime,
+        isShip: 0,
+        shipTime: null,
+        isReceipt: 0,
+        receiptTime: null,
+        shipNum: null,
+        createTime: 1,
+        updateTime: 1
+    };
+
+    $.ajax({
+        url : "http://www.gflat.cn:8088/order/add",
+        type : "POST",
+        data: JSON.stringify(data),
+        dataType : 'json',
+        contentType : 'application/json;charset=UTF-8', //contentType很重要
+        success : function(result) {
+            debugger;
+        },
+        error: function (result) {
+            debugger;
+        }
+    });
+}
 
 function addUser(userId, webchat, phone, receiveName, receiveAddr, parent_id, level){
     var data = {
@@ -114,7 +149,8 @@ function addUser(userId, webchat, phone, receiveName, receiveAddr, parent_id, le
         phone: phone,
         receiveName: receiveName,
         receiveAddr: receiveAddr,
-        parentId: parent_id
+        parentId: parent_id,
+        level: level,
     };
     $.ajax({
         url : "http://www.gflat.cn:8088/user/add",

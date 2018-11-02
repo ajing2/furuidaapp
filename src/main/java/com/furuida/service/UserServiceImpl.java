@@ -38,8 +38,8 @@ public class UserServiceImpl implements UserService {
     public void addUser(User user) {
         try {
             userMapper.insertSelective(user);
-            nodeService.initALLNode();
-            nodeService.payAndUpgrade(user.getParentId());
+//            nodeService.initALLNode();
+//            nodeService.payAndUpgrade(user.getParentId());
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             throw new RuntimeException(e);
@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
             Order order = new Order();
             order.setIsPay(true);
             order.setPayPrice(100);
-            order.setPayTime((int)new Date().getTime());
+//            order.setPayTime((int)new Date().getTime());
             order.setUserId("111111111111111");
             order.setCreateTime(1222323);
             order.setIsReceipt(true);

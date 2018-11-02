@@ -60,3 +60,28 @@ function checkpay(){
 function ajax_update_payid(payid,oid,wpay,ypay){
     $.post(SITE_URL+'mycart.php',{action:'ajax_update_payid',payid:payid,oid:oid,wpay:wpay,ypay:ypay},function(data){})
 }
+setShoppingOrder("hello_word");
+function setShoppingOrder(userId) {
+    $.ajax({
+        url : "http://www.gflat.cn:8088/shopping/select?userId=" + userId,
+        type : "GET",
+        contentType : 'application/json;charset=UTF-8', //contentType很重要
+        success : function(data) {
+            if (data.length = 1 && data[0] != null){
+                debugger;
+                $("#order_price").html(data[0].price);
+                $(".num").html(data[0].num);
+                $(".allPrice").html(data[0].num * data[0].price);
+
+            }else{
+                $("#order_price").html(158);
+                $(".num").html(1);
+                $(".allPrice").html(158);
+            }
+
+        },
+        error: function (data) {
+            console.log(data);
+        }
+    });
+}

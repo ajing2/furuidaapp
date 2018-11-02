@@ -373,3 +373,33 @@ jQuery(document).ready(function($){
 	});
 
 });
+
+function selectShoppingCart(userId) {
+    $.ajax({
+        url : "http://www.gflat.cn:8088/shopping/select?userId=" + userId,
+        type : "GET",
+        contentType : 'application/json;charset=UTF-8', //contentType很重要
+        success : function(data) {
+            if (data.length >0 && data[0] != null){
+                debugger;
+                 window.location.href = "http://www.gflat.cn:8088/static/mycart.html"
+
+            }else{
+                window.location.href = "http://www.gflat.cn:8088/static/shoppingcart.html";
+            }
+        },
+        error: function (data) {
+        	debugger;
+            console.log(data);
+        }
+    });
+}
+
+function judgeShoppingCart() {
+	debugger;
+	selectShoppingCart('hello_word');
+
+}
+
+
+
