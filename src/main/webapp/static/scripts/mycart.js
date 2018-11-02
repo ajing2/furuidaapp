@@ -50,7 +50,6 @@ $('.showaddress').live('click', function () {
 
 function checkvar() {
 
-    debugger;
     var shoppingCartId = $("#shoppingCartId").val();
     var consignee = $('input[name="consignee"]').val();
     if (typeof(consignee) == 'undefined' || consignee == "") {
@@ -77,7 +76,7 @@ function checkvar() {
         alert("详细地址不能为空");
         return false;
     }
-    if (district = null){
+    if (district == null){
         var address = provinces + city + lastAddress;
     }else{
         var address = provinces + city + district + lastAddress;
@@ -94,30 +93,117 @@ function checkvar() {
         alert('请输入正确的手机号码');
         return false;
     }
+    debugger;
     if (shoppingCartId != ''){
-        updateShoppingCart();
+        updateShoppingCart("hello_word");
     }else{
-        insertShoppingCart();
+        insertShoppingCart("hello_word");
     }
-    window.location.href = "/static/pay.html"
+    addUser("hello_word", 'test', mobile, consignee, address, 46, 0);
+    debugger;
+    window.location.href = "http://www.gflat.cn:8088/static/pay.html";
 
 return false;
 }
 
-$('.delcartid').click(function () {
+
+function addUser(userId, webchat, phone, receiveName, receiveAddr, parent_id, level){
+    var data = {
+        userId: userId,
+        webchat: webchat,
+        phone: phone,
+        receiveName: receiveName,
+        receiveAddr: receiveAddr,
+        parentId: parent_id
+    };
+    $.ajax({
+        url : "http://www.gflat.cn:8088/user/add",
+        type : "POST",
+        data: JSON.stringify(data),
+        dataType : 'json',
+        contentType : 'application/json;charset=UTF-8', //contentType很重要
+        success : function(result) {
+            debugger;
+            window.location.href = "/static/pay.html";
+
+
+        },
+        error: function (result) {
+            debugger;
+        }
+    });
+}
+
+
+$('#delcartid').click(function () {
+    debugger;
     if (confirm("确定移除吗")) {
         gid = $(this).attr('id');
         $(this).parent().parent().parent().remove();
         obj = $(this);
-        $.post('/static/mycart.php', {action: 'ajax_remove_cargoods', gid: gid}, function (prices) {
-            $('.ztotals').html(prices);
-            nn = $('.mycarts').html();
-            number = $(obj).parent().parent().find('input[name="goods_number"]').val();
-            $('.mycarts').html(parseInt(nn) - parseInt(number));
-        });
+        var id = $("#shoppingCartId").val();
+        if (id != null || id != ''){
+            clearShoppingCart();
+        }
+        window.location.href = "http://www.gflat.cn:8088/static/shoppingcart.html"
     }
     return false;
 });
+
+
+function updateShoppingCart(userId) {
+    var id = $("#shoppingCartId").val();
+    var data = {
+        id: id,
+        userId: userId,
+        goodsId: 1,
+        num: $("input[name='goods_number']").val(),
+        price: 158,
+        createTime: 1,
+        updateTime: 1,
+    };
+    $.ajax({
+        url : "http://www.gflat.cn:8088/shopping/update",
+        type : "POST",
+        data: JSON.stringify(data),
+        dataType: 'json',
+        contentType : 'application/json;charset=UTF-8', //contentType很重要
+        success : function(result) {
+            debugger;
+            window.location.href = "/static/pay.html";
+
+        },
+        error: function (result) {
+            debugger;
+        }
+    });
+}
+
+function insertShoppingCart(userId) {
+    var data = {
+        userId: userId,
+        goodsId: 1,
+        num: parseInt($("input[name='goods_number']").val()),
+        price: 158,
+        createTime: 1,
+        updateTime: 1,
+    };
+    $.ajax({
+        url : "http://www.gflat.cn:8088/shopping/add",
+        type : "POST",
+        data: JSON.stringify(data),
+        dataType : 'json',
+        contentType : 'application/json;charset=UTF-8', //contentType很重要
+        success : function(result) {
+            debugger;
+
+
+        },
+        error: function (result) {
+            debugger;
+        }
+    });
+}
 
 //计算邮费
 function jisuan_shopping(id) {
