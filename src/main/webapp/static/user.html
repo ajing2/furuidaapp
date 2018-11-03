@@ -1,22 +1,21 @@
 <!doctype html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=7" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=7"/>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="format-detection" content="telephone=no">
     <title>心生爱目</title>
-    <link type="text/css" rel="stylesheet" href="/static/css/comman.css" media="all" />
-    <!--<link type="text/css" rel="stylesheet" href="/static/css/jquery_dialog.css" media="all" />-->
-    <link type="text/css" rel="stylesheet" href="/static/css/style.css?v=v21" media="all" />
-    <link type="text/css" rel="stylesheet" href="/static/css/user2015.css" media="all" />
-    <link type="text/css" rel="stylesheet" href="/static/tpl/31/css/bootstrap.css" >
+    <link type="text/css" rel="stylesheet" href="/static/css/comman.css" media="all"/>
+    <link type="text/css" rel="stylesheet" href="/static/css/style.css?v=v21" media="all"/>
+    <link type="text/css" rel="stylesheet" href="/static/css/user2015.css" media="all"/>
+    <link type="text/css" rel="stylesheet" href="/static/tpl/31/css/bootstrap.css">
     <link type="text/css" rel="stylesheet" href="/static/tpl/31/css/font-awesome.css">
-    <link type="text/css" rel="stylesheet" href="/static/tpl/31/css/stylewei.css?v=1" >
-    <link type="text/css" rel="stylesheet" href="/static/tpl/31/css/distribute_center.css?v=7" >
+    <link type="text/css" rel="stylesheet" href="/static/tpl/31/css/stylewei.css?v=1">
+    <link type="text/css" rel="stylesheet" href="/static/tpl/31/css/distribute_center.css?v=7">
     <link type="text/css" rel="stylesheet" href="/static/tpl/31/css/PreFoot.css?v=2">
     <link type="text/css" rel="stylesheet" href="/static/tpl/31/style/font-awesome.min.css">
 
@@ -24,7 +23,7 @@
     <script type="text/javascript" src="/static/js/jquery_dialog.js?v=1"></script>
     <script type="text/javascript" src="/static/js/common.js?v=21"></script>
     <script type="text/javascript" src="/static/js/jquery.json-1.3.js"></script>
-    <script type="text/javascript" src="/static/js/user.js?v=v1"></script>
+    <script type="text/javascript" src="/static/scripts/user.js"></script>
     <script src="/static/js/layer.js"></script>
     <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 
@@ -37,73 +36,65 @@
         <div class="fxbj_x" style="background:#04ab06">
             <p style="text-align:center; padding-top:10px; margin:0px">
 			 <span class="flk_x l" style="margin:0px auto; float:none">
-				<a href="#"><img style="width:60px; height:60px" id="hd_image" src="http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTIBZEDIZib8kc3TH3m4YykOYfaLDoeQ8GRChp9sia6zH73AJHF8VJQ1kkh5mImKtv1iajk0JIxbPYqoA/132" /></a>
+				<a href="#"><img style="width:60px; height:60px" id="hd_image"
+                                 src="http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTIBZEDIZib8kc3TH3m4YykOYfaLDoeQ8GRChp9sia6zH73AJHF8VJQ1kkh5mImKtv1iajk0JIxbPYqoA/132"/></a>
 			 </span>
             </p>
             <div class="clear"></div>
             <p style="text-align:center; padding-bottom:2px; margin:0px;">
 			 <span class="flx_x l" style="margin:0px auto; float:none">
-			 <span>[965729]全全</span><br>
-             <span>邀请码:SY845632</span><br>
+			 <span id="userName"></span><br>
+                 <span>邀请码:<span id="InvitationCode"></span></span><br>
 			 </span>
             </p>
         </div>
         <div class="clear"></div>
         <div style=" position:fixed; right:0px; top:0px;border-radius:15% 0 0 15%; padding:5px; background:#198a2d">
-            <span style="float:right; color:#fff">游客 </span>
+            <span style="float:right; color:#fff" id="UserLevel">游客</span>
             <span style="float:left; color:#fff; padding-right:10px;"><i class="icon-trophy"></i></span>
         </div>
         <div class="clear"></div>
         <div class="wrap">
             <div class="w">
-                <div class="jine_x">
-                    <ul class="jine1_x" style="-webkit-padding-start: 0;margin-bottom: 0;">
-                        <li style="border-right: 1px solid #fff;"><a href="javascript:void(0)">总销售（元）<p class="jiage_x" style="margin: 0;">0.00</p></a></li>
-                        <li style="border-right: 1px solid #fff;"><a href="javascript:void(0)">已结算（元）<p class="jiage_x" style="margin: 0;">0.00</p></a></li>
-                        <li><a href="javascript:void(0)">待结算（元）<p class="jiage_x" style="margin: 0;">0.00</p></a></li>
-                    </ul>
-                </div>
-                <div class="clear"></div>
-                <div>
-					<span class="l" style=" text-align:left; text-indent:1em; width:60%;">
-						<div class="flt_x">可提余额(元)</div>
-						<div class="flt1_x">0.00</div>
-					</span>
-                    <span class="l" style=" text-align:center;width:40%;">
-						<a href="applymoney.html"><span id='withdraw_btn' class="tixian_x r" link="/api/3tzpodgi8i/distribute/withdraw/">结算入口</span></a>
-					</span>
-                </div>
                 <div class="clear"></div>
 
                 <div class="fenlei_x">
-                    <ul class="fenlei1_x"  style="-webkit-padding-start: 0;margin-bottom: 0;">
+                    <ul class="fenlei1_x" style="-webkit-padding-start: 0;margin-bottom: 0;">
                         <li>
-                            <a href="/static/personal.html"><img src="/static/tpl/31/images/cw_xx.png" width="25" height="25"><br>个人资料</a>
+                            <a href="/static/personal.html"><img src="/static/tpl/31/images/cw_xx.png" width="25"
+                                                                 height="25"><br>个人资料</a>
                         </li>
                         <li>
-                            <a href="/static/reward.html"><img src="/static/tpl/31/images/ewm1.png" width="25" height="25"><br>奖励制度</a>
+                            <a href="/static/reward.html"><img src="/static/tpl/31/images/ewm1.png" width="25"
+                                                               height="25"><br>奖励制度</a>
                         </li>
                         <li>
-                            <a href="/static/qr.html"><img src="/static/tpl/31/images/cf.png" width="25" height="25"><br>邀请码</a>
+                            <a href="/static/qr.html"><img src="/static/tpl/31/images/cf.png" width="25"
+                                                           height="25"><br>邀请码</a>
                         </li>
                         <li>
                             <a href="myspread.html"><img src="/static/tpl/31/images/dl.png" width="25" height="25"><br>我的推广</a>
                         </li>
                         <li>
-                            <a href="/static/introducer.html"><img src="/static/tpl/31/images/fxz_x.png" width="25" height="25"><br>我的上级</a>
+                            <a href="/static/introducer.html"><img src="/static/tpl/31/images/fxz_x.png" width="25"
+                                                                   height="25"><br>我的上级</a>
                         </li>
                         <li>
-                            <a href="postmoney.html"><img src="/static/tpl/31/images/5829c501be.png" width="25" height="25"><br>提现记录</a>
+                            <a href="postmoney.html"><img src="/static/tpl/31/images/5829c501be.png" width="25"
+                                                          height="25"><br>提现记录</a>
                         </li>
                         <li>
-                            <a href="myorder.html"><img src="/static/tpl/31/images/58ee0999ce.png" width="25" height="25"><br>订单信息</a>
+                            <a href="myorder.html"><img src="/static/tpl/31/images/58ee0999ce.png" width="25"
+                                                        height="25"><br>订单信息</a>
                         </li>
                         <li>
-                            <a href="/static/customer.html"><img src="/static/tpl/31/images/jw.png" width="25" height="25"><br>联系客服</a>
+                            <a href="/static/customer.html"><img src="/static/tpl/31/images/jw.png" width="25"
+                                                                 height="25"><br>联系客服</a>
                         </li>
 
                         <li style="text-align:center">
-                            <a href="/static/effect.html"><img src="/static/tpl/31/images/gather.png" width="25" height="25"><br>产品功效</a>
+                            <a href="/static/effect.html"><img src="/static/tpl/31/images/gather.png" width="25"
+                                                               height="25"><br>产品功效</a>
                         </li>
                     </ul>
                 </div>
@@ -112,15 +103,26 @@
         </div>
 
 
-
-
-
         <style>
-            .sub-nav.nav-b5 dd a{color: #666;}
-            .icon-home{color: #666;}
-            .icon-sitemap{color: #666;}
-            .icon-user{color: #666;}
-            .icon-shopping-cart{color: #666;}
+            .sub-nav.nav-b5 dd a {
+                color: #666;
+            }
+
+            .icon-home {
+                color: #666;
+            }
+
+            .icon-sitemap {
+                color: #666;
+            }
+
+            .icon-user {
+                color: #666;
+            }
+
+            .icon-shopping-cart {
+                color: #666;
+            }
         </style>
 
         <div class="fixed bottom">
@@ -142,5 +144,8 @@
         </div>
 
 
+    </div>
+
+</div>
 </body>
 </html>

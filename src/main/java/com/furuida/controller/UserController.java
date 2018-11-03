@@ -63,7 +63,7 @@ public class UserController {
 
     @RequestMapping(value = "/select", method = RequestMethod.GET)
     @ResponseBody
-    private List<Order> selectUser(@RequestBody User user) {
+    private List<Order> selectUser(User user) {
         try {
             return userService.selectUser(user);
         } catch (Exception e) {
