@@ -20,6 +20,27 @@ public class User {
      */
     private int level;
 
+    private String webchatUrl;
+
+    private String webchatName;
+
+
+    public String getWebchatUrl() {
+        return webchatUrl;
+    }
+
+    public void setWebchatUrl(String webchatUrl) {
+        this.webchatUrl = webchatUrl;
+    }
+
+    public String getWebchatName() {
+        return webchatName;
+    }
+
+    public void setWebchatName(String webchatName) {
+        this.webchatName = webchatName;
+    }
+
     public Long getId() {
         return id;
     }

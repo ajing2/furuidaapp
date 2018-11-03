@@ -10,6 +10,8 @@
     <result column="receive_addr" jdbcType="VARCHAR" property="receiveAddr" />
     <result column="parent_id" jdbcType="VARCHAR" property="parentId" />
     <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="webchat_url" jdbcType="VARCHAR" property="webchatUrl" />
+    <result column="webchat_name" jdbcType="VARCHAR" property="webchatName" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -70,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, user_id, webchat, phone, receive_name, receive_addr, parent_id, level
+    id, user_id, webchat, phone, receive_name, receive_addr, parent_id, `level`, webchat_url, webchat_name
   </sql>
   <select id="selectByExample" parameterType="com.furuida.model.UserExample" resultMap="BaseResultMap">
     select
@@ -105,10 +107,11 @@
   </delete>
   <insert id="insert" parameterType="com.furuida.model.User">
     insert into t_user (id, user_id, webchat, 
-      phone, receive_name, receive_addr, parent_id, level
+      phone, receive_name, receive_addr, parent_id, level, webchat_url, webchat_name
       )
     values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=VARCHAR}, #{webchat,jdbcType=VARCHAR}, 
-      #{phone,jdbcType=VARCHAR}, #{receiveName,jdbcType=VARCHAR}, #{receiveAddr,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER}
+      #{phone,jdbcType=VARCHAR}, #{receiveName,jdbcType=VARCHAR}, #{receiveAddr,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER},
+      #{webchatUrl, jdbcType=VARCHAR}, #{webchatName, jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.furuida.model.User">
@@ -138,6 +141,12 @@
       <if test="level != null">
         level,
       </if>
+      <if test="webchatUrl != null">
+        webchat_url,
+      </if>
+      <if test="webchatName != null">
+        webchat_name,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -163,6 +172,12 @@
       </if>
       <if test="level != null">
         #{level,jdbcType=INTEGER},
+      </if>
+      <if test="webchat_url != null">
+        #{webchatUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="webchat_name != null">
+        #{webchatName,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -198,6 +213,12 @@
       <if test="record.receiveAddr != null">
         receive_addr = #{record.receiveAddr,jdbcType=VARCHAR},
       </if>
+      <if test="record.webchatUrl != null">
+        webchat_url = #{record.webchatUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.webchatName != null">
+        webchat_name = #{record.webchatName,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -210,7 +231,9 @@
       webchat = #{record.webchat,jdbcType=VARCHAR},
       phone = #{record.phone,jdbcType=VARCHAR},
       receive_name = #{record.receiveName,jdbcType=VARCHAR},
-      receive_addr = #{record.receiveAddr,jdbcType=VARCHAR}
+      receive_addr = #{record.receiveAddr,jdbcType=VARCHAR},
+      webchat_url = #{record.webchatUrl,jdbcType=VARCHAR},
+      webchat_name = #{record.webchatName,jdbcType=VARCHAR}.
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -233,6 +256,13 @@
       <if test="receiveAddr != null">
         receive_addr = #{receiveAddr,jdbcType=VARCHAR},
       </if>
+      <if test="webchatUrl != null">
+        webchat_url = #{webchatUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="webchatName != null">
+        webchat_name = #{webchatName,jdbcType=VARCHAR},
+      </if>
+
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -243,7 +273,9 @@
       phone = #{phone,jdbcType=VARCHAR},
       receive_name = #{receiveName,jdbcType=VARCHAR},
       receive_addr = #{receiveAddr,jdbcType=VARCHAR},
-      level = #{level,jdbcType=INTEGER}
+      level = #{level,jdbcType=INTEGER},
+      webchat_url = #{webchatUrl,jdbcType=VARCHAR},
+      webchat_name = #{webchatName,jdbcType=VARCHAR},
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>
