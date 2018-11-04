@@ -30,8 +30,8 @@ public class Test {
             System.out.println("====================");
             User u = new User();
 //            u.setId(3L);
-            u.setParentId("6");
-            u.setUserId("13");
+            u.setParentId("127");
+            u.setUserId("133");
             u.setPhone("1234424323");
             u.setLevel(0);
             u.setReceiveAddr("s");

@@ -23,23 +23,7 @@ public class User {
     private String webchatUrl;
 
     private String webchatName;
-
-
-    public String getWebchatUrl() {
-        return webchatUrl;
-    }
-
-    public void setWebchatUrl(String webchatUrl) {
-        this.webchatUrl = webchatUrl;
-    }
-
-    public String getWebchatName() {
-        return webchatName;
-    }
-
-    public void setWebchatName(String webchatName) {
-        this.webchatName = webchatName;
-    }
+    private int ispayed;
 
     public Long getId() {
         return id;
@@ -103,5 +87,29 @@ public class User {
 
     public void setParentId(String parentId) {
         this.parentId = parentId;
+    }
+
+    public String getWebchatUrl() {
+        return webchatUrl;
+    }
+
+    public void setWebchatUrl(String webchatUrl) {
+        this.webchatUrl = webchatUrl;
+    }
+
+    public String getWebchatName() {
+        return webchatName;
+    }
+
+    public void setWebchatName(String webchatName) {
+        this.webchatName = webchatName;
+    }
+
+    public int getIspayed() {
+        return ispayed;
+    }
+
+    public void setIspayed(int ispayed) {
+        this.ispayed = ispayed;
     }
 }

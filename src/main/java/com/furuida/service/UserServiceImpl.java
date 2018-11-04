@@ -38,8 +38,8 @@ public class UserServiceImpl implements UserService {
     public void addUser(User user) {
         try {
             userMapper.insertSelective(user);
-//            nodeService.initALLNode();
-//            nodeService.payAndUpgrade(user.getParentId());
+            nodeService.initALLNode();
+            nodeService.payAndUpgrade(user.getParentId());
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             throw new RuntimeException(e);
