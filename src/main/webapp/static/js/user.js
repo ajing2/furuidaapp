@@ -321,7 +321,8 @@ return obj;
 }
 
 //用户收货地址
-function ressinfoop(id,type,obj){ 
+function ressinfoop(id,type,obj){
+	debugger;
 	var tt = false;
 	var dd = false;
 	if(type=='delete'){

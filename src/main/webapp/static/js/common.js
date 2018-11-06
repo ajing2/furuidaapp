@@ -87,7 +87,7 @@ function createwindow(){
 	obj = $('.openwindow');
 	if(typeof(obj)!='undefined') $(obj).remove();
 	h = getScrollTop();
-	var str = '<div class="openwindow"><img src="'+SITE_URL+'images/loadings.gif"  align="absmiddle"/></div>';
+	var str = '<div class="openwindow"><img src="/static/images/loadings.gif"  align="absmiddle"/></div>';
 	$("body").append(str);
 	$('.openwindow').css('position','absolute');
 	$('.openwindow').css('left',((screen.availWidth-400)/2)+'px');

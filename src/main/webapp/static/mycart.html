@@ -59,15 +59,20 @@
         <form name="CONSIGNEE_ADDRESS" id="CONSIGNEE_ADDRESS">
 
             <table border="0" cellpadding="0" cellspacing="0" style="width:100%;">
-                <!--<tr>-->
-                <!--<td>-->
-                <!--<label style="padding-left:10px;"><input checked="checked" type="radio" class="showaddress" name="userress_id" value="229288"/>-->
-                <!--北京北京西城区sdfs<br/><span style="padding-left:26px;"></span>电话:15166666666&nbsp;联系人:dfsf</label>-->
-                <!--<p style="padding-left:26px;">-->
-                <!--<a href="javascript:;" onclick="ressinfoop('229288','showupdate',this)" style=" margin-left:10px;display:block;background:#DB383E;cursor:pointer;width:60px; height:22px; line-height:22px; font-size:12px; color:#FFF; text-align:center">修改</a>-->
-                <!--</p>-->
-                <!--</td>-->
-                <!--</tr>-->
+                <tr id="haveUser" hidden>
+                    <td>
+                        <label style="padding-left:10px;">
+                            <input checked="checked" type="radio" class="showaddress" name="userress_id" value="229288"/>
+                            <span id="havedAddress"></span>
+                            <br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;联系人:<span style="padding-left:26px;" id="havedName"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            电话:<span style="padding-left:26px;" id="havedphone"></span>
+                        </label>
+                        <p style="padding-left:26px;">
+                            <a href="javascript:;" onclick="ressinfoop('229288','showupdate',this)" style=" margin-left:10px;display:block;background:#DB383E;cursor:pointer;width:60px; height:22px; line-height:22px; font-size:12px; color:#FFF; text-align:center">修改</a>
+                        </p>
+                    </td>
+                </tr>
                 <tr>
                     <td>
                         <label style="padding-left:10px;">

@@ -102,7 +102,7 @@ function checkvar() {
     debugger;
     addUser("hello_word", 'test', mobile, consignee, address, '46', 0);
     debugger;
-    addOrder("hello_word", parseInt($(".gzprice1").html()), 0, 1,);
+    addOrder("hello_word", parseInt($(".gzprice1").html()), 0, 1);
     debugger;
     window.location.href = "http://www.gflat.cn:8088/static/pay.html";
 
@@ -377,3 +377,31 @@ function clearShoppingCart() {
     });
 }
 
+
+function selectUser(userId) {
+    var result;
+    $.ajax({
+        url : "http://www.gflat.cn:8088/user/select?userId=" + userId,
+        type : "GET",
+        contentType : 'application/json;charset=UTF-8', //contentType很重要
+        async:false,
+        success : function(data) {
+            result = data;
+        },
+        error: function (data) {
+            result = null;
+        }
+    });
+    debugger;
+    return result;
+}
+
+debugger;
+var data = selectUser("hello_word");
+debugger;
+if (data.length>0 && data[0] != null){
+    $("#haveUser").toggle();
+    $("#havedAddress").html(data[0].receiveAddr);
+    $("#havedName").html(data[0].receiveName);
+    $("#havedphone").html(data[0].phone);
+}

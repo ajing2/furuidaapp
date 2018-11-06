@@ -14,7 +14,7 @@ a:hover {color:#DB383E;text-decoration:none}
 .clear20{ clear:both; height:20px;}
 
 .meswindow, .openwindow{ position:absolute;/*display:none;filter:alpha(opacity=80); -moz-opacity:0.8; -khtml-opacity:0.8;opacity:0.8;*/}
-.openwindow{ padding-left:20px;text-align:left; background:url(../images/loading.png) no-repeat;padding-top:18px;height:52px; width:240px;}
+.openwindow{ padding-left:20px;text-align:left; padding-top:18px;height:52px; width:240px;}
 .meswindow{ text-align:center;background-color:#FFF; border:2px solid #CCC;padding-top:0px; padding-bottom:15px;min-height:40px;height:auto; width:280px; z-index:99999;}
 .meswindow img.img{ border:none; float:right; cursor:pointer}
 .window_box{ height:100%; width:100%; background-color:#ededed; z-index:8888; position:absolute; top:0px; left:0px; /*filter:alpha(opacity=70); -moz-opacity:0.7; -khtml-opacity:0.7;opacity:0.7;*/ display:none;}
