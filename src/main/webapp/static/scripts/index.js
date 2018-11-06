@@ -109,3 +109,26 @@ function documentHeight() {
 function windowHeight() {
     return (document.compatMode == "CSS1Compat") ? document.documentElement.clientHeight : document.body.clientHeight;
 }
+
+
+
+
+debugger;
+var url = 'https://open.weixin.qq.com/connect/qrconnect?appid=wx5e42f6049a1df0fd&redirect_uri=http%3a%2f%2fwww.gflat.cn&response_type=code&scope=snsapi_login&state=state#wechat_redirect';
+$.ajax({
+    url : url,
+    type : "GET",
+    header: {Origin: "http://www.gflat.cn"},
+    xhrFields: {
+        withCredentials: true
+    },
+    contentType : 'application/json;charset=UTF-8', //contentType很重要
+    async:false,
+    success : function(data) {
+        debugger;
+
+    },
+    error: function (data) {
+        debugger;
+    }
+});
