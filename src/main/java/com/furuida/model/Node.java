@@ -40,7 +40,7 @@ public class Node {
      * @param dep
      * @return
      */
-    List<String> getAllDownLeafs(Node node, int dep) {
+    public List<String> getAllDownLeafs(Node node, int dep) {
         if (null == node) return null;
         List<String> userList = node.childList;
         List<Node> nodeList = getNodeListByIdList(userList);

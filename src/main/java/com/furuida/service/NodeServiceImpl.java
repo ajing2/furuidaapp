@@ -9,6 +9,7 @@ import com.furuida.model.User;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.*;
@@ -23,6 +24,32 @@ public class NodeServiceImpl implements NodeService {
     UserMapper userMapper;
     @Resource
     CashHistoryMapper cashHistoryMapper;
+
+    boolean hasZong = false;
+    /**
+     * 自动添加节点测试.
+     */
+    @Override
+    public void autoAddNodes() {
+        while (!hasZong) {
+            Node node = findNode(); //找到要添加的节点
+            payAndUpgrade(node.getParent());
+        }
+    }
+
+    private Node findNode() {
+        initALLNode();
+        Node root = NodeCache.getRootNode();
+        for (int i = 1;!hasZong; i++) {
+            List<String> sL = root.getAllDownLeafs(root, i);
+            if (null!= sL&&sL.size()>0) {
+                for (String s:sL) {
+                    payAndUpgrade(s);
+                }
+            }
+        }
+        return null;
+    }
 
     /**
      * 加载数据库数据，初始化NODE
@@ -53,9 +80,11 @@ public class NodeServiceImpl implements NodeService {
         new NodeCache().print();
     }
 
+    @Transactional
     @Override
     public void payAndUpgrade(String parentId) {
         try {
+            initALLNode();
             Map<String, Node> allNodes = NodeCache.nMap;
             if (null == allNodes || allNodes.size() == 0) {
                 return;
@@ -110,7 +139,7 @@ public class NodeServiceImpl implements NodeService {
                                 User l5 = current.getData();
                                 changeLevel(current.getData(), 5, level4Count, l4);
                                 current = current.getParentNode();
-
+                                hasZong = true;
                             }
                         }
                     }

@@ -40,7 +40,7 @@ public class NodeCache {
             printNode(nMap.get(s));
         }
     }
-    public Node getRootNode() {
+    public static Node getRootNode() {
         Node n = null;
         for (Map.Entry<String, Node> entry : nMap.entrySet()) {
             if (entry.getValue().getParent() == null || entry.getValue().getParent().equals("") || Integer.parseInt(entry.getValue().getParent())==0) {
