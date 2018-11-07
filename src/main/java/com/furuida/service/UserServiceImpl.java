@@ -122,10 +122,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserInfo getUserInfo(HttpSession session, String code) {
+    public UserInfo getUserInfo(HttpSession session, String code, String parentId) {
         String token = getToken(session, code);
-        UserInfo user = WeChatUtils.getWXUserInfoUrl((String) session.getAttribute("openid"), token);
-        return user;
+        UserInfo userInfo = WeChatUtils.getWXUserInfoUrl((String) session.getAttribute("openid"), token);
+        if (null != userInfo){
+            User user = new User();
+            user.setIspayed(0);
+            user.setLevel(-1);
+            user.setParentId(parentId);
+            user.setPhone("");
+            user.setWebchatName("");
+            user.setReceiveAddr("");
+            user.setUserId(userInfo.getOpenid());
+            user.setWebchatName(userInfo.getNickname());
+            user.setWebchatUrl(userInfo.getHeadimgurl());
+            user.setWebchat(userInfo.getOpenid());
+            userMapper.insertSelective(user);
+        }
+        return userInfo;
     }
 
 

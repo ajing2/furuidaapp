@@ -90,10 +90,10 @@ public class UserController {
 
     @RequestMapping(value = "/info", method = RequestMethod.GET)
     @ResponseBody
-    private ResultBean getUserInfo(HttpServletRequest request, @RequestParam String code) {
+    private ResultBean getUserInfo(HttpServletRequest request, @RequestParam String code, @RequestParam String parentId) {
         try {
             HttpSession session = request.getSession();
-            return ResultBean.success(userService.getUserInfo(session, code));
+            return ResultBean.success(userService.getUserInfo(session, code, parentId));
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             return ResultBean.fail("get user info failed." + e.getMessage());

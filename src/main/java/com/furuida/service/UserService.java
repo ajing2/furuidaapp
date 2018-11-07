@@ -19,5 +19,5 @@ public interface UserService {
     public List selectUser(User user);
 
     String getToken(HttpSession session, String code);
-    UserInfo getUserInfo(HttpSession session, String code);
+    UserInfo getUserInfo(HttpSession session, String code, String parentId);
 }

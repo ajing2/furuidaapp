@@ -23,6 +23,7 @@ public class User {
     private String webchatUrl;
 
     private String webchatName;
+
     private int ispayed;
 
     public Long getId() {
