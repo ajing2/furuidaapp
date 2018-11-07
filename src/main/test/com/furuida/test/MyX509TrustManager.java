@@ -1,14 +1,8 @@
+package com.furuida.test;
+
 import javax.net.ssl.X509TrustManager;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
-
-/**
- * @ClassName MyX509TrustManager
- * @Description TODO
- * @Author lingxiangxiang
- * @Date 12:34 PM
- * @Version 1.0
- **/
 
 public class MyX509TrustManager implements X509TrustManager {
     @Override

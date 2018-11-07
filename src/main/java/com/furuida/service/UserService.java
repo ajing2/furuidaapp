@@ -1,5 +1,6 @@
 package com.furuida.service;
 
+import com.furuida.model.Order;
 import com.furuida.model.User;
 
 import java.util.List;
@@ -14,4 +15,5 @@ public interface UserService {
 
     public List selectUser(User user);
 
+    String getToken(String code);
 }

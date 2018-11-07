@@ -1,3 +1,8 @@
+package com.furuida.test;
+
+import com.furuida.test.WeChatAccessToken;
+import com.furuida.test.WeChatUtils;
+
 /**
  * @ClassName TestAjing
  * @Description TODO

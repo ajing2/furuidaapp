@@ -1,3 +1,5 @@
+package com.furuida.test;
+
 /**
  * @ClassName WeChatAccessToken
  * @Description TODO

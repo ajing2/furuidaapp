@@ -1,4 +1,4 @@
-/**
+package com.furuida.test; /**
  * @ClassName WeChatUtils
  * @Description TODO
  * @Author lingxiangxiang

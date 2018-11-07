@@ -31,24 +31,34 @@ public class NodeServiceImpl implements NodeService {
      */
     @Override
     public void autoAddNodes() {
-        while (!hasZong) {
-            Node node = findNode(); //找到要添加的节点
-            payAndUpgrade(node.getParent());
-        }
+        findNode();
     }
 
-    private Node findNode() {
+    private void findNode() {
         initALLNode();
         Node root = NodeCache.getRootNode();
         for (int i = 1;!hasZong; i++) {
             List<String> sL = root.getAllDownLeafs(root, i);
+            if (i==1) {
+                payAndUpgrade((i+1) + "-1", root.getData().getUserId());
+                payAndUpgrade((i+1) + "-2", root.getData().getUserId());
+                payAndUpgrade((i+1) + "-3", root.getData().getUserId());
+            }
+            if (null== sL||sL.size()==0) {
+                for (String s:sL) {
+                    payAndUpgrade((i+1) + "-1", s);
+                    payAndUpgrade((i+1) + "-2", s);
+                    payAndUpgrade((i+1) + "-3", s);
+                }
+            }
             if (null!= sL&&sL.size()>0) {
                 for (String s:sL) {
-                    payAndUpgrade(s);
+                    payAndUpgrade((i+1) + "-1", s);
+                    payAndUpgrade((i+1) + "-2", s);
+                    payAndUpgrade((i+1) + "-3", s);
                 }
             }
         }
-        return null;
     }
 
     /**
@@ -82,7 +92,7 @@ public class NodeServiceImpl implements NodeService {
 
     @Transactional
     @Override
-    public void payAndUpgrade(String parentId) {
+    public void payAndUpgrade(String id, String parentId) {
         try {
             initALLNode();
             Map<String, Node> allNodes = NodeCache.nMap;
@@ -90,6 +100,7 @@ public class NodeServiceImpl implements NodeService {
                 return;
             }
             Node current = allNodes.get(parentId);
+            current.init(id, parentId);
             log.info("=============当前节点=" + current.toString());
             if (null == current) {
                 return;

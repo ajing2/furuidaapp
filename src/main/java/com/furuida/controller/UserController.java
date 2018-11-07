@@ -72,4 +72,15 @@ public class UserController {
         }
     }
 
+    @RequestMapping(value = "/token", method = RequestMethod.GET)
+    @ResponseBody
+    private String getToken(@RequestParam String code) {
+        try {
+            return userService.getToken(code);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            return null;
+        }
+    }
+
 }

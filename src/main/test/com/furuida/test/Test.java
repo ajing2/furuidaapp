@@ -39,7 +39,7 @@ public class Test {
             u.setWebchat("ssada");
             userService.addUser(u);
             nodeService.initALLNode();
-            nodeService.payAndUpgrade(u.getParentId());
+//            nodeService.payAndUpgrade(u.getParentId());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -52,5 +52,9 @@ public class Test {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    @org.junit.Test
+    public void testautoAddNodes() {
+        nodeService.autoAddNodes();
     }
 }

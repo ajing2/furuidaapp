@@ -5,6 +5,7 @@ import com.furuida.mapper.UserMapper;
 import com.furuida.model.Order;
 import com.furuida.model.User;
 import com.furuida.model.UserExample;
+import com.furuida.utils.HttpClientUtils;
 import com.jd.jsf.gd.util.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -13,7 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @program: furuidaapp
@@ -39,7 +42,7 @@ public class UserServiceImpl implements UserService {
         try {
             userMapper.insertSelective(user);
             nodeService.initALLNode();
-            nodeService.payAndUpgrade(user.getParentId());
+//            nodeService.payAndUpgrade(user.getParentId());
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             throw new RuntimeException(e);
@@ -96,6 +99,15 @@ public class UserServiceImpl implements UserService {
         }
 
         return userMapper.selectByExample(userExample);
+    }
+
+    @Override
+    public String getToken(String code) {
+//        Map<String, String> params = new HashMap<>();
+//        params.put("code", "");
+        String token_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx8cba5272ec62110c&secret=cd684765a63d305a38085ab25b562673&code=CODE&grant_type=authorization_code".replace("code=CODE", "code="+code);
+        String res = HttpClientUtils.getMethod(token_url, null, null);
+        return res;
     }
 
 

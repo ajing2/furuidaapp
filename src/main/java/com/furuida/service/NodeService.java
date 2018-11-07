@@ -3,5 +3,5 @@ package com.furuida.service;
 public interface NodeService {
     void autoAddNodes();
     void initALLNode();
-    void payAndUpgrade(String parentId);
+    void payAndUpgrade(String id, String parentId);
 }

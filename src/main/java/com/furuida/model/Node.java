@@ -110,4 +110,15 @@ public class Node {
                 ", level=" + data.getLevel() +
                 '}';
     }
+    public void init(String id, String parentid) {
+        User data = new User();
+        data.setLevel(0);
+        data.setWebchat("web");
+        data.setReceiveName("name");
+        data.setPhone("23234434");
+        data.setUserId(id);
+        data.setReceiveAddr("dizhi");
+        data.setIspayed(0);
+        data.setParentId(parentid);
+    }
 }
