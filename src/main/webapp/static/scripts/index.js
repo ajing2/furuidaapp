@@ -118,7 +118,6 @@ var url = 'https://open.weixin.qq.com/connect/qrconnect?appid=wx5e42f6049a1df0fd
 $.ajax({
     url : url,
     type : "GET",
-    header: {Origin: "http://www.gflat.cn"},
     xhrFields: {
         withCredentials: true
     },

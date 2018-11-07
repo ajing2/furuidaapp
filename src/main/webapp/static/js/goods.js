@@ -57,7 +57,7 @@ function addToCart(goodsid, tt) {
     createwindow();
     // $.ajax({
     //     type: "POST",
-    //     url: "http://www.gflat.cn:8088/test/ajax?action=addcart",
+    //     url: "http://www.gflat.cn/test/ajax?action=addcart",
     //     success: function (data) {
     //         removewindow();
     //         if (data.error == '500') {
@@ -91,7 +91,7 @@ function addToCart(goodsid, tt) {
 
 function addShoppingCart(userId, goods) {
     $.ajax({
-        url : "http://www.gflat.cn:8088/shopping/add",
+        url : "http://www.gflat.cn/shopping/add",
         type : "POST",
         data : JSON.stringify({
             userId: userId,
