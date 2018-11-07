@@ -119,19 +119,35 @@ function windowHeight() {
 var code = window.location.search.replace("?", "");
 var token_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx8cba5272ec62110c&secret=cd684765a63d305a38085ab25b562673&code=CODE&grant_type=authorization_code".replace("code=CODE", code);
 
-
+var parent_id = window.parent_id;
 debugger;
-var result;
-
-function get_token(){
-    var aaa;
-    $.get(token_url, function (data) {
-        debugger;
-        aaa = data;
-        console.log(aaa);
+function get_token() {
+    debugger;
+    $.ajax({
+        type: "GET",
+        timeout: 10000, // 超时时间 10 秒
+        url: token_url,
+        xhrFields: {
+            withCredentials: true
+        },
+        async: false,
+        success: function (data) {
+            debugger;
+        },
+        error: function (err) {
+            debugger;
+            console.log(err);
+        },
+        complete: function (XMLHttpRequest, status) { //请求完成后最终执行参数　
+            // console.log(XMLHttpRequest);
+            // console.log(status);
+            debugger;
+        }
     })
-    return aaa;
+
+
 }
 
-get_token();
-debugger;
+$(document).ready(function () {
+    get_token();
+});
