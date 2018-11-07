@@ -5,7 +5,10 @@ import com.furuida.mapper.UserMapper;
 import com.furuida.model.Order;
 import com.furuida.model.User;
 import com.furuida.model.UserExample;
+import com.furuida.model.UserInfo;
 import com.furuida.utils.HttpClientUtils;
+import com.furuida.utils.WeChatAccessToken;
+import com.furuida.utils.WeChatUtils;
 import com.jd.jsf.gd.util.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -13,6 +16,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -102,12 +107,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String getToken(String code) {
+    public String getToken(HttpSession session, String code) {
 //        Map<String, String> params = new HashMap<>();
 //        params.put("code", "");
-        String token_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx8cba5272ec62110c&secret=cd684765a63d305a38085ab25b562673&code=CODE&grant_type=authorization_code".replace("code=CODE", "code="+code);
-        String res = HttpClientUtils.getMethod(token_url, null, null);
-        return res;
+//        String token_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx8cba5272ec62110c&secret=cd684765a63d305a38085ab25b562673&code=CODE&grant_type=authorization_code".replace("code=CODE", "code="+code);
+//        String res = HttpClientUtils.getMethod(token_url, null, null);
+        WeChatAccessToken token = WeChatUtils.getAccessToken(code);
+        log.info("token:" + token.getAccess_token());
+        if (null != token && !token.equals("")) {
+            session.setAttribute("access_token", token.getAccess_token());
+            session.setAttribute("openid", token.getOpenid());
+        }
+        return token.getAccess_token();
+    }
+
+    @Override
+    public UserInfo getUserInfo(HttpSession session, String code) {
+        UserInfo user = WeChatUtils.getWXUserInfoUrl((String) session.getAttribute("openid"), (String) session.getAttribute("access_token"));
+        return user;
     }
 
 

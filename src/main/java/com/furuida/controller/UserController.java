@@ -2,6 +2,7 @@ package com.furuida.controller;
 
 import com.furuida.model.Order;
 import com.furuida.model.User;
+import com.furuida.model.UserInfo;
 import com.furuida.service.OrderService;
 import com.furuida.service.UserService;
 import org.apache.commons.logging.Log;
@@ -9,6 +10,8 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -74,13 +77,25 @@ public class UserController {
 
     @RequestMapping(value = "/token", method = RequestMethod.GET)
     @ResponseBody
-    private String getToken(@RequestParam String code) {
+    private String getToken(HttpServletRequest request, @RequestParam String code) {
         try {
-            return userService.getToken(code);
+            HttpSession session = request.getSession();
+            return userService.getToken(session, code);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             return null;
         }
     }
 
+    @RequestMapping(value = "/info", method = RequestMethod.GET)
+    @ResponseBody
+    private UserInfo getUserInfo(HttpServletRequest request, @RequestParam String code) {
+        try {
+            HttpSession session = request.getSession();
+            return userService.getUserInfo(session, code);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            return null;
+        }
+    }
 }
