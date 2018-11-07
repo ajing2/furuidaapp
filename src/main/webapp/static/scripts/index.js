@@ -77,71 +77,47 @@ $(function() {
         }
     })
 
-    //按需加载
-    var jsList_ = [];
-    var item = Lazy.create({
-        jsList: jsList_,
-        lazyId: "doc",
-        trueSrc: '#src',
-        offset: 10,
-        delay: 100,
-        delay_tot: 1000,
-        imgLoad: function(element, width, height) {}
-    });
-    Lazy.init(item);
-
-    //
-
 
 });
 
-//获取页面顶部被卷起来的高度
-function scrollTop() {
-    return Math.max(document.body.scrollTop, document.documentElement.scrollTop);
+
+
+
+
+
+
+
+
+
+var code;
+var param = window.location.search.replace("?", "").split("&");
+for (var i in param){
+    if (param[i].indexOf("code=")>-1){
+        code = param[i].split("code=")[1]
+        break;
+    }
 }
 
-//获取页面文档的总高度
-function documentHeight() {
-    return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
-}
 
-//获取页面浏览器视口的高度
-function windowHeight() {
-    return (document.compatMode == "CSS1Compat") ? document.documentElement.clientHeight : document.body.clientHeight;
-}
+function get_userinfo(code) {
 
-
-
-
-
-// var url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8cba5272ec62110c&redirect_uri=http%3a%2f%2fwww.gflat.cn%3a8088%2fstatic%2findex.html&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
-// window.location.href = url;
-var code = window.location.search.replace("?", "");
-var token_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx8cba5272ec62110c&secret=cd684765a63d305a38085ab25b562673&code=CODE&grant_type=authorization_code".replace("code=CODE", code);
-
-var parent_id = window.parent_id;
-debugger;
-function get_token() {
-    debugger;
     $.ajax({
         type: "GET",
         timeout: 10000, // 超时时间 10 秒
-        url: token_url,
+        url: "http://www.gflat.cn/user/info?code=" + code,
         xhrFields: {
             withCredentials: true
         },
-        async: false,
         success: function (data) {
-            debugger;
+
+            localStorage.setItem("userinfo", data);
         },
         error: function (err) {
-            debugger;
+
             console.log(err);
         },
         complete: function (XMLHttpRequest, status) { //请求完成后最终执行参数　
-            // console.log(XMLHttpRequest);
-            // console.log(status);
-            debugger;
+
         }
     })
 
@@ -149,5 +125,5 @@ function get_token() {
 }
 
 $(document).ready(function () {
-    get_token();
+    get_userinfo(code);
 });
