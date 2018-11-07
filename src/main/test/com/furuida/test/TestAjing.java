@@ -14,4 +14,8 @@ public class TestAjing {
         System.out.println("+++++++++++++++++++++++");
 
     }
+
+    public String getRequestCodeUrl(String redirectUrl) {
+        return String.format("https://open.weixin.qq.com/connect/oauth2/authorize?appid=%s&redirect_uri=%s&response_type=code&scope=%s&state=%s#wechat_redirect", "wx8cba5272ec62110c", redirectUrl, "snsapi_userinfo", "ajing_state");
+    }
 }

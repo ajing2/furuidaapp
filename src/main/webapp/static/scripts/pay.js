@@ -68,7 +68,7 @@ function setShoppingOrder(userId) {
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         success : function(data) {
             if (data.length = 1 && data[0] != null){
-                debugger;
+
                 $("#order_price").html(data[0].price);
                 $(".num").html(data[0].num);
                 $(".allPrice").html(data[0].num * data[0].price);

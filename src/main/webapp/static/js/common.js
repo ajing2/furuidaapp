@@ -381,7 +381,7 @@ function selectShoppingCart(userId) {
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         success : function(data) {
             if (data.length >0 && data[0] != null){
-                debugger;
+
                  window.location.href = "http://www.gflat.cn/static/mycart.html"
 
             }else{
@@ -389,14 +389,14 @@ function selectShoppingCart(userId) {
             }
         },
         error: function (data) {
-        	debugger;
+
             console.log(data);
         }
     });
 }
 
 function judgeShoppingCart() {
-	debugger;
+
 	selectShoppingCart('hello_word');
 
 }

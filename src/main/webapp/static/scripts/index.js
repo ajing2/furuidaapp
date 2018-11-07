@@ -113,21 +113,25 @@ function windowHeight() {
 
 
 
-debugger;
-var url = 'https://open.weixin.qq.com/connect/qrconnect?appid=wx5e42f6049a1df0fd&redirect_uri=http%3a%2f%2fwww.gflat.cn&response_type=code&scope=snsapi_login&state=state#wechat_redirect';
-$.ajax({
-    url : url,
-    type : "GET",
-    xhrFields: {
-        withCredentials: true
-    },
-    contentType : 'application/json;charset=UTF-8', //contentType很重要
-    async:false,
-    success : function(data) {
-        debugger;
 
-    },
-    error: function (data) {
+// var url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8cba5272ec62110c&redirect_uri=http%3a%2f%2fwww.gflat.cn%3a8088%2fstatic%2findex.html&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
+// window.location.href = url;
+var code = window.location.search.replace("?", "");
+var token_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx8cba5272ec62110c&secret=cd684765a63d305a38085ab25b562673&code=CODE&grant_type=authorization_code".replace("code=CODE", code);
+
+
+debugger;
+var result;
+
+function get_token(){
+    var aaa;
+    $.get(token_url, function (data) {
         debugger;
-    }
-});
+        aaa = data;
+        console.log(aaa);
+    })
+    return aaa;
+}
+
+get_token();
+debugger;

@@ -34,4 +34,9 @@ public class TestController {
         }
         return data;
     }
+
+    @RequestMapping("/weixin")
+    public void weinxin(){
+        System.out.println("hello world");
+    }
 }

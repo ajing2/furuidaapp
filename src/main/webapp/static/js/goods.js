@@ -104,10 +104,10 @@ function addShoppingCart(userId, goods) {
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         success : function(result) {
             console.log(result);
-            debugger;
+
         },
         error: function (result) {
-            debugger;
+
 
         }
     });
@@ -118,7 +118,7 @@ function alerta(){
     return false;
 }
 function alertb(){
-    debugger;
+
     createwindow();
     // $.post(SITE_URL+"product.php",{action:'ajax_get_tongyidata'},function(data){
     data = "<div style=\"font-size:14px; line-height:26px; padding:10px; text-align:left; height:400px; overflow:scroll;\">\n" +
@@ -161,7 +161,7 @@ function alertb(){
 
 
 function tongyixieyi(){
-    debugger;
+
     if (goods.optype == "shoppingcart"){
         addShoppingCart("lingjing", goods);
     }else{

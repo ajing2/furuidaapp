@@ -6,7 +6,7 @@ function selectShoppingCart(userId) {
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         success : function(data) {
             if (data.length = 1 && data[0] != null){
-                debugger;
+
                 $("#shoppingCartId").val(data[0].id);
                 $("input[name='goods_number']").val(data[0].num);
                 $(".gzprice1").html(data[0].num * data[0].price);
@@ -93,17 +93,17 @@ function checkvar() {
         alert('请输入正确的手机号码');
         return false;
     }
-    debugger;
+
     if (shoppingCartId != ''){
         updateShoppingCart("hello_word");
     }else{
         insertShoppingCart("hello_word");
     }
-    debugger;
+
     addUser("hello_word", 'test', mobile, consignee, address, '46', 0);
-    debugger;
+
     addOrder("hello_word", parseInt($(".gzprice1").html()), 0, 1);
-    debugger;
+
     window.location.href = "http://www.gflat.cn/static/pay.html";
 
 return false;
@@ -111,7 +111,7 @@ return false;
 
 
 function addOrder(userId, payPrice, isPay, payTime) {
-    debugger;
+
     var data = {
         orderNum: null,
         userId: userId,
@@ -134,10 +134,10 @@ function addOrder(userId, payPrice, isPay, payTime) {
         dataType : 'json',
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         success : function(result) {
-            debugger;
+
         },
         error: function (result) {
-            debugger;
+
         }
     });
 }
@@ -159,20 +159,20 @@ function addUser(userId, webchat, phone, receiveName, receiveAddr, parent_id, le
         dataType : 'json',
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         success : function(result) {
-            debugger;
+
             window.location.href = "/static/pay.html";
 
 
         },
         error: function (result) {
-            debugger;
+
         }
     });
 }
 
 
 $('#delcartid').click(function () {
-    debugger;
+
     if (confirm("确定移除吗")) {
         gid = $(this).attr('id');
         $(this).parent().parent().parent().remove();
@@ -205,12 +205,12 @@ function updateShoppingCart(userId) {
         dataType: 'json',
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         success : function(result) {
-            debugger;
+
             window.location.href = "/static/pay.html";
 
         },
         error: function (result) {
-            debugger;
+
         }
     });
 }
@@ -231,12 +231,12 @@ function insertShoppingCart(userId) {
         dataType : 'json',
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         success : function(result) {
-            debugger;
+
 
 
         },
         error: function (result) {
-            debugger;
+
         }
     });
 }
@@ -360,19 +360,19 @@ function ajax_show_menu() {
 
 
 function clearShoppingCart() {
-    debugger;
+
     var id = $("#shoppingCartId").val();
     $.ajax({
         url : "http://www.gflat.cn/shopping/delete?id=" + id,
         type : "GET",
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         success : function(data) {
-            debugger;
+
             window.location.href = "http://www.gflat.cn/static/shoppingcart.html";
 
         },
         error: function (data) {
-            debugger;
+
         }
     });
 }
@@ -392,13 +392,13 @@ function selectUser(userId) {
             result = null;
         }
     });
-    debugger;
+
     return result;
 }
 
-debugger;
+
 var data = selectUser("hello_word");
-debugger;
+
 if (data.length>0 && data[0] != null){
     $("#haveUser").toggle();
     $("#havedAddress").html(data[0].receiveAddr);

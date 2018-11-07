@@ -7,7 +7,7 @@ $(document).ready(function () {
 function main() {
     var data = selectUser("hello_word");
     if (data.length>0 && data[0] != null){
-        debugger;
+
         $("input[name='userId']").val(data[0].id);
         $("input[name='name']").val(data[0].receiveName);
         $("input[name='weixin']").val(data[0].userId);
@@ -30,7 +30,7 @@ function updateUser(id, userId, webchat, webchat_Name, phone, receive_addr) {
         webchatName: webchat_Name,
         receiveAddr: receive_addr
     };
-    debugger;
+
     var result;
     $.ajax({
         url : "http://www.gflat.cn/user/update",
@@ -46,7 +46,7 @@ function updateUser(id, userId, webchat, webchat_Name, phone, receive_addr) {
             result = null;
         }
     });
-    debugger;
+
     return result;
 }
 
@@ -64,7 +64,7 @@ function selectUser(userId) {
             result = null;
         }
     });
-    debugger;
+
     return result;
 }
 
@@ -137,7 +137,7 @@ function check_senddata(){
         return false;
     }
     var id = $('input[name="userId"]').val();
-    debugger;
+
 
     updateUser(id, weixin, weixin, name, phone, address);
 

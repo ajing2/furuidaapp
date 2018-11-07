@@ -51,7 +51,6 @@ public class WeChatUtils {
         return (WeChatAccessToken) JSONObject.toBean(jsonObj, WeChatAccessToken.class);
     }
 
-
     /**
      * 根据在获取accessToken时返回的refreshToken刷新accessToken
      *

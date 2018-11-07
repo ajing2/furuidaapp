@@ -45,6 +45,6 @@ function selectUser(userId) {
             result = null;
         }
     });
-    debugger;
+
     return result;
 }
