@@ -123,7 +123,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserInfo getUserInfo(HttpSession session, String code) {
-        UserInfo user = WeChatUtils.getWXUserInfoUrl((String) session.getAttribute("openid"), (String) session.getAttribute("access_token"));
+        String token = getToken(session, code);
+        UserInfo user = WeChatUtils.getWXUserInfoUrl((String) session.getAttribute("openid"), token);
         return user;
     }
 

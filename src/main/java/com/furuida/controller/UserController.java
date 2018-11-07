@@ -1,6 +1,7 @@
 package com.furuida.controller;
 
 import com.furuida.model.Order;
+import com.furuida.model.ResultBean;
 import com.furuida.model.User;
 import com.furuida.model.UserInfo;
 import com.furuida.service.OrderService;
@@ -89,13 +90,13 @@ public class UserController {
 
     @RequestMapping(value = "/info", method = RequestMethod.GET)
     @ResponseBody
-    private UserInfo getUserInfo(HttpServletRequest request, @RequestParam String code) {
+    private ResultBean getUserInfo(HttpServletRequest request, @RequestParam String code) {
         try {
             HttpSession session = request.getSession();
-            return userService.getUserInfo(session, code);
+            return ResultBean.success(userService.getUserInfo(session, code));
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            return null;
+            return ResultBean.fail("get user info failed." + e.getMessage());
         }
     }
 }

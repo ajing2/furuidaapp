@@ -10,11 +10,12 @@ public class UserInfo {
     private String openid;
     private String nickname;
     private String sex;
+    private String language;
     private String province;
     private String city;
     private String country;
     private String headimgurl;
-
+    private Object[] privilege;
     public String getOpenid() {
         return openid;
     }
@@ -69,5 +70,21 @@ public class UserInfo {
 
     public void setHeadimgurl(String headimgurl) {
         this.headimgurl = headimgurl;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public Object[] getPrivilege() {
+        return privilege;
+    }
+
+    public void setPrivilege(Object[] privilege) {
+        this.privilege = privilege;
     }
 }
