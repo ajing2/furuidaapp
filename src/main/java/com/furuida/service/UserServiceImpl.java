@@ -180,9 +180,9 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public ResultBean getParentInfo(String userId) {
+    public ResultBean getParentInfo(String parentId) {
         try {
-            return ResultBean.success(userMapper.getParentInfo(userId));
+            return ResultBean.success(userMapper.getParentInfo(parentId));
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             return ResultBean.fail("get user info failed." + e.getMessage());

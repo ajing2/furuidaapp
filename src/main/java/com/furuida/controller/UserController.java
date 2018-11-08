@@ -110,8 +110,8 @@ public class UserController {
 
     @RequestMapping(value = "/parent", method = RequestMethod.GET)
     @ResponseBody
-    private ResultBean getParentInfo(@RequestParam String userId){
-        return userService.getParentInfo(userId);
+    private ResultBean getParentInfo(@RequestParam String parentId){
+        return userService.getParentInfo(parentId);
     }
     @RequestMapping(value = "/tree", method = RequestMethod.GET)
     @ResponseBody

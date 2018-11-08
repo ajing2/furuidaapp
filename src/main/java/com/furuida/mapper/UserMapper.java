@@ -19,7 +19,7 @@ public interface UserMapper {
 
     List<User> selectByExample(UserExample example);
 
-    List<User> getParentInfo(@Param("userId") String userId);
+    List<User> getParentInfo(@Param("parentId") String parentId);
 
     List<User> selectAll();
 

@@ -39,9 +39,10 @@ function addToCart(goodsid, tt) {
 
     createwindow();
 
-    var userId = localStorage.getItem("userId");
-    userId = "lingjing";
-    var parentName = selectUser(userId);
+    var parentId = localStorage.getItem("parentId");
+    parentId = "sadfd";
+    debugger;
+    var parentName = get_parent(parentId);
 
     result = "<div style=\"font-size:14px; line-height:26px; padding:10px; text-align:left;\">\n" +
         "    <p>您的推荐服务商是：</p>\n" +
@@ -63,11 +64,11 @@ function addToCart(goodsid, tt) {
     return false;
 
 }
-function selectUser(userId) {
+function get_parent(parentId) {
     debugger;
     var result;
     $.ajax({
-        url : "http://www.gflat.cn:8088/user/parent?userId=" + userId,
+        url : "http://www.gflat.cn:8088/user/parent?parentId=" + parentId,
         type : "GET",
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         async:false,
@@ -90,7 +91,9 @@ function selectUser(userId) {
     return result;
 }
 
-function addShoppingCart(userId, goods) {
+function addShoppingCart(goods) {
+    var userId = localStorage.getItem("userId");
+    userId = "lingjing";
     $.ajax({
         url : "http://www.gflat.cn:8088/shopping/add",
         type : "POST",
@@ -98,8 +101,9 @@ function addShoppingCart(userId, goods) {
             userId: userId,
             goodsId: goods.goods_id,
             num: goods.number,
-            createTime: 1,
-            updateTime: 1
+            createTime: "1",
+            updateTime: "1",
+            price: parseInt($("#xiyanyanprice").html())
         }), //转JSON字符串
         dataType : 'json',
         contentType : 'application/json;charset=UTF-8', //contentType很重要
@@ -159,14 +163,36 @@ function alertb(){
         removewindow();
     // });
 }
+function selectShoppingCart(userId) {
+    var result;
+    $.ajax({
+        url : "http://www.gflat.cn:8088/shopping/select?userId=" + userId,
+        type : "GET",
+        async:false,
+        contentType : 'application/json;charset=UTF-8', //contentType很重要
+        success : function(data) {
+            if (data.length >0 && data[0] != null){
+                result = data;
+            }
+        },
+        error: function (data) {
 
+            console.log(data);
+        }
+    });
+    return result;
+}
 
 function tongyixieyi(){
 
-    if (goods.optype == "shoppingcart"){
-        addShoppingCart("lingjing", goods);
-    }else{
+    var userId = localStorage.getItem("userId");
+    userId = "lingjing";
+    debugger;
+    var data = selectShoppingCart(userId);
+    if (data!= null){
         window.location.href = "/static/mycart.html"
+    }else{
+        addShoppingCart(goods);
     }
     JqueryDialog.Close();
 

@@ -21,5 +21,5 @@ public interface UserService {
     Map<String, String> getToken(HttpSession session, String code);
     UserInfo getUserInfo(HttpSession session, String code, String parentId);
 
-    public ResultBean getParentInfo(String userId);
+    public ResultBean getParentInfo(String parentId);
 }
