@@ -56,13 +56,13 @@ public class UserController {
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
-    private String updateUser(@RequestBody User user) {
+    private ResultBean updateUser(@RequestBody User user) {
         try {
             userService.updateUser(user);
-            return "ok";
+            return ResultBean.success("ok");
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            return "failed";
+            return ResultBean.fail("error.");
         }
     }
 

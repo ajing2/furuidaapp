@@ -5,11 +5,13 @@ $(document).ready(function () {
 
 
 function main() {
-    var data = selectUser("hello_word");
+    var userId = localStorage.getItem("userId");
+    userId = "1119747506";
+    var data = selectUser(userId);
     if (data.length>0 && data[0] != null){
 
         $("input[name='userId']").val(data[0].id);
-        $("input[name='name']").val(data[0].receiveName);
+        $("input[name='name']").val(data[0].webchatName);
         $("input[name='weixin']").val(data[0].userId);
         $("input[name='phone']").val(data[0].phone);
         $("input[name='address']").val(data[0].receiveAddr);
@@ -21,29 +23,31 @@ function main() {
 }
 
 
-function updateUser(id, userId, webchat, webchat_Name, phone, receive_addr) {
+function updateUser(id, userId, webchat_name, phone, receive_addr) {
     var data = {
         id: id,
         userId: userId,
-        webchat: userId,
         phone: phone,
-        webchatName: webchat_Name,
+        webchatName: webchat_name,
         receiveAddr: receive_addr
     };
 
-    var result;
+
     $.ajax({
-        url : "http://www.gflat.cn:8088:8088/user/update",
+        url : "http://www.gflat.cn:8088/user/update",
         type : "POST",
         data: JSON.stringify(data),
         dataType: 'json',
         async:false,
         contentType : 'application/json;charset=UTF-8', //contentType很重要
-        success : function(data) {
-            result = data;
+        success : function(result) {
+            debugger;
+            alert("保存成功!")
+
         },
-        error: function (data) {
-            result = null;
+        error: function (result) {
+
+            debugger;
         }
     });
 
@@ -86,12 +90,7 @@ function sendMessage(){
         return  false;
     }
 
-    $.post('/static/user.php',{action:'ajax_getcode',phone:phone},function(data){
-        if(data!=''){
-            alert(data);
-            return  false;
-        }
-    })
+
 
     curCount = count;
     //设置button效果，开始计时
@@ -113,6 +112,7 @@ function SetRemainTime() {
 }
 
 function check_senddata(){
+    debugger;
     var weixin = $('input[name="weixin"]').val();
     var phone = $('input[name="phone"]').val();
     if(phone=="" || typeof(phone)=='undefinde'){
@@ -138,8 +138,8 @@ function check_senddata(){
     }
     var id = $('input[name="userId"]').val();
 
-
-    updateUser(id, weixin, weixin, name, phone, address);
+    debugger;
+    updateUser(id, weixin, name, phone, address);
 
 
     return false;
