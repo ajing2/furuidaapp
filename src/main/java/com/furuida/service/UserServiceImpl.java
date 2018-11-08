@@ -146,14 +146,14 @@ public class UserServiceImpl implements UserService {
             user.setLevel(-1);
             user.setParentId(parentId);
             user.setPhone("");
-            user.setWebchatName("");
+            user.setWebchatName(userInfo.getOpenid());
             user.setReceiveAddr("");
-            user.setUserId(userInfo.getOpenid());
+            user.setUserId(String.valueOf(userInfo.getOpenid().hashCode()).replace("-", ""));
             user.setWebchatName(userInfo.getNickname());
             user.setWebchatUrl(userInfo.getHeadimgurl());
             user.setWebchat(userInfo.getOpenid());
             userMapper.insertSelective(user);
-            user.setUserId(String.valueOf(userInfo.getOpenid().hashCode()).replace("-", ""));
+//            user.setUserId(String.valueOf(userInfo.getOpenid().hashCode()).replace("-", ""));
         }
         return userInfo;
     }
