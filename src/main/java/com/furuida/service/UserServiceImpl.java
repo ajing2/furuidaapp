@@ -153,7 +153,7 @@ public class UserServiceImpl implements UserService {
             user.setWebchatUrl(userInfo.getHeadimgurl());
             user.setWebchat(userInfo.getOpenid());
             userMapper.insertSelective(user);
-//            user.setUserId(String.valueOf(userInfo.getOpenid().hashCode()).replace("-", ""));
+            userInfo.setOpenid(user.getUserId());
         }
         return userInfo;
     }
