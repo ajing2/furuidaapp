@@ -30,7 +30,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    public void deleteShoppingCart(Long id){
+    public void deleteShoppingCart(String id){
         shoppingCartMapper.deleteByPrimaryKey(id);
     }
 

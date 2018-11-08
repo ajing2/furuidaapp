@@ -13,6 +13,8 @@ public interface UserMapper {
 
     int deleteByPrimaryKey(Long id);
 
+    int deleteUserByUserId(@Param("userId") String userId);
+
     int insert(User record);
 
     int insertSelective(User record);

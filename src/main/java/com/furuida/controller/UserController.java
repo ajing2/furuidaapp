@@ -41,7 +41,7 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
     @ResponseBody
     private String deleteUser(@RequestParam Long id) {
         try {

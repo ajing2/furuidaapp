@@ -11,7 +11,7 @@ public interface ShoppingCartMapper {
 
     int deleteByExample(ShoppingCartExample example);
 
-    int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(String id);
 
     int insert(ShoppingCart record);
 

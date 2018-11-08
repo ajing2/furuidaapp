@@ -15,7 +15,7 @@ public interface ShoppingCartService {
 
     public void addShoppingCart(ShoppingCart shoppingCart);
 
-    public void deleteShoppingCart(Long id);
+    public void deleteShoppingCart(String id);
 
     public void updateShoppingCart(ShoppingCart shoppingCart);
 

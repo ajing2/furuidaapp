@@ -1,3 +1,4 @@
+var newAddress = 0;
 
 function selectShoppingCart(userId) {
     $.ajax({
@@ -23,7 +24,6 @@ function selectShoppingCart(userId) {
     });
 }
 
-selectShoppingCart("lingjing");
 
 
 //2位小数
@@ -49,60 +49,70 @@ $('.showaddress').live('click', function () {
 });
 
 function checkvar() {
+    debugger;
+
+    var userId = localStorage.getItem("userId");
+    userId = "lingjing";
+
 
     var shoppingCartId = $("#shoppingCartId").val();
-    var consignee = $('input[name="consignee"]').val();
-    if (typeof(consignee) == 'undefined' || consignee == "") {
-        alert("收货人不能为空！");
-        return false;
+    if (newAddress == 0) {
+        var consignee = $('input[name="consignee"]').val();
+        if (typeof(consignee) == 'undefined' || consignee == "") {
+            alert("收货人不能为空！");
+            return false;
+        }
+
+        var provinces = $('#city .prov').val();
+        if (provinces == '' || provinces == null) {
+            alert("请选择省或者直辖市！");
+            return false;
+        }
+
+        var city = $('#city .city').val();
+        if (city == '' || city == null) {
+            alert("请选择城市或者区县！");
+            return false;
+        }
+
+        var district = $('#city .dist').val();
+
+        var lastAddress = $('input[name="address"]').val();
+        if (lastAddress == '' || lastAddress == null) {
+            alert("详细地址不能为空");
+            return false;
+        }
+        if (district == null) {
+            var address = provinces + city + lastAddress;
+        } else {
+            var address = provinces + city + district + lastAddress;
+        }
+
+        var mobile = $('input[name="mobile"]').val();
+
+        if (mobile == "" || mobile == null) {
+            alert("请输入手机或者电话号码！");
+            return false;
+        }
+        var partten = /^(13[0-9]|15[0-9]|18[0-9]|17[0-9]|14[0-9])\d{8}$/;
+        if (!partten.test(mobile)) {
+            alert('请输入正确的手机号码');
+            return false;
+        }
+
+
+        debugger;
+        updateUser(userId, mobile, consignee, address);
     }
 
-    var provinces = $('#city .prov').val();
-    if (provinces == '' || provinces == null) {
-        alert("请选择省或者直辖市！");
-        return false;
-    }
 
-    var city = $('#city .city').val();
-    if (city == '' || city == null) {
-        alert("请选择城市或者区县！");
-        return false;
-    }
-
-    var district = $('#city .dist').val();
-
-    var lastAddress = $('input[name="address"]').val();
-    if (lastAddress == '' || lastAddress == null) {
-        alert("详细地址不能为空");
-        return false;
-    }
-    if (district == null){
-        var address = provinces + city + lastAddress;
-    }else{
-        var address = provinces + city + district + lastAddress;
-    }
-
-    var mobile = $('input[name="mobile"]').val();
-
-    if (mobile == "" || mobile == null) {
-        alert("请输入手机或者电话号码！");
-        return false;
-    }
-    var partten = /^(13[0-9]|15[0-9]|18[0-9]|17[0-9]|14[0-9])\d{8}$/;
-    if (!partten.test(mobile)) {
-        alert('请输入正确的手机号码');
-        return false;
-    }
-
+    debugger;
     if (shoppingCartId != ''){
-        updateShoppingCart("hello_word");
+        updateShoppingCart(userId);
     }else{
-        insertShoppingCart("hello_word");
+        insertShoppingCart(userId);
     }
 
-    addUser("hello_word", 'test', mobile, consignee, address, '46', 0);
-
-    addOrder("hello_word", parseInt($(".gzprice1").html()), 0, 1);
 
     window.location.href = "http://www.gflat.cn:8088/static/pay.html";
 
@@ -142,30 +152,27 @@ function addOrder(userId, payPrice, isPay, payTime) {
     });
 }
 
-function addUser(userId, webchat, phone, receiveName, receiveAddr, parent_id, level){
+function updateUser(userId, phone, receiveName, receiveAddr){
     var data = {
         userId: userId,
-        webchat: webchat,
         phone: phone,
         receiveName: receiveName,
-        receiveAddr: receiveAddr,
-        parentId: parent_id,
-        level: level,
+        receiveAddr: receiveAddr
     };
     $.ajax({
-        url : "http://www.gflat.cn:8088/user/add",
+        url : "http://www.gflat.cn:8088/user/update",
         type : "POST",
         data: JSON.stringify(data),
         dataType : 'json',
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         success : function(result) {
-
+            debugger;
             window.location.href = "/static/pay.html";
 
 
         },
         error: function (result) {
-
+            debugger;
         }
     });
 }
@@ -241,41 +248,7 @@ function insertShoppingCart(userId) {
     });
 }
 
-//计算邮费
-function jisuan_shopping(id) {
-    if (id == "" || typeof(id) == 'undefined') return false;
-    uu = $('input[name="userress_id"]:checked').val();
-    if (typeof(uu) == 'undefined' || uu == "") {
-        alert("请选择一个收货地址！");
-        return false;
-    }
-    createwindow();
-    $.post('/static/mycart.php', {action: 'jisuan_shopping', shopping_id: id, userress_id: uu}, function (data) {
-        if (data != "" && typeof(data) != 'undefined') {
-            arr = data.split('+');
-            if (arr.length == 2) {
-                $('.freeshopp').html(arr[1]);
-                b = $('.ppzprice').html();
-                if (b == null || typeof(b) == 'undefined') {
-                    b = $('.ztotals').html();
-                }
 
-                $('.freeshoppandprice').html(toDecimal(parseFloat(b) + parseFloat(arr[1]) - 0));
-            } else {
-                alert(data);
-            }
-        } else {
-            $('.freeshopp').html('0.00');
-            b = $('.ppzprice').html();
-            if (b == null || typeof(b) == 'undefined') {
-                b = $('.ztotals').html();
-            }
-            $('.freeshoppandprice').html(parseFloat(b) - 0);
-        }
-        removewindow();
-    });
-
-}
 
 //数量减1
 $('.jian').live('click', function () {
@@ -311,47 +284,7 @@ $('.jia').live('click', function () {
     // change_number(numobj);
 });
 
-//改变商品价格
-function change_number(obj) {
-    //地址ID
-    userressid = $('input[name="userress_id"]:checked').val();
-    if (userressid > 0) {
-    } else {
-        userressid = 5;
-    }
-    //配送ID
-    shippingid = $('input[name="shipping_id"]:checked').val();
 
-    id = $(obj).attr('id');
-    numbers = $(obj).val();
-    if (!(numbers > 0)) {
-        numbers = 1;
-        $(obj).val('1');
-    }
-    createwindow();
-    $.post(SITE_URL + 'mycart.php', {
-        action: 'ajax_change_price',
-        id: id,
-        number: numbers,
-        shipping_id: shippingid,
-        userress_id: userressid
-    }, function (data) {
-        removewindow();
-        if (data.error == '0') {
-            dis = 1;
-            //data.prices = toDecimal(data.prices * dis);
-            $('.ztotals').html(data.prices);
-            $('.gprice' + id).html('￥' + data.thisprice);
-            $('.gzprice' + id).html('￥' + toDecimal(data.thisprice * numbers));
-            ff = data.freemoney;
-            $('.freeshopp').html(ff);
-            $('.freeshoppandprice').html(toDecimal(toDecimal(data.prices) + toDecimal(ff) - 0));
-        } else {
-            alert(data.message);
-        }
-    }, "json");
-    return true;
-}
 
 function ajax_show_menu() {
     $(".showmenu").toggle();
@@ -360,10 +293,11 @@ function ajax_show_menu() {
 
 
 function clearShoppingCart() {
+    var userId = localStorage.getItem("userId");
+    userId = "lingjing";
 
-    var id = $("#shoppingCartId").val();
     $.ajax({
-        url : "http://www.gflat.cn:8088/shopping/delete?id=" + id,
+        url : "http://www.gflat.cn:8088/shopping/delete?id=" + userId,
         type : "GET",
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         success : function(data) {
@@ -396,12 +330,21 @@ function selectUser(userId) {
     return result;
 }
 
+var userId = localStorage.getItem("userId");
+userId = "lingjing";
+var data = selectUser(userId);
+debugger;
 
-var data = selectUser("hello_word");
-
-if (data.length>0 && data[0] != null){
+if (data[0].phone != "" && data[0].receiveAddr != "" && data[0].receiveName != ""){
     $("#haveUser").toggle();
     $("#havedAddress").html(data[0].receiveAddr);
     $("#havedName").html(data[0].receiveName);
     $("#havedphone").html(data[0].phone);
+    newAddress = 1;
 }
+
+debugger;
+
+
+
+selectShoppingCart(userId);

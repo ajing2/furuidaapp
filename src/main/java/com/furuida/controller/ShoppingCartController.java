@@ -41,7 +41,7 @@ public class ShoppingCartController {
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
     @ResponseBody
-    private String deleteShoppingCart(@RequestParam Long id) {
+    private String deleteShoppingCart(@RequestParam String id) {
         try {
             shoppingCartService.deleteShoppingCart(id);
             return "ok";

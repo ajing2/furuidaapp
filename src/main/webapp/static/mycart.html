@@ -34,7 +34,7 @@
 <body>
 
 
-<i class=""></i>
+
 <div id="home" style="background-color: #50;">
     <div id="header">
         <div class="logo" style="height:28px; padding-top:10px;  "><span onclick=" history.go(-1);"
@@ -69,14 +69,14 @@
                             电话:<span style="padding-left:26px;" id="havedphone"></span>
                         </label>
                         <p style="padding-left:26px;">
-                            <a href="javascript:;" onclick="ressinfoop('229288','showupdate',this)" style=" margin-left:10px;display:block;background:#DB383E;cursor:pointer;width:60px; height:22px; line-height:22px; font-size:12px; color:#FFF; text-align:center">修改</a>
+                            <!--<a href="javascript:;" onclick="ressinfoop('229288','showupdate',this)" style=" margin-left:10px;display:block;background:#DB383E;cursor:pointer;width:60px; height:22px; line-height:22px; font-size:12px; color:#FFF; text-align:center">修改</a>-->
                         </p>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <label style="padding-left:10px;">
-                            <input class="showaddress" name="userress_id" type="radio" value="0"/>&nbsp;添加新收货地址
+                            <input class="showaddress" name="userress_id" type="radio" value="0" id="newAddress"/>&nbsp;添加新收货地址
                         </label>
                     </td>
                 </tr>
@@ -165,8 +165,7 @@
                     <td align="left" width="78%">
                         <table border="0" cellpadding="0" cellspacing="0" style="width:100%;">
                             <tr>
-                                <td><label><span><input onclick="return jisuan_shopping('4')" checked="checked"
-                                                        name="shipping_id" id="shipping_id" value="4"
+                                <td><label><span><input checked="checked" name="shipping_id" id="shipping_id" value="4"
                                                         type="radio"/></span><strong>快递</strong></label>
                                 </td>
                             </tr>
@@ -199,7 +198,6 @@
                     <div class="goods-group-btn" data-reactid="142">
 
                         <a><span data-reactid="146"><input value="确认提交" type="submit" align="absmiddle" onclick="return checkvar()"></span></a></div>
-                        <!--<span data-reactid="146"><a href="/static/pay.html"><input value="确认提交" type="button" align="absmiddle"></a></span></div>-->
                 </div>
             </div>
         </form>

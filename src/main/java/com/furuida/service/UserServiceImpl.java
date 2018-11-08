@@ -79,6 +79,10 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(Long id) {
         userMapper.deleteByPrimaryKey(id);
     }
+    @Override
+    public void deleteUserByUserId(String userId) {
+        userMapper.deleteUserByUserId(userId);
+    }
 
     @Override
     public List selectUser(User user) {

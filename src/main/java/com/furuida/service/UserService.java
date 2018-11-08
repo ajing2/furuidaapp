@@ -16,6 +16,8 @@ public interface UserService {
 
     public void deleteUser(Long id);
 
+    public void deleteUserByUserId(String userId);
+
     public List selectUser(User user);
 
     Map<String, String> getToken(HttpSession session, String code);
