@@ -38,19 +38,20 @@ public class NodeServiceImpl implements NodeService {
         initALLNode();
         Node root = NodeCache.getRootNode();
         for (int i = 1;!hasZong; i++) {
-            List<String> sL = root.getAllDownLeafs(root, i);
             if (i==1) {
                 payAndUpgrade((i+1) + "-1", root.getData().getUserId());
                 payAndUpgrade((i+1) + "-2", root.getData().getUserId());
                 payAndUpgrade((i+1) + "-3", root.getData().getUserId());
+                continue;
             }
-            if (null== sL||sL.size()==0) {
-                for (String s:sL) {
-                    payAndUpgrade((i+1) + "-1", s);
-                    payAndUpgrade((i+1) + "-2", s);
-                    payAndUpgrade((i+1) + "-3", s);
-                }
-            }
+            initALLNode();
+            List<String> sL = root.getAllDownLeafs(NodeCache.getRootNode(), i-1);
+//            if (null== sL||sL.size()==0) {
+//                payAndUpgrade((i+1) + "-"+root.getData().getUserId() + "-1", root.getData().getUserId());
+//                payAndUpgrade((i+1) + "-"+root.getData().getUserId() + "-2", root.getData().getUserId());
+//                payAndUpgrade((i+1) + "-"+root.getData().getUserId() + "-3", root.getData().getUserId());
+//                continue;
+//            }
             if (null!= sL&&sL.size()>0) {
                 for (String s:sL) {
                     payAndUpgrade((i+1) + "-1", s);
@@ -94,6 +95,18 @@ public class NodeServiceImpl implements NodeService {
     @Override
     public void payAndUpgrade(String id, String parentId) {
         try {
+            //for test
+            User u = new User();
+            u.setParentId(parentId);
+            u.setUserId(id);
+            u.setPhone("1234424323");
+            u.setLevel(0);
+            u.setReceiveAddr("s");
+            u.setReceiveName("quan");
+            u.setWebchat("ssada");
+            u.setWebchatUrl("");
+            u.setWebchatName("");
+            userMapper.insertSelective(u);
             initALLNode();
             Map<String, Node> allNodes = NodeCache.nMap;
             if (null == allNodes || allNodes.size() == 0) {

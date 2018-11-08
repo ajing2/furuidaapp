@@ -43,8 +43,12 @@ public class NodeCache {
     public static Node getRootNode() {
         Node n = null;
         for (Map.Entry<String, Node> entry : nMap.entrySet()) {
-            if (entry.getValue().getParent() == null || entry.getValue().getParent().equals("") || Integer.parseInt(entry.getValue().getParent())==0) {
-                n = entry.getValue();
+            try {
+                if (entry.getValue().getParent() == null || entry.getValue().getParent().equals("") || Integer.parseInt(entry.getValue().getParent()) == 0) {
+                    n = entry.getValue();
+                }
+            } catch (NumberFormatException e) {
+                continue;
             }
         }
         return n;

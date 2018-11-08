@@ -268,7 +268,7 @@
             level = #{level,jdbcType=INTEGER},
         </if>
       <if test="ispayed != null">
-        ispayed = #{ispayed,jdbcType=INTEGER},
+        is_payed = #{ispayed,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}

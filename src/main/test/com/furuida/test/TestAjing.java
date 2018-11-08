@@ -12,11 +12,12 @@ import com.furuida.test.WeChatUtils;
  **/
 public class TestAjing {
     public static void main(String[] args) {
-        WeChatUtils weChatUtils = new WeChatUtils();
-        WeChatAccessToken data = weChatUtils.getAccessToken("aaa");
-        System.out.println("+++++++++++++++++++++++");
-        System.out.println(data.toString());
-        System.out.println("+++++++++++++++++++++++");
+        System.out.println(String.valueOf("asdaodjadadadasdascada".hashCode()).replace("-", ""));
+//        WeChatUtils weChatUtils = new WeChatUtils();
+//        WeChatAccessToken data = weChatUtils.getAccessToken("aaa");
+//        System.out.println("+++++++++++++++++++++++");
+//        System.out.println(data.toString());
+//        System.out.println("+++++++++++++++++++++++");
 
     }
 
