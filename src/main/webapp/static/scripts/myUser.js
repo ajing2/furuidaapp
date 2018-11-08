@@ -5,10 +5,14 @@ $(document).ready(function () {
 
 
 function main() {
-    var data = selectUser("hello_word");
+    var userId = localStorage.getItem("userId");
+    userId = "o_Fd91UeaRou0XGtq1ejD9vSnZxE";
+    var data = selectUser(userId);
     if (data.length>0 && data[0] != null){
-        $('#userName').html(data[0].receiveName);
+        $('#userName').html(data[0].webchatName);
         $("#InvitationCode").html(data[0].webchat);
+        debugger;
+        $("#hd_image").attr("src", data[0].webchatUrl);
         if (data[0].level == 0){
             $("#UserLevel").html("会员");
         }else if (data[0].level == 1){
@@ -34,7 +38,7 @@ function main() {
 function selectUser(userId) {
     var result;
     $.ajax({
-        url : "http://www.gflat.cn/user/select?userId=" + userId,
+        url : "http://www.gflat.cn:8088/user/select?userId=" + userId,
         type : "GET",
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         async:false,

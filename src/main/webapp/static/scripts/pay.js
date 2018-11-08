@@ -63,7 +63,7 @@ function ajax_update_payid(payid,oid,wpay,ypay){
 setShoppingOrder("hello_word");
 function setShoppingOrder(userId) {
     $.ajax({
-        url : "http://www.gflat.cn/shopping/select?userId=" + userId,
+        url : "http://www.gflat.cn:8088/shopping/select?userId=" + userId,
         type : "GET",
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         success : function(data) {

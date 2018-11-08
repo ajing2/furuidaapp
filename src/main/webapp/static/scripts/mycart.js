@@ -1,7 +1,7 @@
 
 function selectShoppingCart(userId) {
     $.ajax({
-        url : "http://www.gflat.cn/shopping/select?userId=" + userId,
+        url : "http://www.gflat.cn:8088/shopping/select?userId=" + userId,
         type : "GET",
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         success : function(data) {
@@ -104,7 +104,7 @@ function checkvar() {
 
     addOrder("hello_word", parseInt($(".gzprice1").html()), 0, 1);
 
-    window.location.href = "http://www.gflat.cn/static/pay.html";
+    window.location.href = "http://www.gflat.cn:8088/static/pay.html";
 
 return false;
 }
@@ -128,7 +128,7 @@ function addOrder(userId, payPrice, isPay, payTime) {
     };
 
     $.ajax({
-        url : "http://www.gflat.cn/order/add",
+        url : "http://www.gflat.cn:8088/order/add",
         type : "POST",
         data: JSON.stringify(data),
         dataType : 'json',
@@ -153,7 +153,7 @@ function addUser(userId, webchat, phone, receiveName, receiveAddr, parent_id, le
         level: level,
     };
     $.ajax({
-        url : "http://www.gflat.cn/user/add",
+        url : "http://www.gflat.cn:8088/user/add",
         type : "POST",
         data: JSON.stringify(data),
         dataType : 'json',
@@ -181,7 +181,7 @@ $('#delcartid').click(function () {
         if (id != null || id != ''){
             clearShoppingCart();
         }
-        window.location.href = "http://www.gflat.cn/static/shoppingcart.html"
+        window.location.href = "http://www.gflat.cn:8088/static/shoppingcart.html"
     }
     return false;
 });
@@ -199,7 +199,7 @@ function updateShoppingCart(userId) {
         updateTime: 1,
     };
     $.ajax({
-        url : "http://www.gflat.cn/shopping/update",
+        url : "http://www.gflat.cn:8088/shopping/update",
         type : "POST",
         data: JSON.stringify(data),
         dataType: 'json',
@@ -225,7 +225,7 @@ function insertShoppingCart(userId) {
         updateTime: 1,
     };
     $.ajax({
-        url : "http://www.gflat.cn/shopping/add",
+        url : "http://www.gflat.cn:8088/shopping/add",
         type : "POST",
         data: JSON.stringify(data),
         dataType : 'json',
@@ -363,12 +363,12 @@ function clearShoppingCart() {
 
     var id = $("#shoppingCartId").val();
     $.ajax({
-        url : "http://www.gflat.cn/shopping/delete?id=" + id,
+        url : "http://www.gflat.cn:8088/shopping/delete?id=" + id,
         type : "GET",
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         success : function(data) {
 
-            window.location.href = "http://www.gflat.cn/static/shoppingcart.html";
+            window.location.href = "http://www.gflat.cn:8088/static/shoppingcart.html";
 
         },
         error: function (data) {
@@ -381,7 +381,7 @@ function clearShoppingCart() {
 function selectUser(userId) {
     var result;
     $.ajax({
-        url : "http://www.gflat.cn/user/select?userId=" + userId,
+        url : "http://www.gflat.cn:8088/user/select?userId=" + userId,
         type : "GET",
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         async:false,

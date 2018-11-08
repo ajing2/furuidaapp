@@ -10,23 +10,6 @@ var goods = new Object();
  * obj:
  */
 function addToCart(goodsid, tt) {
-//     if (tt == "jifen_cartlist" || tt == "jifen") {
-//         if (confirm("你确定兑换吗？兑换后你的积分将会相应减少！")) {
-//         } else {
-//             return false;
-//         }
-//     }
-//
-// //判断js函数是否存在
-//     try {
-//         if (typeof(eval('checkcartattr')) == "function") {
-//             if (checkcartattr() == false) {
-//                 return false;
-//             }
-//         }
-//     } catch (e) {
-//         //alert("not function");
-//     }
 
       //一个商品的所有属性
     var spec_arr = new Array(); //获取过来的商品属性
@@ -55,43 +38,61 @@ function addToCart(goodsid, tt) {
     goods.optype = tt
 
     createwindow();
-    // $.ajax({
-    //     type: "POST",
-    //     url: "http://www.gflat.cn/test/ajax?action=addcart",
-    //     success: function (data) {
-    //         removewindow();
-    //         if (data.error == '500') {
 
-                result = "<div style=\"font-size:14px; line-height:26px; padding:10px; text-align:left;\">\n" +
-                    "    <p>您的推荐服务商是：</p>\n" +
-                    "    <p style=\"padding-left:30px; padding-bottom:10px; line-height:20px; height:20px;\"><b style=\"color:blue\">(ID:845632)王越仕</b></p>\n" +
-                    "    <p style=\"color:#F96\">*&nbsp;请确认购买产品数量，不要重复购买，购买后无法退单。</p>\n" +
-                    "    <p style=\"color:#F36\">*&nbsp;产品一经购买,除产品质量问题外,不支持无理由退货、退款！</p>\n" +
-                    "    <p style=\"color:#F00\">*&nbsp;产品购买前请确认服务商是否正确，一经购买下单后将无法更改上下级服务商信息，后果将个人承担。</p>\n" +
-                    "    <hr/>\n" +
-                    "    <p style=\"text-align:center; height:50px;\">\n" +
-                    "        <a onclick=\"return alertb();\" style=\" float:left;display:block; width:40%; line-height:35px;height:35px;border-radius:5px; background:#f35600; text-align:center; color:#fff\">服务商正确</a>\n" +
-                    "        <a onclick=\"return alerta();\" style=\" margin-left:20px;float:left;display:block; width:40%; line-height:35px; height:35px;border-radius:5px; background:#ff8f03; text-align:center; color:#fff\">服务商不对</a>\n" +
-                    "    </p>\n" +
-                    "</div>"
+    var userId = localStorage.getItem("userId");
+    userId = "lingjing";
+    var parentName = selectUser(userId);
 
-                JqueryDialog.Open('确认服务商', result, 280, 200);
-                $('.jd_dialog_m_t').hide();
-                removewindow();
+    result = "<div style=\"font-size:14px; line-height:26px; padding:10px; text-align:left;\">\n" +
+        "    <p>您的推荐服务商是：</p>\n" +
+        "    <p style=\"padding-left:30px; padding-bottom:10px; line-height:20px; height:20px;\"><b style=\"color:blue\">(ID:" + parentName + ")</b></p>\n" +
+        "    <p style=\"color:#F96\">*&nbsp;请确认购买产品数量，不要重复购买，购买后无法退单。</p>\n" +
+        "    <p style=\"color:#F36\">*&nbsp;产品一经购买,除产品质量问题外,不支持无理由退货、退款！</p>\n" +
+        "    <p style=\"color:#F00\">*&nbsp;产品购买前请确认服务商是否正确，一经购买下单后将无法更改上下级服务商信息，后果将个人承担。</p>\n" +
+        "    <hr/>\n" +
+        "    <p style=\"text-align:center; height:50px;\">\n" +
+        "        <a onclick=\"return alertb();\" style=\" float:left;display:block; width:40%; line-height:35px;height:35px;border-radius:5px; background:#f35600; text-align:center; color:#fff\">服务商正确</a>\n" +
+        "        <a onclick=\"return alerta();\" style=\" margin-left:20px;float:left;display:block; width:40%; line-height:35px; height:35px;border-radius:5px; background:#ff8f03; text-align:center; color:#fff\">服务商不对</a>\n" +
+        "    </p>\n" +
+        "</div>"
 
-                return false;
-            // }
+    JqueryDialog.Open('确认服务商', result, 280, 200);
+    $('.jd_dialog_m_t').hide();
+    removewindow();
 
-
-        // }//end sucdess
-    // });
     return false;
-}
 
+}
+function selectUser(userId) {
+    debugger;
+    var result;
+    $.ajax({
+        url : "http://www.gflat.cn:8088/user/parent?userId=" + userId,
+        type : "GET",
+        contentType : 'application/json;charset=UTF-8', //contentType很重要
+        async:false,
+        success : function(callback) {
+            if (callback.code == 0){
+                var data = callback.data;
+                if (data.length>0 && data[0] != null){
+                    result = data[0].userId + ": " + data[0].webchatName
+                }
+            }else{
+                result = null;
+                alert("请联系您的服务商!");
+            }
+        },
+        error: function (data) {
+            result = null;
+        }
+    });
+
+    return result;
+}
 
 function addShoppingCart(userId, goods) {
     $.ajax({
-        url : "http://www.gflat.cn/shopping/add",
+        url : "http://www.gflat.cn:8088/shopping/add",
         type : "POST",
         data : JSON.stringify({
             userId: userId,

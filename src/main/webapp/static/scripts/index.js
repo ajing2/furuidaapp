@@ -99,18 +99,19 @@ for (var i in param){
 }
 
 
-function get_userinfo(code) {
+function get_userinfo(code, parentId) {
 
     $.ajax({
         type: "GET",
         timeout: 10000, // 超时时间 10 秒
-        url: "http://www.gflat.cn/user/info?code=" + code,
+        url: "http://www.gflat.cn:8088/user/info?code=" + code + "&parentId=" + parentId,
         xhrFields: {
             withCredentials: true
         },
         success: function (data) {
-
-            localStorage.setItem("userinfo", data);
+            if (data != null) {
+                localStorage.setItem("userId", data.openid);
+            }
         },
         error: function (err) {
 
@@ -125,5 +126,7 @@ function get_userinfo(code) {
 }
 
 $(document).ready(function () {
-    get_userinfo(code);
+    var parentId = localStorage.getItem("parentId");
+    parentId = "45";
+    get_userinfo(code, parentId);
 });

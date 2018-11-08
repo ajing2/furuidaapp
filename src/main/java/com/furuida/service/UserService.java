@@ -1,12 +1,12 @@
 package com.furuida.service;
 
-import com.furuida.model.Order;
+import com.furuida.model.ResultBean;
 import com.furuida.model.User;
 import com.furuida.model.UserInfo;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 
 public interface UserService {
     public void addUser(User user);
@@ -18,6 +18,8 @@ public interface UserService {
 
     public List selectUser(User user);
 
-    String getToken(HttpSession session, String code);
+    Map<String, String> getToken(HttpSession session, String code);
     UserInfo getUserInfo(HttpSession session, String code, String parentId);
+
+    public ResultBean getParentInfo(String userId);
 }

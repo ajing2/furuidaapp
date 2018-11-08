@@ -12,7 +12,7 @@
     <result column="level" jdbcType="INTEGER" property="level" />
     <result column="webchat_url" jdbcType="VARCHAR" property="webchatUrl" />
     <result column="webchat_name" jdbcType="VARCHAR" property="webchatName" />
-      <result column="ispayed" jdbcType="INTEGER" property="ispayed" />
+    <result column="is_payed" jdbcType="INTEGER" property="ispayed" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -73,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, user_id, webchat, phone, receive_name, receive_addr, parent_id, `level`, webchat_url, webchat_name
+    id, user_id, webchat, phone, receive_name, receive_addr, parent_id, `level`, webchat_url, webchat_name, is_payed
   </sql>
   <select id="selectByExample" parameterType="com.furuida.model.UserExample" resultMap="BaseResultMap">
     select
@@ -90,6 +90,16 @@
       order by ${orderByClause}
     </if>
   </select>
+
+
+
+  <select id="getParentInfo" parameterType="String" resultMap="BaseResultMap">
+    select * from t_user
+    <where>
+      id in (select parent_id from t_user where user_id = #{userId,jdbcType=VARCHAR})
+    </where>
+  </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -148,6 +158,9 @@
       <if test="webchatName != null">
         webchat_name,
       </if>
+      <if test="ispayed != null">
+        is_payed,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -179,6 +192,9 @@
       </if>
       <if test="webchatName != null">
         #{webchatName,jdbcType=VARCHAR},
+      </if>
+      <if test="ispayed != null">
+        #{ispayed,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>

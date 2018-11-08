@@ -2,11 +2,7 @@ package com.furuida.service;
 
 import com.furuida.mapper.OrderMapper;
 import com.furuida.mapper.UserMapper;
-import com.furuida.model.Order;
-import com.furuida.model.User;
-import com.furuida.model.UserExample;
-import com.furuida.model.UserInfo;
-import com.furuida.utils.HttpClientUtils;
+import com.furuida.model.*;
 import com.furuida.utils.WeChatAccessToken;
 import com.furuida.utils.WeChatUtils;
 import com.jd.jsf.gd.util.StringUtils;
@@ -16,9 +12,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -107,15 +101,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String getToken(HttpSession session, String code) {
+    public Map<String, String> getToken(HttpSession session, String code) {
+        Map<String, String> map = new HashMap<>();
         WeChatAccessToken token = WeChatUtils.getAccessToken(code);
         log.info("token:" + token.getAccess_token());
         if (null != token && !token.equals("")) {
             session.setAttribute("access_token", token.getAccess_token());
             session.setAttribute("openid", token.getOpenid());
             log.info("sessionId:" + session.getId());
+            map.put("token", token.getAccess_token());
+            map.put("openid", token.getOpenid());
         }
-        return token.getAccess_token();
+        return map;
     }
     public String getSessionToken(HttpSession session) {
         //先取session中的token
@@ -129,16 +126,21 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserInfo getUserInfo(HttpSession session, String code, String parentId) {
         String token = getSessionToken(session);
+        String openid = getSessionOpenId(session);
         UserInfo userInfo = null;
         try {
             if (null == token || "".equals(token)) {
-                token = getToken(session, code);
+                Map<String, String> map = getToken(session, code);
+                token = map.get("token");
+                openid = map.get("openid");
             }
-            userInfo = WeChatUtils.getWXUserInfoUrl((String) session.getAttribute("openid"), token);
+            userInfo = WeChatUtils.getWXUserInfoUrl(openid, token);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            token = getToken(session, code);
-            userInfo = WeChatUtils.getWXUserInfoUrl((String) session.getAttribute("openid"), token);
+            Map<String, String> map = getToken(session, code);
+            token = map.get("token");
+            openid = map.get("openid");
+            userInfo = WeChatUtils.getWXUserInfoUrl(openid, token);
         }
         if (null != userInfo){
             User user = new User();
@@ -146,7 +148,7 @@ public class UserServiceImpl implements UserService {
             user.setLevel(-1);
             user.setParentId(parentId);
             user.setPhone("");
-            user.setWebchatName(userInfo.getOpenid());
+            user.setReceiveName("");
             user.setReceiveAddr("");
             user.setUserId(String.valueOf(userInfo.getOpenid().hashCode()).replace("-", ""));
             user.setWebchatName(userInfo.getNickname());
@@ -158,9 +160,35 @@ public class UserServiceImpl implements UserService {
         return userInfo;
     }
 
+    private String getSessionOpenId(HttpSession session) {
+        //先取session中的token
+        String old_openid = (String) session.getAttribute("access_token");
+        if (!org.apache.commons.lang.StringUtils.isEmpty(old_openid)) {
+            return old_openid;
+        }
+        log.info("token:" + old_openid);
+        return null;
+    }
+
 
     @Override
     public void updateUser(User user) {
         userMapper.updateByPrimaryKeySelective(user);
     }
+
+
+
+
+    @Override
+    public ResultBean getParentInfo(String userId) {
+        try {
+            return ResultBean.success(userMapper.getParentInfo(userId));
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            return ResultBean.fail("get user info failed." + e.getMessage());
+        }
+    }
+
+
+
 }

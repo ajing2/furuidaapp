@@ -21,7 +21,7 @@
     <link type="text/css" rel="stylesheet" href="/static/css/flexslider.css" media="all"/>
 
 
-    <script> var SITE_URL="http://www.gflat.cn/test/";</script>
+    <script> var SITE_URL="http://www.gflat.cn:8088/test/";</script>
     <script type="text/javascript" src="/static/js/jquery.min.js"></script>
     <script type="text/javascript" src="/static/js/jquery_dialog.js?v=1"></script>
     <script type="text/javascript" src="/static/js/common.js?v=21"></script>
@@ -31,7 +31,7 @@
     <script type="text/javascript" src="/static/js/main.js"></script>
     <script type="text/javascript" src="/static/js/time.js"></script>
     <script src="/static/js/layer.js"></script>
-    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
 
 </head>
 <body>
@@ -164,139 +164,139 @@
 <div class="show_gz"
      style=" display:none;width:100%; height:100%; position:fixed; top:44px; right:0px; z-index:9999999;filter:alpha(opacity=60);-moz-opacity:0.6;opacity:0.6;"
      onclick="$(this).hide();"></div>
-<script type="text/javascript">
-    var picrt = [];
+<!--<script type="text/javascript">-->
+    <!--var picrt = [];-->
 
-    function run(pic) {
-        $('.thumbs').append('<img src="http://sy.longemont.net/' + pic + '" width="60" height="60" />');
-        picrt.push(pic);
-    }
+    <!--function run(pic) {-->
+        <!--$('.thumbs').append('<img src="http://sy.longemont.net/' + pic + '" width="60" height="60" />');-->
+        <!--picrt.push(pic);-->
+    <!--}-->
 
-    function _report(a, c) {
-        $.post('product.php', {
-            action: 'ajax_share',
-            type: a,
-            msg: c,
-            thisurl: '/static/product.php?id=1',
-            imgurl: 'http://sy.longemont.net/photos/syrfygwkcom/goods/201806/thumb_b/15301816401530181640.jpg',
-            title: '福瑞达洗眼液'
-        }, function (data) {
-        });
-    }
+    <!--function _report(a, c) {-->
+        <!--$.post('product.php', {-->
+            <!--action: 'ajax_share',-->
+            <!--type: a,-->
+            <!--msg: c,-->
+            <!--thisurl: '/static/product.php?id=1',-->
+            <!--imgurl: 'http://sy.longemont.net/photos/syrfygwkcom/goods/201806/thumb_b/15301816401530181640.jpg',-->
+            <!--title: '福瑞达洗眼液'-->
+        <!--}, function (data) {-->
+        <!--});-->
+    <!--}-->
 
-    function ajax_submit_mes() {
-        var goods = new Object();
-        createwindow();
-        goods.ranks = $('input[name="ranks"]:checked').val();
-        content = $('textarea[name="content"]').val();
-        if (content == "" || typeof(content) == "undefined") {
-            $('.returnmes').html('内容不能为空！');
-            return false;
-        }
-        goods.goods_id = '1';
-        goods.content = content;
-        goods.pics = picrt.join('|');
+    <!--function ajax_submit_mes() {-->
+        <!--var goods = new Object();-->
+        <!--createwindow();-->
+        <!--goods.ranks = $('input[name="ranks"]:checked').val();-->
+        <!--content = $('textarea[name="content"]').val();-->
+        <!--if (content == "" || typeof(content) == "undefined") {-->
+            <!--$('.returnmes').html('内容不能为空！');-->
+            <!--return false;-->
+        <!--}-->
+        <!--goods.goods_id = '1';-->
+        <!--goods.content = content;-->
+        <!--goods.pics = picrt.join('|');-->
 
-        $.ajax({
-            type: "POST",
-            url: "/static/product.php?action=ajax_submit_mes",
-            data: "goods=" + $.toJSON(goods),
-            dataType: "json",
-            success: function (data) {
-                removewindow();
-                if (data.error == '0') {
-                    $('.GOODSCOMMENT').html(data.message);
-                } else {
-                    $('.returnmes').html(data.message);
-                }
+        <!--$.ajax({-->
+            <!--type: "POST",-->
+            <!--url: "/static/product.php?action=ajax_submit_mes",-->
+            <!--data: "goods=" + $.toJSON(goods),-->
+            <!--dataType: "json",-->
+            <!--success: function (data) {-->
+                <!--removewindow();-->
+                <!--if (data.error == '0') {-->
+                    <!--$('.GOODSCOMMENT').html(data.message);-->
+                <!--} else {-->
+                    <!--$('.returnmes').html(data.message);-->
+                <!--}-->
 
-            }//end sucdess
-        });
-    }
+            <!--}//end sucdess-->
+        <!--});-->
+    <!--}-->
 
 
-    /*  document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
-            window.shareData = {
-                "imgUrl": "http://sy.longemont.net/photos/syrfygwkcom/goods/201806/thumb_b/15301816401530181640.jpg",
-                "LineLink": '/static/product.php?id=1',
-                "Title": "福瑞达洗眼液(汽油版 / 一盒20瓶+2瓶)",
-                "Content": "福瑞达洗眼液(汽油版 / 一盒20瓶+2瓶)"
-            };
-            // 发送给好友
-            WeixinJSBridge.on('menu:share:appmessage', function (argv) {
-                WeixinJSBridge.invoke('sendAppMessage', {
-                    "img_url": window.shareData.imgUrl,
-                    "img_width": "640",
-                    "img_height": "640",
-                    "link": window.shareData.LineLink,
-                    "desc": window.shareData.Content,
-                    "title": window.shareData.Title
-                }, function (res) {
-                    _report('send_msg', res.err_msg);
-                })
-            });
-            // 分享到朋友圈
-            WeixinJSBridge.on('menu:share:timeline', function (argv) {
-                WeixinJSBridge.invoke('shareTimeline', {
-                    "img_url": window.shareData.imgUrl,
-                    "img_width": "640",
-                    "img_height": "640",
-                    "link": window.shareData.LineLink,
-                    "desc": window.shareData.Content,
-                    "title": window.shareData.Title
-                }, function (res) {
-                    _report('timeline', res.err_msg);
-                });
-            });
-            // 分享到微博
-            WeixinJSBridge.on('menu:share:weibo', function (argv) {
-                WeixinJSBridge.invoke('shareWeibo', {
-                    "content": window.shareData.Content,
-                    "url": window.shareData.LineLink,
-                }, function (res) {
-                    _report('weibo', res.err_msg);
-                });
-            });
-            }, false)*/
+    <!--/*  document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {-->
+            <!--window.shareData = {-->
+                <!--"imgUrl": "http://sy.longemont.net/photos/syrfygwkcom/goods/201806/thumb_b/15301816401530181640.jpg",-->
+                <!--"LineLink": '/static/product.php?id=1',-->
+                <!--"Title": "福瑞达洗眼液(汽油版 / 一盒20瓶+2瓶)",-->
+                <!--"Content": "福瑞达洗眼液(汽油版 / 一盒20瓶+2瓶)"-->
+            <!--};-->
+            <!--// 发送给好友-->
+            <!--WeixinJSBridge.on('menu:share:appmessage', function (argv) {-->
+                <!--WeixinJSBridge.invoke('sendAppMessage', {-->
+                    <!--"img_url": window.shareData.imgUrl,-->
+                    <!--"img_width": "640",-->
+                    <!--"img_height": "640",-->
+                    <!--"link": window.shareData.LineLink,-->
+                    <!--"desc": window.shareData.Content,-->
+                    <!--"title": window.shareData.Title-->
+                <!--}, function (res) {-->
+                    <!--_report('send_msg', res.err_msg);-->
+                <!--})-->
+            <!--});-->
+            <!--// 分享到朋友圈-->
+            <!--WeixinJSBridge.on('menu:share:timeline', function (argv) {-->
+                <!--WeixinJSBridge.invoke('shareTimeline', {-->
+                    <!--"img_url": window.shareData.imgUrl,-->
+                    <!--"img_width": "640",-->
+                    <!--"img_height": "640",-->
+                    <!--"link": window.shareData.LineLink,-->
+                    <!--"desc": window.shareData.Content,-->
+                    <!--"title": window.shareData.Title-->
+                <!--}, function (res) {-->
+                    <!--_report('timeline', res.err_msg);-->
+                <!--});-->
+            <!--});-->
+            <!--// 分享到微博-->
+            <!--WeixinJSBridge.on('menu:share:weibo', function (argv) {-->
+                <!--WeixinJSBridge.invoke('shareWeibo', {-->
+                    <!--"content": window.shareData.Content,-->
+                    <!--"url": window.shareData.LineLink,-->
+                <!--}, function (res) {-->
+                    <!--_report('weibo', res.err_msg);-->
+                <!--});-->
+            <!--});-->
+            <!--}, false)*/-->
 
-    wx.config({
-        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-        appId: '', // 必填，公众号的唯一标识
-        timestamp: '1540556236', // 必填，生成签名的时间戳
-        nonceStr: 'uTGEaaTHbzVu5BLA', // 必填，生成签名的随机串
-        signature: 'c9ad092f1106e7923aebefa97a2dbc8db1c66c89',// 必填，签名，见附录1
-        jsApiList: ['onMenuShareAppMessage', 'onMenuShareTimeline', 'onMenuShareQQ'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-    });
+    <!--wx.config({-->
+        <!--debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。-->
+        <!--appId: '', // 必填，公众号的唯一标识-->
+        <!--timestamp: '1540556236', // 必填，生成签名的时间戳-->
+        <!--nonceStr: 'uTGEaaTHbzVu5BLA', // 必填，生成签名的随机串-->
+        <!--signature: 'c9ad092f1106e7923aebefa97a2dbc8db1c66c89',// 必填，签名，见附录1-->
+        <!--jsApiList: ['onMenuShareAppMessage', 'onMenuShareTimeline', 'onMenuShareQQ'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2-->
+    <!--});-->
 
-    wx.ready(function () {
-        wx.onMenuShareAppMessage({
-            title: '福瑞达洗眼液(汽油版 / 一盒20瓶+2瓶)', // 分享标题
-            desc: '福瑞达洗眼液(汽油版 / 一盒20瓶+2瓶)', // 分享描述
-            link: '/static/product.php?id=1', // 分享链接
-            imgUrl: 'http://sy.longemont.net/photos/syrfygwkcom/goods/201806/thumb_b/15301816401530181640.jpg', // 分享图标
-            success: function () {
-                // 用户确认分享后执行的回调函数
-                _report('send_msg', 'st:ok');
-            },
-            cancel: function () {
-                // 用户取消分享后执行的回调函数
-            }
-        });
-    });
+    <!--wx.ready(function () {-->
+        <!--wx.onMenuShareAppMessage({-->
+            <!--title: '福瑞达洗眼液(汽油版 / 一盒20瓶+2瓶)', // 分享标题-->
+            <!--desc: '福瑞达洗眼液(汽油版 / 一盒20瓶+2瓶)', // 分享描述-->
+            <!--link: '/static/product.php?id=1', // 分享链接-->
+            <!--imgUrl: 'http://sy.longemont.net/photos/syrfygwkcom/goods/201806/thumb_b/15301816401530181640.jpg', // 分享图标-->
+            <!--success: function () {-->
+                <!--// 用户确认分享后执行的回调函数-->
+                <!--_report('send_msg', 'st:ok');-->
+            <!--},-->
+            <!--cancel: function () {-->
+                <!--// 用户取消分享后执行的回调函数-->
+            <!--}-->
+        <!--});-->
+    <!--});-->
 
-    wx.onMenuShareTimeline({
-        title: '福瑞达洗眼液(汽油版 / 一盒20瓶+2瓶)', // 分享标题
-        link: '/static/product.php?id=1', // 分享链接
-        imgUrl: 'http://sy.longemont.net/photos/syrfygwkcom/goods/201806/thumb_b/15301816401530181640.jpg', // 分享图标
-        success: function () {
-            // 用户确认分享后执行的回调函数
-            _report('timeline', 'st:ok');
-        },
-        cancel: function () {
-            // 用户取消分享后执行的回调函数
-        }
-    });
-</script>
+    <!--wx.onMenuShareTimeline({-->
+        <!--title: '福瑞达洗眼液(汽油版 / 一盒20瓶+2瓶)', // 分享标题-->
+        <!--link: '/static/product.php?id=1', // 分享链接-->
+        <!--imgUrl: 'http://sy.longemont.net/photos/syrfygwkcom/goods/201806/thumb_b/15301816401530181640.jpg', // 分享图标-->
+        <!--success: function () {-->
+            <!--// 用户确认分享后执行的回调函数-->
+            <!--_report('timeline', 'st:ok');-->
+        <!--},-->
+        <!--cancel: function () {-->
+            <!--// 用户取消分享后执行的回调函数-->
+        <!--}-->
+    <!--});-->
+<!--</script>-->
 
 <script type="text/javascript">
     $('.mainbottombg span').click(function () {
@@ -435,8 +435,7 @@
             </li>
             <li class="li4" style="width:30%">
                 <a id="btnBuy" onclick="return addToCart('1','shoppingbuy','')" class="butt-buy" style="border:none">立即购买</a>
-                <!--<a href="/static/mycart.html" id="btnBuy" onclick="return addToCart('1','jumpshopping','')"-->
-                   <!--class="butt-buy" style="border:none">立即购买</a>-->
+
             </li>
             <li class="li5" style="width:20%"><a href="/static/shoppingcart.html"
                                                  style="background-image:none; display:block; width:100%; position:relative; padding-top:0px; font-size:1.2em; padding-top:7px;">

@@ -106,4 +106,11 @@ public class UserController {
             return ResultBean.fail("get user info failed." + e.getMessage());
         }
     }
+
+
+    @RequestMapping(value = "/parent", method = RequestMethod.GET)
+    @ResponseBody
+    private ResultBean getParentInfo(@RequestParam String userId){
+        return userService.getParentInfo(userId);
+    }
 }
