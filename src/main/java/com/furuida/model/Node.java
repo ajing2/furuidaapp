@@ -41,7 +41,7 @@ public class Node {
      * @return
      */
     public List<String> getAllDownLeafs(Node node, int dep) {
-        if (null == node) return null;
+        /*if (null == node) return null;
         List<String> userList = node.childList;
         List<Node> nodeList = getNodeListByIdList(userList);
         if (dep == 1) {
@@ -59,8 +59,23 @@ public class Node {
         int i = dep;
         for (Node n : nodeList) {
             getAllDownLeafs(n, i);
-        }
+        }*/
         return allDownLeafs;
+    }
+    public List<String> getAllDownLeafs2(Node node, int dep) {
+        List<String> nodeList = new ArrayList<>();
+        nodeList.add(node.getData().getUserId());
+        for (int i = 0; i < dep; i++) {
+            nodeList = getChildList(nodeList);
+        }
+        return nodeList;
+    }
+    public List<String> getChildList(List<String> nodeList) {
+        List<String> cList = new ArrayList<>();
+        if (!nodeList.isEmpty()) {
+            nodeList.forEach(node->cList.addAll(NodeCache.nMap.get(node).getChildList()));
+        }
+        return cList;
     }
     List<Node> getNodeListByIdList(List<String> userList) {
         if (null == userList) {

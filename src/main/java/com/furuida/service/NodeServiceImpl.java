@@ -45,7 +45,7 @@ public class NodeServiceImpl implements NodeService {
                 continue;
             }
             initALLNode();
-            List<String> sL = root.getAllDownLeafs(NodeCache.getRootNode(), i-1);
+            List<String> sL = root.getAllDownLeafs2(NodeCache.getRootNode(), i-1);
 //            if (null== sL||sL.size()==0) {
 //                payAndUpgrade((i+1) + "-"+root.getData().getUserId() + "-1", root.getData().getUserId());
 //                payAndUpgrade((i+1) + "-"+root.getData().getUserId() + "-2", root.getData().getUserId());
@@ -53,10 +53,11 @@ public class NodeServiceImpl implements NodeService {
 //                continue;
 //            }
             if (null!= sL&&sL.size()>0) {
+                int ii = 0;
                 for (String s:sL) {
-                    payAndUpgrade((i+1) + "-1", s);
-                    payAndUpgrade((i+1) + "-2", s);
-                    payAndUpgrade((i+1) + "-3", s);
+                    payAndUpgrade((i+1) + "-" + (ii++), s);
+                    payAndUpgrade((i+1) + "-" + (ii++), s);
+                    payAndUpgrade((i+1) + "-" + (ii++), s);
                 }
             }
         }

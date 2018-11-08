@@ -113,4 +113,15 @@ public class UserController {
     private ResultBean getParentInfo(@RequestParam String userId){
         return userService.getParentInfo(userId);
     }
+    @RequestMapping(value = "/tree", method = RequestMethod.GET)
+    @ResponseBody
+    private ResultBean getUserTree(HttpServletRequest request) {
+        try {
+
+            return ResultBean.success();
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            return ResultBean.fail("get user info failed." + e.getMessage());
+        }
+    }
 }
