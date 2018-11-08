@@ -6,6 +6,7 @@ import com.furuida.model.User;
 import com.furuida.model.UserInfo;
 import com.furuida.service.OrderService;
 import com.furuida.service.UserService;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.web.bind.annotation.*;
@@ -78,13 +79,16 @@ public class UserController {
 
     @RequestMapping(value = "/token", method = RequestMethod.GET)
     @ResponseBody
-    private String getToken(HttpServletRequest request, @RequestParam String code) {
+    private ResultBean getToken(HttpServletRequest request, @RequestParam String code) {
         try {
             HttpSession session = request.getSession();
-            return userService.getToken(session, code);
+            if (StringUtils.isEmpty(code)) {
+                return ResultBean.fail("param can not be null.");
+            }
+            return ResultBean.success(userService.getToken(session, code));
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            return null;
+            return ResultBean.fail("get token failed." + e.getMessage());
         }
     }
 
@@ -93,6 +97,9 @@ public class UserController {
     private ResultBean getUserInfo(HttpServletRequest request, @RequestParam String code, @RequestParam String parentId) {
         try {
             HttpSession session = request.getSession();
+            if (StringUtils.isEmpty(code) || StringUtils.isEmpty(parentId)) {
+                return ResultBean.fail("param can not be null.");
+            }
             return ResultBean.success(userService.getUserInfo(session, code, parentId));
         } catch (Exception e) {
             log.error(e.getMessage(), e);
