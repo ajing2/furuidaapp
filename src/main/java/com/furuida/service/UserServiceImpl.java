@@ -108,23 +108,38 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String getToken(HttpSession session, String code) {
-//        Map<String, String> params = new HashMap<>();
-//        params.put("code", "");
-//        String token_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx8cba5272ec62110c&secret=cd684765a63d305a38085ab25b562673&code=CODE&grant_type=authorization_code".replace("code=CODE", "code="+code);
-//        String res = HttpClientUtils.getMethod(token_url, null, null);
         WeChatAccessToken token = WeChatUtils.getAccessToken(code);
         log.info("token:" + token.getAccess_token());
         if (null != token && !token.equals("")) {
             session.setAttribute("access_token", token.getAccess_token());
             session.setAttribute("openid", token.getOpenid());
+            log.info("sessionId:" + session.getId());
         }
         return token.getAccess_token();
     }
-
+    public String getSessionToken(HttpSession session) {
+        //先取session中的token
+        String old_token = (String) session.getAttribute("access_token");
+        if (!org.apache.commons.lang.StringUtils.isEmpty(old_token)) {
+            return old_token;
+        }
+        log.info("token:" + old_token);
+        return null;
+    }
     @Override
     public UserInfo getUserInfo(HttpSession session, String code, String parentId) {
-        String token = getToken(session, code);
-        UserInfo userInfo = WeChatUtils.getWXUserInfoUrl((String) session.getAttribute("openid"), token);
+        String token = getSessionToken(session);
+        UserInfo userInfo = null;
+        try {
+            if (null == token || "".equals(token)) {
+                token = getToken(session, code);
+            }
+            userInfo = WeChatUtils.getWXUserInfoUrl((String) session.getAttribute("openid"), token);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            token = getToken(session, code);
+            userInfo = WeChatUtils.getWXUserInfoUrl((String) session.getAttribute("openid"), token);
+        }
         if (null != userInfo){
             User user = new User();
             user.setIspayed(0);

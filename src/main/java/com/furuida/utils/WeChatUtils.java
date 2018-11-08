@@ -8,6 +8,7 @@ package com.furuida.utils; /**
 
 
 import com.furuida.model.UserInfo;
+import com.furuida.model.WechatAccessTokenCheck;
 import net.sf.json.JSONObject;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -83,11 +84,11 @@ public class WeChatUtils {
      * @param accessToken
      * @author Shen
      */
-//    public WechatAccessTokenCheck checkAccessToken(String openId, String accessToken) {
-//        String url = WeChatUtils.checkAccessTokenUrl.replace("OPENID", openId).replace("ACCESS_TOKEN", accessToken);
-//        JSONObject jsonObj = JSONObject.fromObject(httpRequest(url, "POST", null));
-//        return (WechatAccessTokenCheck) JSONObject.toBean(jsonObj, WechatAccessTokenCheck.class);
-//    }
+    public WechatAccessTokenCheck checkAccessToken(String openId, String accessToken) {
+        String url = WeChatUtils.checkAccessTokenUrl.replace("OPENID", openId).replace("ACCESS_TOKEN", accessToken);
+        JSONObject jsonObj = JSONObject.fromObject(httpRequest(url, "POST", null));
+        return (WechatAccessTokenCheck) JSONObject.toBean(jsonObj, WechatAccessTokenCheck.class);
+    }
 
     /**
      * get或者post请求
