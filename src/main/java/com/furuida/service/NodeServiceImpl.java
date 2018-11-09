@@ -267,6 +267,7 @@ public class NodeServiceImpl implements NodeService {
         cash.setMoney(i);
         cash.setTime("1");
         cash.setAccNum(u.getWebchat());
+        cash.setOpenid("test");
         cashHistoryMapper.insert(cash);
     }
 

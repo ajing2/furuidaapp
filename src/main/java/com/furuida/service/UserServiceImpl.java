@@ -65,9 +65,10 @@ public class UserServiceImpl implements UserService {
             order.setShipNum("sas");
             order.setShipTime(35424);
             order.setUpdateTime(888888888);
+            order.setPayTime(1);
             orderMapper.insertSelective(order);
             order.setUserId("test666666666666");
-            int a = 1/0;
+//            int a = 1/0;
             orderMapper.insertSelective(order);
         } catch (Exception e) {
             log.error(e.getMessage(), e);

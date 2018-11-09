@@ -40,9 +40,9 @@ function addToCart(goodsid, tt) {
     createwindow();
 
     var parentId = localStorage.getItem("parentId");
-    parentId = "sadfd";
+    parentId = "ajing2";
     debugger;
-    var parentName = get_parent(parentId);
+    var parentName = selectUser(parentId);
 
     result = "<div style=\"font-size:14px; line-height:26px; padding:10px; text-align:left;\">\n" +
         "    <p>您的推荐服务商是：</p>\n" +
@@ -63,6 +63,32 @@ function addToCart(goodsid, tt) {
 
     return false;
 
+}
+
+
+function selectUser(userId) {
+    var result;
+    $.ajax({
+        url : "http://www.gflat.cn:8088/user/select?userId=" + userId,
+        type : "GET",
+        contentType : 'application/json;charset=UTF-8', //contentType很重要
+        async:false,
+        success : function(data) {
+            debugger;
+            if (data.length>0 && data[0] != null){
+                result = data[0].userId + ": " + data[0].webchatName
+            }else {
+                result = null;
+                alert("请联系您的服务商!");
+            }
+
+        },
+        error: function (data) {
+            result = null;
+        }
+    });
+
+    return result;
 }
 function get_parent(parentId) {
     debugger;
