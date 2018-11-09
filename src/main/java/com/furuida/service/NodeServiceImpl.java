@@ -61,8 +61,9 @@ public class NodeServiceImpl implements NodeService {
     @Override
     public void initALLNode() {
         List<User> uList = userMapper.selectNode();
-        if (null == uList)
+        if (null == uList) {
             return;
+        }
 //        Map<String, Boolean> countedMap = new HashMap<>(); //已经计算过的
         uList.forEach(user->{
 //            countedMap.put(user.getUserId(), true);
@@ -169,8 +170,9 @@ public class NodeServiceImpl implements NodeService {
     public ResultBean getTree() {
         List<TreeNode> tree = new ArrayList<>();
         List<User> uList = userMapper.selectNode();
-        if (null == uList)
+        if (null == uList) {
             return null;
+        }
         Map<String, String> pmap = new HashMap<>();
         uList.forEach(user->{
             pmap.put(user.getParentId(), "parent");
@@ -263,7 +265,7 @@ public class NodeServiceImpl implements NodeService {
         CashHistory cash = new CashHistory();
         cash.setUserId(u.getUserId());
         cash.setMoney(i);
-        cash.setTime(1);
+        cash.setTime("1");
         cash.setAccNum(u.getWebchat());
         cashHistoryMapper.insert(cash);
     }
