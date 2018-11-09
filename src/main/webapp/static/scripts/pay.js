@@ -9,6 +9,8 @@ function checkpay(){
 }
 
 
+
+
 function clearShoppingCart() {
     var userId = localStorage.getItem("userId");
     userId = "lingjing";

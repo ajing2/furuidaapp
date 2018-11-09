@@ -10,42 +10,26 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="format-detection" content="telephone=no">
     <title>我的推广 - 福瑞达洗眼液</title>
-    <link type="text/css" rel="stylesheet" href="http://sy.longemont.net/m/css/comman.css" media="all" />
-    <link type="text/css" rel="stylesheet" href="http://sy.longemont.net/m/css/jquery_dialog.css" media="all" />
-    <link type="text/css" rel="stylesheet" href="http://sy.longemont.net/m/css/style.css?v=v21" media="all" />
-    <link type="text/css" rel="stylesheet" href="http://sy.longemont.net/m/css/user2015.css" media="all" />
-    <script> var SITE_URL="http://sy.longemont.net/m/";</script>
-    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
-    <script type="text/javascript" src="http://sy.longemont.net/m/js/jquery_dialog.js?v=1"></script>
-    <script type="text/javascript" src="http://sy.longemont.net/m/js/common.js?v=21"></script>
+    <link type="text/css" rel="stylesheet" href="/static/css/comman.css" media="all" />
+    <link type="text/css" rel="stylesheet" href="/static/css/jquery_dialog.css" media="all" />
+    <link type="text/css" rel="stylesheet" href="/static/css/style.css?v=v21" media="all" />
+    <link type="text/css" rel="stylesheet" href="/static/css/user2015.css" media="all" />
+    <link type="text/css" rel="stylesheet" href="/static/css/bootstrap-table.css" media="all" />
+    <link type="text/css" rel="stylesheet" href="/static/css/bootstrap.min.css" media="all" />
+
+    <script type="text/javascript" src="/static/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap-table.js"></script>
+    <script type="text/javascript" src="/static/js/jquery_dialog.js?v=1"></script>
+    <script type="text/javascript" src="/static/js/common.js?v=21"></script>
     <script type="text/javascript" src="statics/js/jquery.json-1.3.js"></script>
     <script type="text/javascript" src="/static/js/jquery_dialog.js"></script>
     <script type="text/javascript" src="/static/js/common.js"></script>
     <script type="text/javascript" src="/static/js/user.js"></script>
+    <script type="text/javascript" src="/static/scripts/myspread.js"></script>
     <script src="/static/js/layer.js"></script>
-    <script type="text/javascript" src="/static/js/jweixin-1.0.0.js"></script>
-    <script type="text/javascript">
-        /*function onBridgeReady(){
-         WeixinJSBridge.call('hideOptionMenu');
-         wx.hideAllNonBaseMenuItem();
-        }
 
-        if (typeof WeixinJSBridge == "undefined"){
-            if( document.addEventListener ){
-                document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
-            }else if (document.attachEvent){
-                document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
-                document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
-            }
-        }else{
-            onBridgeReady();
-        }
-        document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
 
-        WeixinJSBridge.call('hideOptionMenu');
-
-        });*/
-    </script>
 </head>
 <body>
 <link type="text/css" rel="stylesheet" href="/static/tpl/31/css.css" media="all" />
@@ -64,143 +48,14 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    function ajax_show_menu(){
-        $(".showmenu").toggle();
-    }
-</script>
-<style type="text/css">
-    #main li:hover{ background:#ededed}
-    .dailicenter{ margin:5px;}
-    .dailicenter li a i{background-size:80%;list-style:decimal; width:20px; height:40px; float:left; margin-left:7%;background:url(http://sy.longemont.net/m/images/pot.png) 10% center no-repeat}
-    .dailicenter li a:hover{ background:#cfccbd}
-    .dailicenter li a span{border-radius:10px; height:24px; line-height:24px; padding-left:15px; padding-right:15px;display:block;background:#497bae; text-align:center; font-size:12px; font-weight:bold; color:#FFF; cursor:pointer; position:absolute;right:6%; top:8px; z-index:99;}
-    .dailicenter{ margin:5px;border-radius:5px; border:1px solid #dcd9d8; overflow:hidden;}
-    .dailicenter li{ position:relative; height:44px; line-height:44px;background-image: -webkit-gradient(linear,left top,left bottom,from(#FFFFFF),to(#F1F1F1));background-image: -webkit-linear-gradient(#FFFFFF,#F1F1F1);background-image: linear-gradient(#FFFFFF,#F1F1F1); border-bottom:1px solid #dcd9d8; text-align:center}
-    .dailicenter li a{ padding-right:10%;font-size:14px; display:block; }
-    .dailicenter li a:hover{ background:#EAEAEA}
-    .tj{float: left;height: 50px;border-top: 1px solid #ccc;border-bottom: 1px solid #ccc;width: 100%;margin:10px 0 10px 0;}
-    .tj li{width: 33%;height: 50px;float: left;text-align: center;line-height: 25px;}
-</style>
-<div id="main" style="min-height:300px;margin-bottom:20px;">
-    <ul class="dailicenter">
-        <li>
-            <a href="myfens.html"><i></i>直接下级<span>0人</span></a>
-        </li>
-        <li>
-            <a href="myfens.html"><i></i>间接下级<span>0人</span></a>
-        </li>
 
-        <li>
-            <a href="myfens.html"><i></i>间接下二级<span>0人</span></a>
-        </li>
-        <!--  <li>
-                <a href="javascript:;"><i></i>总消费商<span>0人</span></a>
-                </li> -->
-    </ul>
-    <ul class="tj">
-        <li style="border-right: 1px solid #ccc;">直接销售<br>0</li>
-        <li style="border-right: 1px solid #ccc;">间接销售<br>0</li>
-        <li>统计<br>0</li>
-        <div class="clear"></div>
-    </ul>
-    <p style="text-align:center; height:50px; line-height:25px; color:#999">(本页面已做30分钟缓存处理<br/>显示数据稍有延迟)</p>
-</div>
-<script type="text/javascript">
-    var hh = 0;
-    var isrun = true;
-    var tops = 0;
-    function page_init(){
-        hh = $('.v12_ul').height();
-        tops = parseInt(hh);
-    }
-    //获取滚动条当前的位置
-    function getScrollTop() {
-        var scrollTop = 0;
-        if (document.documentElement && document.documentElement.scrollTop) {
-            scrollTop = document.documentElement.scrollTop;
-        }
-        else if (document.body) {
-            scrollTop = document.body.scrollTop;
-        }
-        return scrollTop;
-    }
 
-    //获取当前可是范围的高度
-    function getClientHeight() {
-        var clientHeight = 0;
-        if (document.body.clientHeight && document.documentElement.clientHeight) {
-            clientHeight = Math.min(document.body.clientHeight, document.documentElement.clientHeight);
-        }
-        else {
-            clientHeight = Math.max(document.body.clientHeight, document.documentElement.clientHeight);
-        }
-        return clientHeight;
-    }
+<table id="table"></table>
 
-    //获取文档完整的高度
-    function getScrollHeight() {
-        return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
-    }
-
-    window.onscroll = function () {
-
-        if (getScrollTop() + getClientHeight() == getScrollHeight()) {
-            //tops = getScrollHeight();
-
-            $('.loadsss').html('<img src="/static/images/loadings.gif" style="width:16px!important; height:16px;" />加载中');
-            setTimeout(function(){
-                isrun = true;
-            },15000);
-            if(isrun==true){
-                isrun = false;
-                $.post('http://sy.longemont.net/m/daili.php',{action:'ajax_myuser_page',tops:tops,hh:hh},function(data){
-                    $('.loadsss').html("");
-                    if(data!=""){
-                        tops += hh;
-                        $('.v12_ul').append(data);
-                        isrun = true;
-                    }else{
-                        $('.loadsss').html("加载完毕");
-                    }
-                })
-            }
-        }
-    }
-
-    $(document).ready(function(){
-        page_init();
-    });
-</script>
 <!--QUYU-->
 <link rel="stylesheet" href="/static/tpl/31/style/font-awesome.min.css">
-<!--<div id="opquyu">
 
-</div>
-<div id="opquyubox">
-	<div style="line-height:26px;">
-		<h2 style="border-bottom:1px solid #ededed;"><a href="http://sy.longemont.net/m/exchange.php">积分兑换</a></h2>
-		</div>
-	<div style=" height:45px;"></div>
-</div>-->
 
-<!--FOOTER-->
-<div style="text-align:center;padding-bottom:10px; padding-top:0px; margin-left:10px; margin-right:10px;"><div align="center"><p style="text-align:center;"><span style="line-height:1.5;color:#999999;">Copyright @ 福瑞达洗眼液</span><span style="line-height:1.5;color:#999999;">&nbsp;<br />
-</span></p>
-    <span style="color:#999999;"> </span>
-    <!--<p style="text-align:center;"><span style="line-height:1.5;"><span style="color:#999999;">技术支持：</span></span><span style="line-height:1.5;"><span style="color:#999999;"><span style="line-height:1.5;color:#999999;"><span style="line-height:1.5;color:#999999;">广州省油宝贝环保科技</span></span></span> </span></p>-->
-</div></div>
-<style type="text/css">
-    body { padding-bottom:35px !important; }
-</style>
-
-<style type="text/css">
-    #collectBox{width:100px;height:40px;z-index:-2;position:fixed;bottom:0px;right:0px;background:none;}
-    *{margin:0;padding:0;vertical-align:baseline;-webkit-tap-highlight-color:rgba(0,0,0,0)}
-    img{border:0 none}
-    i,em{font-style:normal}
-</style>
-<div id="collectBox"></div>
 
 <link rel="stylesheet" type="text/css" href="/static/tpl/31/css/font-awesome.css">
 <link rel="stylesheet" type="text/css" href="/static/tpl/31/css/PreFoot.css?v=2">
@@ -215,7 +70,7 @@
 <div class="fixed bottom">
     <dl class="sub-nav nav-b5">
         <dd>
-            <div class="nav-b5-relative"><a href="index.html"><i class="icon-home fa-2x"></i>商城</a></div>
+            <div class="nav-b5-relative"><a href="index.html"><i class="icon-home fa-2x"></i>首页</a></div>
         </dd>
 
         <dd>
