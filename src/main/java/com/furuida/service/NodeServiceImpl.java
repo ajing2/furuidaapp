@@ -2,10 +2,7 @@ package com.furuida.service;
 
 import com.furuida.mapper.CashHistoryMapper;
 import com.furuida.mapper.UserMapper;
-import com.furuida.model.CashHistory;
-import com.furuida.model.Node;
-import com.furuida.model.NodeCache;
-import com.furuida.model.User;
+import com.furuida.model.*;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Component;
@@ -46,12 +43,6 @@ public class NodeServiceImpl implements NodeService {
             }
             initALLNode();
             List<String> sL = root.getAllDownLeafs2(NodeCache.getRootNode(), i-1);
-//            if (null== sL||sL.size()==0) {
-//                payAndUpgrade((i+1) + "-"+root.getData().getUserId() + "-1", root.getData().getUserId());
-//                payAndUpgrade((i+1) + "-"+root.getData().getUserId() + "-2", root.getData().getUserId());
-//                payAndUpgrade((i+1) + "-"+root.getData().getUserId() + "-3", root.getData().getUserId());
-//                continue;
-//            }
             if (null!= sL&&sL.size()>0) {
                 int ii = 0;
                 for (String s:sL) {
@@ -69,12 +60,12 @@ public class NodeServiceImpl implements NodeService {
      */
     @Override
     public void initALLNode() {
-        List<User> uList = userMapper.selectAll();
+        List<User> uList = userMapper.selectNode();
         if (null == uList)
             return;
-        Map<String, Boolean> countedMap = new HashMap<>(); //已经计算过的
+//        Map<String, Boolean> countedMap = new HashMap<>(); //已经计算过的
         uList.forEach(user->{
-            countedMap.put(user.getUserId(), true);
+//            countedMap.put(user.getUserId(), true);
             Node n = new Node();
             n.setParent(user.getParentId());
             n.setData(user);
@@ -89,7 +80,7 @@ public class NodeServiceImpl implements NodeService {
             NodeCache.nMap.put(user.getUserId(), n);
         });
         log.debug("=============");
-        new NodeCache().print();
+//        new NodeCache().print();
     }
 
     @Transactional
@@ -114,8 +105,8 @@ public class NodeServiceImpl implements NodeService {
                 return;
             }
             Node current = allNodes.get(parentId);
-            current.init(id, parentId);
-            log.info("=============当前节点=" + current.toString());
+//            current.init(id, parentId);
+//            log.info("=============当前节点=" + current.toString());
             if (null == current) {
                 return;
             }
@@ -158,12 +149,11 @@ public class NodeServiceImpl implements NodeService {
 
                             if (null != list4 && (level4Count >= 4)) {
                                 //升总经理
-                                current = current.getParentNode().getParentNode().getParentNode().getParentNode().getParentNode();
+                                current = current.getParentNode().getParentNode().getParentNode().getParentNode();
                                 log.info("==="+current.getData().getUserId()+"升总经理");
                                 current.getData().setLevel(5); //node 升级
                                 User l5 = current.getData();
                                 changeLevel(current.getData(), 5, level4Count, l4);
-                                current = current.getParentNode();
                                 hasZong = true;
                             }
                         }
@@ -173,6 +163,55 @@ public class NodeServiceImpl implements NodeService {
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
+    }
+
+    @Override
+    public ResultBean getTree() {
+        List<TreeNode> tree = new ArrayList<>();
+        List<User> uList = userMapper.selectNode();
+        if (null == uList)
+            return null;
+        Map<String, String> pmap = new HashMap<>();
+        uList.forEach(user->{
+            pmap.put(user.getParentId(), "parent");
+        });
+        uList.forEach(user->{
+            TreeNode n = new TreeNode();
+            n.setId(user.getUserId());
+            String le = "";
+            int level = user.getLevel();
+            switch (level) {
+                case 0:
+                    le = "会员";
+                    break;
+                case 1:
+                    le = "组长";
+                    break;
+                case 2:
+                    le = "主管";
+                    break;
+                case 3:
+                    le = "副经理";
+                    break;
+                case 4:
+                    le = "经理";
+                    break;
+                case 5:
+                    le = "总经理";
+                    break;
+                case -1:
+                    le = "游客";
+                    break;
+            }
+            n.setName(user.getUserId() + "("+ le + ")");
+            n.setpId(user.getParentId());
+            if (pmap.containsKey(user.getUserId())) {
+                n.setIsParent("parent");
+            }
+            tree.add(n);
+        });
+        log.debug("=============");
+        return ResultBean.success(tree);
     }
 
     /**
@@ -199,7 +238,7 @@ public class NodeServiceImpl implements NodeService {
             pay(u, 3200);
             return;
         }
-        if (ifChangeLevelPay(u, i, shengjiUser)) { //需要打钱,满足升级打钱条件
+        if (ifChangeLevelPay(u, i, levelCount)) { //需要打钱,满足升级打钱条件
             //打多少钱
             pay(u, i, 1, levelCount);
         } else {
@@ -350,13 +389,13 @@ public class NodeServiceImpl implements NodeService {
      * @param i
      * @return
      */
-    private boolean ifChangeLevelPay(User u, int i, User shengjiUser) {
+    private boolean ifChangeLevelPay(User u, int i, int level2Count) {
         //两种情况需要打钱：
         // 1、满足升级打钱条件
         Node current = NodeCache.nMap.get(u.getUserId());
-        List<String> list = current.getAllLeafs(current, i);
-
-        int level2Count = levelCount(list, i);
+//        List<String> list = current.getAllLeafs(current, i);
+//
+//        int level2Count = levelCount(list, i);
         // 2、升级本身导致给上级打钱
         return level2Count>=4&&current.getData().getIspayed()==0;
     }

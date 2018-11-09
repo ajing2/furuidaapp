@@ -6,7 +6,8 @@
     <result column="user_id" jdbcType="VARCHAR" property="userId" />
     <result column="money" jdbcType="INTEGER" property="money" />
     <result column="acc_num" jdbcType="VARCHAR" property="accNum" />
-    <result column="time" jdbcType="INTEGER" property="time" />
+    <result column="time" jdbcType="VARCHAR" property="time" />
+    <result column="openid" jdbcType="VARCHAR" property="openid" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -102,9 +103,9 @@
   </delete>
   <insert id="insert" parameterType="com.furuida.model.CashHistory">
     insert into t_cash_history (id, user_id, money, 
-      acc_num, time)
+      acc_num, time, openid)
     values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=VARCHAR}, #{money,jdbcType=INTEGER}, 
-      #{accNum,jdbcType=VARCHAR}, #{time,jdbcType=INTEGER})
+      #{accNum,jdbcType=VARCHAR}, #{time,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.furuida.model.CashHistory">
     insert into t_cash_history
@@ -124,6 +125,9 @@
       <if test="time != null">
         time,
       </if>
+      <if test="openid != null">
+        openid,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -139,7 +143,10 @@
         #{accNum,jdbcType=VARCHAR},
       </if>
       <if test="time != null">
-        #{time,jdbcType=INTEGER},
+        #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null">
+        #{openid,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -165,7 +172,10 @@
         acc_num = #{record.accNum,jdbcType=VARCHAR},
       </if>
       <if test="record.time != null">
-        time = #{record.time,jdbcType=INTEGER},
+        time = #{record.time,jdbcType=VARCHAR},
+      </if>
+      <if test="record.openid != null">
+        time = #{record.openid,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -178,7 +188,8 @@
       user_id = #{record.userId,jdbcType=VARCHAR},
       money = #{record.money,jdbcType=INTEGER},
       acc_num = #{record.accNum,jdbcType=VARCHAR},
-      time = #{record.time,jdbcType=INTEGER}
+      time = #{record.time,jdbcType=VARCHAR},
+      openid = #{record.openid,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -196,7 +207,10 @@
         acc_num = #{accNum,jdbcType=VARCHAR},
       </if>
       <if test="time != null">
-        time = #{time,jdbcType=INTEGER},
+        time = #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null">
+        time = #{openid,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -206,7 +220,7 @@
     set user_id = #{userId,jdbcType=VARCHAR},
       money = #{money,jdbcType=INTEGER},
       acc_num = #{accNum,jdbcType=VARCHAR},
-      time = #{time,jdbcType=INTEGER}
+      time = #{time,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

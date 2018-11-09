@@ -4,6 +4,7 @@ import com.furuida.model.Order;
 import com.furuida.model.ResultBean;
 import com.furuida.model.User;
 import com.furuida.model.UserInfo;
+import com.furuida.service.NodeService;
 import com.furuida.service.OrderService;
 import com.furuida.service.UserService;
 import org.apache.commons.lang.StringUtils;
@@ -28,6 +29,8 @@ public class UserController {
     Log log = LogFactory.getLog(UserController.class);
     @Resource
     UserService userService;
+    @Resource
+    NodeService nodeService;
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
     private String addUser(@RequestBody User user) {
@@ -117,11 +120,10 @@ public class UserController {
     @ResponseBody
     private ResultBean getUserTree(HttpServletRequest request) {
         try {
-
-            return ResultBean.success();
+            return nodeService.getTree();
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            return ResultBean.fail("get user info failed." + e.getMessage());
+            return ResultBean.fail("get user tree failed." + e.getMessage());
         }
     }
 }

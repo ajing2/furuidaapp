@@ -31,7 +31,7 @@ public class Node {
         }
         //get add childs
         allDownLeafs.clear();
-        return getAllDownLeafs(node, dep);
+        return getAllDownLeafs2(node, dep);
     }
 
     /**

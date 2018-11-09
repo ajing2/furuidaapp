@@ -24,6 +24,7 @@ public interface UserMapper {
     List<User> getParentInfo(@Param("parentId") String parentId);
 
     List<User> selectAll();
+    List<User> selectNode();
 
     User selectByPrimaryKey(Long id);
 

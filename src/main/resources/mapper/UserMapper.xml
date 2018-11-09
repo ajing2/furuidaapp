@@ -216,6 +216,11 @@
       <include refid="Base_Column_List" />
        from t_user
     </select>
+  <select id="selectNode" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_user where level >= 0
+  </select>
     <update id="updateByExampleSelective" parameterType="map">
     update t_user
     <set>

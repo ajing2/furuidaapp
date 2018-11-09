@@ -9,7 +9,8 @@ public class CashHistory {
 
     private String accNum;
 
-    private Integer time;
+    private String time;
+    private String openid;
 
     public Long getId() {
         return id;
@@ -43,11 +44,19 @@ public class CashHistory {
         this.accNum = accNum == null ? null : accNum.trim();
     }
 
-    public Integer getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Integer time) {
+    public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getOpenid() {
+        return openid;
+    }
+
+    public void setOpenid(String openid) {
+        this.openid = openid;
     }
 }
