@@ -374,55 +374,127 @@ public class CashHistoryExample {
             return (Criteria) this;
         }
 
-        public Criteria andTimeEqualTo(Integer value) {
+        public Criteria andTimeEqualTo(String value) {
             addCriterion("time =", value, "time");
             return (Criteria) this;
         }
 
-        public Criteria andTimeNotEqualTo(Integer value) {
+        public Criteria andTimeNotEqualTo(String value) {
             addCriterion("time <>", value, "time");
             return (Criteria) this;
         }
 
-        public Criteria andTimeGreaterThan(Integer value) {
+        public Criteria andTimeGreaterThan(String value) {
             addCriterion("time >", value, "time");
             return (Criteria) this;
         }
 
-        public Criteria andTimeGreaterThanOrEqualTo(Integer value) {
+        public Criteria andTimeGreaterThanOrEqualTo(String value) {
             addCriterion("time >=", value, "time");
             return (Criteria) this;
         }
 
-        public Criteria andTimeLessThan(Integer value) {
+        public Criteria andTimeLessThan(String value) {
             addCriterion("time <", value, "time");
             return (Criteria) this;
         }
 
-        public Criteria andTimeLessThanOrEqualTo(Integer value) {
+        public Criteria andTimeLessThanOrEqualTo(String value) {
             addCriterion("time <=", value, "time");
             return (Criteria) this;
         }
 
-        public Criteria andTimeIn(List<Integer> values) {
+        public Criteria andTimeIn(List<String> values) {
             addCriterion("time in", values, "time");
             return (Criteria) this;
         }
 
-        public Criteria andTimeNotIn(List<Integer> values) {
+        public Criteria andTimeNotIn(List<String> values) {
             addCriterion("time not in", values, "time");
             return (Criteria) this;
         }
 
-        public Criteria andTimeBetween(Integer value1, Integer value2) {
+        public Criteria andTimeBetween(String value1, String value2) {
             addCriterion("time between", value1, value2, "time");
             return (Criteria) this;
         }
 
-        public Criteria andTimeNotBetween(Integer value1, Integer value2) {
+        public Criteria andTimeNotBetween(String value1, String value2) {
             addCriterion("time not between", value1, value2, "time");
             return (Criteria) this;
         }
+
+
+
+
+
+
+
+
+
+        public Criteria andstateIsNull() {
+            addCriterion("state is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andstateIsNotNull() {
+            addCriterion("state is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andstateEqualTo(Integer value) {
+            addCriterion("state =", value, "state");
+            return (Criteria) this;
+        }
+
+        public Criteria andstateNotEqualTo(Integer value) {
+            addCriterion("state <>", value, "state");
+            return (Criteria) this;
+        }
+
+        public Criteria andstateGreaterThan(Integer value) {
+            addCriterion("state >", value, "state");
+            return (Criteria) this;
+        }
+
+        public Criteria andstateGreaterThanOrEqualTo(Integer value) {
+            addCriterion("state >=", value, "state");
+            return (Criteria) this;
+        }
+
+        public Criteria andstateLessThan(Integer value) {
+            addCriterion("state <", value, "state");
+            return (Criteria) this;
+        }
+
+        public Criteria andstateLessThanOrEqualTo(Integer value) {
+            addCriterion("state <=", value, "state");
+            return (Criteria) this;
+        }
+
+        public Criteria andstateIn(List<Integer> values) {
+            addCriterion("state in", values, "state");
+            return (Criteria) this;
+        }
+
+        public Criteria andstateNotIn(List<Integer> values) {
+            addCriterion("state not in", values, "state");
+            return (Criteria) this;
+        }
+
+        public Criteria andstateBetween(Integer value1, Integer value2) {
+            addCriterion("state between", value1, value2, "state");
+            return (Criteria) this;
+        }
+
+        public Criteria andstateNotBetween(Integer value1, Integer value2) {
+            addCriterion("state not between", value1, value2, "state");
+            return (Criteria) this;
+        }
+
+
+
+
     }
 
     public static class Criteria extends GeneratedCriteria {

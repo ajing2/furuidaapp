@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="referrer" content="no-referrer">
-    <title>火眼监控平台</title>
+    <title>打钱记录</title>
     <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="/static/layui/css/layui.css" />
     <link rel="stylesheet" href="/static/css/style.css"/>
@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="/static/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css">
     <script type="text/javascript" src="/static/ztree/js/jquery-1.4.4.min.js"></script>
     <script type="text/javascript" src="/static/ztree/js/jquery.ztree.core.js"></script>
+    <script type="text/javascript" src="/static/layui/layui.js"></script>
 
 
     <style type="text/css">
@@ -71,7 +72,9 @@
         <div id="tree2">
             <ul id="tree" class="ztree"></ul>
         </div>
-        <div id="table"></div>
+        <div id="table">
+            <table class="layui-hide" id="test" lay-filter="test"></table>
+        </div>
     </div>
     <!-- 底部 -->
     <div class="layui-footer" align="center">
@@ -81,63 +84,22 @@
     <div class="site-mobile-shade"></div>
 </div>
 
-<!--<script type="text/javascript" src="/static/js/jquery-3.2.1.min.js"></script>-->
-<!--<script type="text/javascript" src="/static/js/jquery.cookie.js"></script>-->
-<!--<script type="text/javascript" src="/static/js/echarts.min.js"></script>-->
-<!--<script type="text/javascript" src="/static/js/jquery.sparkline.min.js"></script>-->
-<!--<script type="text/javascript" src="/static/js/q.js"></script>-->
-<!--<script type="text/javascript" src="/static/js/DateUtil.js"></script>-->
 <script type="text/javascript" src="/static/scripts/tree.js"></script>
 <script type="text/javascript" src="/static/scripts/table.js"></script>
-<script type="text/javascript">
 
-    function tree() {
-        var zTreeObj;
-        // zTree 的参数配置，深入使用请参考 API 文档（setting 配置详解）
-        var setting = {
-            check: {
-                enable: false
-            },
-            data: {
-                simpleData: {
-                    enable: true
-                }
-            },
-            // callback: {
-            //     onNodeCreated: alert("333222222")
-            // }
-        };
-        // zTree 的数据属性，深入使用请参考 API 文档（zTreeNode 节点数据详解）
-        url = "/user/tree";
-        $.ajax({
-            type: "GET",
-            timeout: 10000, // 超时时间 10 秒
-            // headers: JSON.parse(sessionStorage.getItem('Access-Control-Allow-Origin')),
-            url: url,
-            // dataType: 'json',
-            // data: JSON.stringify(formParams),
-            contentType: 'application/json',
-            async: false,
-            success: function (callback) {
-                if (callback.code == 0) {
-                    data = callback.data;
-                    console.log(data);
-                    var zNodes = data;
-                    zTreeObj = $.fn.zTree.init($("#tree"), setting, zNodes);
-                }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                console.log(err);
-            },
-            complete: function(XMLHttpRequest, status) { //请求完成后最终执行参数　
-                console.log("done.");
-            }
-        });
-    }
-    $(document).ready(function(){
-        tree();
-    });
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="update">确认</a>
 </script>
 </body>
 
 </html>
+
+
+
+<script type="text/html" class="state">
+    {{#  if(d.state == 1){ }}
+    <span class="layui-badge layui-bg-blue">已打钱</span>
+    {{#  } else if(d.state == 0){ }}
+    <span class="layui-badge layui-bg-orange">未打钱</span>
+    {{#  }}}
+</script>

@@ -8,6 +8,7 @@
     <result column="acc_num" jdbcType="VARCHAR" property="accNum" />
     <result column="time" jdbcType="VARCHAR" property="time" />
     <result column="openid" jdbcType="VARCHAR" property="openid" />
+    <result column="state" jdbcType="INTEGER" property="state" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -68,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, user_id, money, acc_num, time
+    id, user_id, money, acc_num, time, state, openid
   </sql>
   <select id="selectByExample" parameterType="com.furuida.model.CashHistoryExample" resultMap="BaseResultMap">
     select
@@ -84,6 +85,7 @@
     <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
+
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 

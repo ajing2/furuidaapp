@@ -12,6 +12,16 @@ public class CashHistory {
     private String time;
     private String openid;
 
+    private Integer state;
+
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
+    }
+
     public Long getId() {
         return id;
     }
