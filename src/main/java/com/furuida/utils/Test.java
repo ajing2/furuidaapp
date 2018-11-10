@@ -1,7 +1,7 @@
 package com.furuida.utils;
 
+import com.alibaba.fastjson.JSONObject;
 import com.furuida.model.Order;
-import com.jd.fastjson.JSONObject;
 
 import java.util.Date;
 

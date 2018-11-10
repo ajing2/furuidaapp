@@ -5,7 +5,7 @@ import com.furuida.mapper.ShoppingCartMapper;
 import com.furuida.model.Order;
 import com.furuida.model.ShoppingCart;
 import com.furuida.model.ShoppingCartExample;
-import com.jd.jsf.gd.util.StringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;

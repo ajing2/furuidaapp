@@ -5,7 +5,7 @@ import com.furuida.mapper.UserMapper;
 import com.furuida.model.*;
 import com.furuida.utils.WeChatAccessToken;
 import com.furuida.utils.WeChatUtils;
-import com.jd.jsf.gd.util.StringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Component;

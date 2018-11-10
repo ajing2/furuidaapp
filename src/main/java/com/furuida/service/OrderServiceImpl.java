@@ -3,7 +3,7 @@ package com.furuida.service;
 import com.furuida.mapper.OrderMapper;
 import com.furuida.model.Order;
 import com.furuida.model.OrderExample;
-import com.jd.jsf.gd.util.StringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
