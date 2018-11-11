@@ -26,6 +26,7 @@ public class HttpClientUtils {
 
     /**
      * POST方式发起http请求
+     *
      */
     public static String postMethod(String url, String body) {
         CloseableHttpClient httpClient = getHttpClient();
@@ -39,6 +40,7 @@ public class HttpClientUtils {
             //执行请求
             CloseableHttpResponse httpResponse = httpClient.execute(post);
             try {
+                // test
                 HttpEntity entity = httpResponse.getEntity();
                 if (null != entity) {
                     return EntityUtils.toString(entity);
