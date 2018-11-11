@@ -24,11 +24,6 @@
     <dependencies>
         <!--JSON-->
         <dependency>
-            <groupId>com.jd</groupId>
-            <artifactId>jsf</artifactId>
-            <version>1.6.5</version>
-        </dependency>
-        <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
             <version>${mybatis.version}</version>
