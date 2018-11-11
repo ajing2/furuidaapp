@@ -120,6 +120,10 @@ public class NodeServiceImpl implements NodeService {
                 if (null != list1 && (level1Count >= 2)) {
                     //升主管
                     current = current.getParentNode();
+                    if (level1Count > 2) {
+                        return;
+                    }
+                    //升主管
                     log.info("==="+current.getData().getUserId()+"升主管");
                     current.getData().setLevel(2); //node 升级
                     User l2 = current.getData();
@@ -129,6 +133,12 @@ public class NodeServiceImpl implements NodeService {
                     changeLevel(current.getData(), 2, level2Count, l2);
 
                     if (null != list2 && (level2Count >= 4)) {
+                        if (level2Count > 4) {
+                            //给上二级主管打130
+                            pay(current.getData(), 2, 2, 1);
+                            return;
+                        }
+
                         //升副经理
                         current = current.getParentNode().getParentNode();
                         log.info("==="+current.getData().getUserId()+"升副经理"); //收下二级主管的钱
@@ -139,6 +149,11 @@ public class NodeServiceImpl implements NodeService {
                         changeLevel(current.getData(), 3, level3Count, l2);
 
                         if (null != list3 && (level3Count >= 4)) {
+                            if (level3Count > 4) {
+                                //给上二级主管打130
+                                pay(current.getData(), 3, 2, 1);
+                                return;
+                            }
                             //升经理
                             current = current.getParentNode().getParentNode().getParentNode();
                             log.info("==="+current.getData().getUserId()+"升经理");
@@ -149,6 +164,11 @@ public class NodeServiceImpl implements NodeService {
                             changeLevel(current.getData(), 4, level4Count, l3);
 
                             if (null != list4 && (level4Count >= 4)) {
+                                if (level3Count > 4) {
+                                    //给上二级主管打130
+                                    pay(current.getData(), 4, 2, 1);
+                                    return;
+                                }
                                 //升总经理
                                 current = current.getParentNode().getParentNode().getParentNode().getParentNode();
                                 log.info("==="+current.getData().getUserId()+"升总经理");
@@ -169,6 +189,11 @@ public class NodeServiceImpl implements NodeService {
     @Override
     public ResultBean getTree() {
         List<TreeNode> tree = new ArrayList<>();
+        TreeNode root = new TreeNode();
+        root.setpId("-1");
+        root.setId("0");
+        root.setName("系统");
+        tree.add(root);
         List<User> uList = userMapper.selectNode();
         if (null == uList) {
             return null;
@@ -240,6 +265,9 @@ public class NodeServiceImpl implements NodeService {
             pay(u, 3200);
             return;
         }
+        if (levelCount < 4 || levelCount > 4) { //不到4个不打钱
+            return;
+        }
         if (ifChangeLevelPay(u, i, levelCount)) { //需要打钱,满足升级打钱条件
             //打多少钱
             pay(u, i, 1, levelCount);
@@ -265,9 +293,9 @@ public class NodeServiceImpl implements NodeService {
         CashHistory cash = new CashHistory();
         cash.setUserId(u.getUserId());
         cash.setMoney(i);
-        cash.setTime("1");
+        cash.setTime(new Date().toLocaleString());
         cash.setAccNum(u.getWebchat());
-        cash.setOpenid("test");
+        cash.setOpenid(u.getUserId());
         cashHistoryMapper.insert(cash);
     }
 
@@ -283,7 +311,7 @@ public class NodeServiceImpl implements NodeService {
             int price = changeLevelPay(i, levelCount); //打多少
             //打钱
             log.info("*******给：" + NodeCache.nMap.get(user.getUserId()).toString() + " 打钱：" + price + "元");
-            pay(u, price);
+            pay(user, price);
         }
         if (type == 2) {
             User user = find(u, i); //给谁打
@@ -293,7 +321,7 @@ public class NodeServiceImpl implements NodeService {
             int price = newChangeLevelPay(u, i);
             //打钱
             log.info("*******给：" + NodeCache.nMap.get(user.getUserId()).toString() + " 打钱：" + price + "元");
-            pay(u, price);
+            pay(user, price);
         }
     }
 
