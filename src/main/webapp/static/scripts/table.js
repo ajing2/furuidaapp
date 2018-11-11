@@ -54,13 +54,16 @@ function table() {
 
 
         table.on('tool(test)', function(obj){
-            var data = obj.data;
-            //console.log(obj)
-            if(obj.event === 'update'){
-                layer.confirm('真的确认打过钱了吗', function(index){
-                    // obj.del();
+            if(obj.event === 'detail'){
+                layer.msg('ID：'+ data.id + ' 的查看操作');
+            } else if(obj.event === 'del'){
+                layer.confirm('真的删除行么', function(index){
+                    obj.del();
+                    debugger;
                     layer.close(index);
                 });
+            } else if(obj.event === 'edit'){
+                layer.alert('编辑行：<br>'+ JSON.stringify(data))
             }
         });
 
