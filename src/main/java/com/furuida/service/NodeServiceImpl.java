@@ -428,7 +428,7 @@ public class NodeServiceImpl implements NodeService {
 //
 //        int level2Count = levelCount(list, i);
         // 2、升级本身导致给上级打钱
-        return level2Count>=4&&current.getData().getIspayed()==0;
+        return level2Count>=4;
     }
     /**
      * 判断是否升级本身导致给上级打钱
