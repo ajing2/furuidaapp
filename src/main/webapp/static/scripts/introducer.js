@@ -1,6 +1,5 @@
 $(document).ready(function () {
     var parentId = localStorage.getItem("parentId");
-    parentId = "1119747506";
     var data = selectUser(parentId);
     debugger;
     if (data.length>0 && data[0] != null){

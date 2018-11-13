@@ -40,7 +40,6 @@ function addToCart(goodsid, tt) {
     createwindow();
 
     var parentId = localStorage.getItem("parentId");
-    parentId = "ajing2";
     debugger;
     var parentName = selectUser(parentId);
 
@@ -119,7 +118,6 @@ function get_parent(parentId) {
 
 function addShoppingCart(goods) {
     var userId = localStorage.getItem("userId");
-    userId = "lingjing";
     $.ajax({
         url : "http://www.gflat.cn:8088/shopping/add",
         type : "POST",
@@ -212,7 +210,6 @@ function selectShoppingCart(userId) {
 function tongyixieyi(){
 
     var userId = localStorage.getItem("userId");
-    userId = "lingjing";
     debugger;
     var data = selectShoppingCart(userId);
     if (data!= null){

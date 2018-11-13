@@ -127,6 +127,5 @@ function get_userinfo(code, parentId) {
 
 $(document).ready(function () {
     var parentId = localStorage.getItem("parentId");
-    parentId = "sadfd";
     get_userinfo(code, parentId);
 });

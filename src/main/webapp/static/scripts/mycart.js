@@ -52,7 +52,6 @@ function checkvar() {
     debugger;
 
     var userId = localStorage.getItem("userId");
-    userId = "lingjing";
 
 
     var shoppingCartId = $("#shoppingCartId").val();
@@ -294,7 +293,6 @@ function ajax_show_menu() {
 
 function clearShoppingCart() {
     var userId = localStorage.getItem("userId");
-    userId = "lingjing";
 
     $.ajax({
         url : "http://www.gflat.cn:8088/shopping/delete?id=" + userId,
@@ -331,7 +329,6 @@ function selectUser(userId) {
 }
 
 var userId = localStorage.getItem("userId");
-userId = "lingjing";
 var data = selectUser(userId);
 debugger;
 

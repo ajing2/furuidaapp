@@ -1,7 +1,6 @@
 
 $(document).ready(function () {
     var userId = localStorage.getItem("userId");
-    userId = "ajing2";
     var data = selectChildren(userId);
     debugger;
     $('#table').bootstrapTable({

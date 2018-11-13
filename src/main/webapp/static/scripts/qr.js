@@ -2,7 +2,6 @@
 
 $(document).ready(function () {
     var userId = localStorage.getItem("userId");
-    userId = "1119747506";
     var data = selectUser(userId);
     debugger;
     if (data.length > 0 && data[0] != null) {

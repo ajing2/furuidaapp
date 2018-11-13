@@ -23,7 +23,6 @@ function selectShoppingCart(userId) {
 
 $(document).ready(function () {
     var userId = localStorage.getItem("userId");
-    userId = "lingjing";
     debugger;
     selectShoppingCart(userId);
 });

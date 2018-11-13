@@ -13,7 +13,6 @@ function checkpay(){
 
 function clearShoppingCart() {
     var userId = localStorage.getItem("userId");
-    userId = "lingjing";
 
     $.ajax({
         url : "http://www.gflat.cn:8088/shopping/delete?id=" + userId,
@@ -31,7 +30,6 @@ function clearShoppingCart() {
 }
 
 var userId = localStorage.getItem("userId");
-userId = "lingjing";
 
 setShoppingOrder(userId);
 function setShoppingOrder(userId) {
