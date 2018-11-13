@@ -3,6 +3,9 @@ package com.furuida.test;
 import com.furuida.test.WeChatAccessToken;
 import com.furuida.test.WeChatUtils;
 
+import java.math.BigDecimal;
+import java.util.Date;
+
 /**
  * @ClassName TestAjing
  * @Description TODO
@@ -12,6 +15,13 @@ import com.furuida.test.WeChatUtils;
  **/
 public class TestAjing {
     public static void main(String[] args) {
+        String d = "2.9669507932278E10";
+        if (d.indexOf("E")>0) {
+            BigDecimal bd = new BigDecimal(d);
+            d = bd.toPlainString();
+        }
+        System.out.println("args = [" + MathUtils.strToDouble(d) + "]");
+        System.out.println("args = [" + d + "]");
         System.out.println(String.valueOf("asdaodjadadadasdascada".hashCode()).replace("-", ""));
 //        WeChatUtils weChatUtils = new WeChatUtils();
 //        WeChatAccessToken data = weChatUtils.getAccessToken("aaa");
