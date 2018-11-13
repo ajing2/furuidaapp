@@ -114,4 +114,21 @@ public class User {
     public void setIspayed(int ispayed) {
         this.ispayed = ispayed;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userId='" + userId + '\'' +
+                ", webchat='" + webchat + '\'' +
+                ", phone='" + phone + '\'' +
+                ", receiveName='" + receiveName + '\'' +
+                ", receiveAddr='" + receiveAddr + '\'' +
+                ", parentId='" + parentId + '\'' +
+                ", level=" + level +
+                ", webchatUrl='" + webchatUrl + '\'' +
+                ", webchatName='" + webchatName + '\'' +
+                ", ispayed=" + ispayed +
+                '}';
+    }
 }

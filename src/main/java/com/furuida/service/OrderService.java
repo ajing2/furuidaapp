@@ -1,6 +1,7 @@
 package com.furuida.service;
 
 import com.furuida.model.Order;
+import com.furuida.model.ResultBean;
 
 import java.util.List;
 
@@ -13,5 +14,5 @@ public interface OrderService {
 
     public List selectOrder(Order order);
 
-    boolean pay();
+    ResultBean pay(String userId, String parentId);
 }

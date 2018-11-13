@@ -1,5 +1,8 @@
 package com.furuida.controller;
 
+import com.furuida.utils.BlockQueueConsumer;
+import com.furuida.utils.ConsumerWork;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebInitParam;
@@ -27,8 +30,10 @@ public class HandlerServlet extends HttpServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-
-        System.out.println("servlet初始化...");
+        new Thread(() -> {
+            BlockQueueConsumer.getInstance().consumer();
+        }).start();
+        System.out.println("servlet初始化2...");
     }
 
     @Override
