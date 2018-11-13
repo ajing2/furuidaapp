@@ -13,7 +13,6 @@ function get_cash_data() {
         },
         async:false,
         success: function (callback) {
-            debugger;
             if (callback.length>0) {
                 result = callback;
             }
@@ -32,39 +31,45 @@ function get_cash_data() {
 function table() {
     $("#table").show();
     $("#tree").hide();
-    debugger;
     var data = get_cash_data();
-    debugger;
     layui.use('table', function () {
+        var form = layui.form;
         var table = layui.table;
         table.render({
             elem: '#test',
+            id: 'table',
             title: '打钱数据表',
+            height: 'full',
+            page: true,
+            even: true,
+            limit: 15, //默认展示多少条数据
+            limits: [10, 50, 100, 1000],// 设置每页显示多少条数据
             cols: [[
-                {type: 'checkbox', fixed: 'left'},
-                {field: 'userId', title: 'UserId', width: 80, fixed: 'left', unresize: true, sort: true},
+                {type: 'checkbox'},
+                {field: 'userId', title: 'UserId', width: 80, sort: true},
                 {field: 'money', title: '钱数', width: 120, edit: 'text'},
                 {field: 'phone', title: '电话', width: 100, sort: true},
                 {field: 'state', title: '状态', width: 100, sort: true, templet: '.state'},
-                {fixed: 'right', title: '操作', toolbar: '#barDemo', width: 150}
+                // {fixed: 'right', title: '操作', toolbar: '#barDemo', width: 150}
             ]],
             data: data,
 
         });
 
 
-        table.on('tool(test)', function(obj){
-            if(obj.event === 'detail'){
-                layer.msg('ID：'+ data.id + ' 的查看操作');
-            } else if(obj.event === 'del'){
-                layer.confirm('真的删除行么', function(index){
-                    obj.del();
-                    debugger;
-                    layer.close(index);
-                });
-            } else if(obj.event === 'edit'){
-                layer.alert('编辑行：<br>'+ JSON.stringify(data))
+        form.on('switch(statusLiveDemo)', function(obj){
+            debugger;
+            var id = parseInt(this.value);
+            var state;
+            if(obj.elem.checked){
+                state = 1;
+            }else {
+                state = 0;
             }
+            updateCashHistory({id: id, state: state});
+
+            return false;//只此一句
+
         });
 
 
@@ -72,4 +77,24 @@ function table() {
 
 
 
+}
+
+
+function updateCashHistory(data) {
+    $.ajax({
+        url : "http://www.gflat.cn:8088/cashHistory/update",
+        type : "POST",
+        data: JSON.stringify(data),
+        dataType: 'json',
+        async:false,
+        contentType : 'application/json;charset=UTF-8', //contentType很重要
+        success : function(result) {
+
+            // alert("保存成功!")
+
+        },
+        error: function (result) {
+            debugger;
+        }
+    });
 }

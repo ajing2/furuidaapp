@@ -9,4 +9,5 @@ public interface CashHistoryService {
 
 
     public List getAllCashHistory(CashHistory cashHistory);
+    public void updateCashHistory(CashHistory cashHistory);
 }

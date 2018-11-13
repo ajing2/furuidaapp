@@ -52,4 +52,9 @@ public class CashHistoryServiceImpl implements CashHistoryService {
         }
         return cashHistoryMapper.selectByExample(cashHistoryExample);
     }
+
+    @Override
+    public void updateCashHistory(CashHistory cashHistory) {
+        cashHistoryMapper.updateByPrimaryKeySelective(cashHistory);
+    }
 }

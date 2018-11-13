@@ -212,7 +212,10 @@
         time = #{time,jdbcType=VARCHAR},
       </if>
       <if test="openid != null">
-        time = #{openid,jdbcType=VARCHAR},
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}

@@ -2,14 +2,12 @@ package com.furuida.controller;
 
 import com.furuida.model.CashHistory;
 import com.furuida.model.Order;
+import com.furuida.model.ResultBean;
 import com.furuida.model.User;
 import com.furuida.service.CashHistoryService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -40,6 +38,18 @@ public class CashHistoryController {
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             return null;
+        }
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @ResponseBody
+    private ResultBean updateCashHistory(@RequestBody CashHistory cashHistory) {
+        try {
+            cashHistoryService.updateCashHistory(cashHistory);
+            return ResultBean.success("ok");
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            return ResultBean.fail("error.");
         }
     }
 

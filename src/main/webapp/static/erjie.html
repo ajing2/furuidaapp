@@ -87,19 +87,25 @@
 <script type="text/javascript" src="/static/scripts/tree.js"></script>
 <script type="text/javascript" src="/static/scripts/table.js"></script>
 
-<script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">确认</a>
-</script>
+<!--<script type="text/html" id="barDemo">-->
+    <!--<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">确认</a>-->
+<!--</script>-->
 </body>
 
 </html>
 
 
 
+<!--<script type="text/html" class="state">-->
+    <!--{{#  if(d.state == 1){ }}-->
+    <!--<span class="layui-badge layui-bg-blue">已打钱</span>-->
+    <!--{{#  } else if(d.state == 0){ }}-->
+    <!--<span class="layui-badge layui-bg-orange">未打钱</span>-->
+    <!--{{#  }}}-->
+<!--</script>-->
+
 <script type="text/html" class="state">
-    {{#  if(d.state == 1){ }}
-    <span class="layui-badge layui-bg-blue">已打钱</span>
-    {{#  } else if(d.state == 0){ }}
-    <span class="layui-badge layui-bg-orange">未打钱</span>
-    {{#  }}}
+    <!-- 这里的 checked 的状态只是演示 -->
+    <input type="checkbox" name="close" value="{{d.id}}" lay-skin="switch" lay-text="已打钱|未打钱"
+           lay-filter="statusLiveDemo" {{ d.state== 1 ? 'checked' : '' }}>
 </script>
