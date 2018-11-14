@@ -68,7 +68,7 @@ function addToCart(goodsid, tt) {
 function selectUser(userId) {
     var result;
     $.ajax({
-        url : "http://www.yitaonet.cn/user/select?userId=" + userId,
+        url : "/user/select?userId=" + userId,
         type : "GET",
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         async:false,
@@ -117,9 +117,12 @@ function get_parent(parentId) {
 }
 
 function addShoppingCart(goods) {
-    var userId = localStorage.getItem("userId");
+    // var userId = localStorage.getItem("userId");
+    //for test
+    var userId = "121";
+    debugger;
     $.ajax({
-        url : "http://www.yitaonet.cn/shopping/add",
+        url : "/shopping/add",
         type : "POST",
         data : JSON.stringify({
             userId: userId,
@@ -133,7 +136,7 @@ function addShoppingCart(goods) {
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         success : function(result) {
             console.log(result);
-
+            window.location.href = "/static/mycart.html"
         },
         error: function (result) {
 
@@ -190,7 +193,7 @@ function alertb(){
 function selectShoppingCart(userId) {
     var result;
     $.ajax({
-        url : "http://www.yitaonet.cn/shopping/select?userId=" + userId,
+        url : "/shopping/select?userId=" + userId,
         type : "GET",
         async:false,
         contentType : 'application/json;charset=UTF-8', //contentType很重要
@@ -209,13 +212,16 @@ function selectShoppingCart(userId) {
 
 function tongyixieyi(){
 
-    var userId = localStorage.getItem("userId");
+    // var userId = localStorage.getItem("userId");
+    //for test
+    var userId = "121";
     debugger;
     var data = selectShoppingCart(userId);
-    if (data!= null) {
+    if (data!= null){
+        window.location.href = "/static/mycart.html"
+    }else{
         addShoppingCart(goods);
     }
-    window.location.href = "/static/mycart.html"
     JqueryDialog.Close();
 
 

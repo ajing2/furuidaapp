@@ -46,7 +46,18 @@
         </div>
     </div>
 </div>
-
+<form style='display:none;' id='formpay' name='formpay' method='post' action='https://www.839693.com/pay?format=json'>
+    <input name='goodsname' id='goodsname' type='text' value='' />
+    <input name='istype' id='istype' type='text' value='' />
+    <input name='key' id='key' type='text' value=''/>
+    <input name='notify_url' id='notify_url' type='text' value=''/>
+    <input name='orderid' id='orderid' type='text' value=''/>
+    <input name='orderuid' id='orderuid' type='text' value=''/>
+    <input name='price' id='price' type='text' value=''/>
+    <input name='return_url' id='return_url' type='text' value=''/>
+    <input name='uid' id='uid' type='text' value=''/>
+    <input type='submit' id='submitdemo1'>
+</form>
 <div id="main" style="padding:5px; padding-top:0px; min-height:300px">
     <div class="iconinfo">
         <i class="ico ico-success"></i>
@@ -74,7 +85,7 @@
             </tr>
         </table>
         <div>
-            <a href="/static/mycart.php?type=fastpay2&oid=301211" class="btn-buy button ui-btn ui-btn-text-only" style="width:80%" onclick="return checkpay()"><span class="ui-btn-text">立即支付</span></a>
+            <a href="#" class="btn-buy button ui-btn ui-btn-text-only" style="width:80%" onclick="pay()"><span class="ui-btn-text">立即支付</span></a>
         </div>
     </div>
 </div>

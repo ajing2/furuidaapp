@@ -7,7 +7,33 @@ function checkpay(){
     var tt = true;
     return tt;
 }
+function pay(){
+    $.post(
+        "/pays/pay",
+        {
+            price : 0.01,
+            istype : 2,
 
+        },
+        function(data){
+            if (data.code > 0){
+                $("#goodsname").val(data.data.goodsname);
+                2;
+                $('#key').val(data.data.key);
+                $('#notify_url').val(data.data.notify_url);
+                $('#orderid').val(data.data.orderid);
+                $('#orderuid').val(data.data.orderuid);
+                $('#price').val(data.data.price);
+                $('#return_url').val(data.data.return_url);
+                $('#uid').val(data.data.uid);
+                $('#submitdemo1').click();
+
+            } else {
+                alert(data.msg);
+            }
+        }, "json"
+    );
+}
 
 
 

@@ -2,7 +2,7 @@ var newAddress = 0;
 
 function selectShoppingCart(userId) {
     $.ajax({
-        url : "http://www.yitaonet.cn/shopping/select?userId=" + userId,
+        url : "/shopping/select?userId=" + userId,
         type : "GET",
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         success : function(data) {
@@ -113,7 +113,7 @@ function checkvar() {
     }
 
 
-    window.location.href = "http://www.yitaonet.cn/static/pay.html";
+    window.location.href = "/static/pay.html";
 
 return false;
 }
@@ -327,21 +327,21 @@ function selectUser(userId) {
 
     return result;
 }
+localStorage.setItem("userId", "2-1");
+$(document).ready(function () {
+    var userId = localStorage.getItem("userId");
+    var data = selectUser(userId);
+    debugger;
 
-var userId = localStorage.getItem("userId");
-var data = selectUser(userId);
-debugger;
-
-if (data[0].phone != "" && data[0].receiveAddr != "" && data[0].receiveName != ""){
-    $("#haveUser").toggle();
-    $("#havedAddress").html(data[0].receiveAddr);
-    $("#havedName").html(data[0].receiveName);
-    $("#havedphone").html(data[0].phone);
-    newAddress = 1;
-}
-
-debugger;
-
-
+    if (data.length>0 && data[0].phone != "" && data[0].receiveAddr != "" && data[0].receiveName != ""){
+        $("#haveUser").toggle();
+        $("#havedAddress").html(data[0].receiveAddr);
+        $("#havedName").html(data[0].receiveName);
+        $("#havedphone").html(data[0].phone);
+        newAddress = 1;
+    } else {
+        alert("未找到用户，请联系管理员");
+    }
+});
 
 selectShoppingCart(userId);
