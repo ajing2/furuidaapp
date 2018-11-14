@@ -113,7 +113,7 @@ public class UserController {
 
     @RequestMapping(value = "/children", method = RequestMethod.GET)
     @ResponseBody
-    private ResultBean getChildrenInfo(@RequestParam String userId){
+    private Boolean getChildrenInfo(@RequestParam String userId){
         return userService.getChildrenInfo(userId);
     }
 
