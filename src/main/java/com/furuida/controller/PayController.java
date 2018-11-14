@@ -51,7 +51,7 @@ public class PayController {
 		ModelAndView view = null;
 		// 根据订单号查找相应的记录:根据结果跳转到不同的页面
 		if (isTrue) {
-			view = new ModelAndView("/returnPay.html");
+			view = new ModelAndView("/returnPay");
 		} else {
 			view = new ModelAndView("/没有支付成功的地址");
 		}
