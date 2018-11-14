@@ -124,7 +124,7 @@ function get_userinfo(code, parentId) {
 
 
 }
-localStorage.setItem("parentId", "1");
+// localStorage.setItem("parentId", "1");
 $(document).ready(function () {
     var parentId = localStorage.getItem("parentId");
     get_userinfo(code, parentId);
