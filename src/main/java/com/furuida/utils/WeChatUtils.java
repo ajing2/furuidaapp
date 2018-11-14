@@ -25,14 +25,14 @@ import java.net.URL;
 
 public class WeChatUtils {
 
-    private static String getCodeUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8cba5272ec62110c&redirect_uri=http%3a%2f%2fwww.yitaonet.cn%2fstatic%2findex.html&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect";
+    private static String getCodeUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxcd28872d096b833d&redirect_uri=http%3a%2f%2fwww.yitaonet.cn%2fstatic%2findex.html&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect";
     // 微信公众号的appId以及secret
     private static String appId = "wxcd28872d096b833d";
     private static String secret = "531ce87c1c1dfa017a2ef82ecc2d71c8";
     // 获取网页授权access_token的Url，和基础服务access_token不同，记得区分
     private static String getAccessTokenUrl = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code";
     // 刷新网页授权access_token的Url，和基础服务access_token不同，记得区分
-    private static String getRefreshAccessTokenUrl = "https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=cd684765a63d305a38085ab25b562673&grant_type=refresh_token&refresh_token=REFRESH_TOKEN";
+    private static String getRefreshAccessTokenUrl = "https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=wxcd28872d096b833d&grant_type=refresh_token&refresh_token=REFRESH_TOKEN";
     // 检验授权凭证access_token是否有效,和基础服务access_token不同，记得区分
     private static String checkAccessTokenUrl = "https://api.weixin.qq.com/sns/auth?access_token=ACCESS_TOKEN&openid=OPENID";
     // 获取用户信息的Url
