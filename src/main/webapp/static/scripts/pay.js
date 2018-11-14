@@ -23,9 +23,9 @@ function pay(){
 
         },
         function(data){
-            if (data.code > 0){
+            if (data.data.code > 0){
                 $("#goodsname").val(data.data.goodsname);
-                2;
+                $("#istype").val(data.data.istype);
                 $('#key').val(data.data.key);
                 $('#notify_url').val(data.data.notify_url);
                 $('#orderid').val(data.data.orderid);
@@ -36,7 +36,7 @@ function pay(){
                 $('#submitdemo1').click();
 
             } else {
-                alert(data.msg);
+                alert(data.data.msg);
             }
         }, "json"
     );
@@ -46,13 +46,13 @@ function isChlldren() {
     var userId = localStorage.getItem("userId");
     var result;
     $.ajax({
-        url : "http://www.yitaonet.cn/user/children?userId=" + userId,
+        url : "/user/children?userId=" + userId,
         type : "GET",
         async: false,
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         success : function(data) {
 
-            // window.location.href = "http://www.yitaonet.cn/static/shoppingcart.html";
+            // window.location.href = "/static/shoppingcart.html";
             result = data;
 
         },
@@ -68,12 +68,12 @@ function clearShoppingCart() {
     var userId = localStorage.getItem("userId");
 
     $.ajax({
-        url : "http://www.yitaonet.cn/shopping/delete?id=" + userId,
+        url : "/shopping/delete?id=" + userId,
         type : "GET",
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         success : function(data) {
 
-            // window.location.href = "http://www.yitaonet.cn/static/shoppingcart.html";
+            // window.location.href = "/static/shoppingcart.html";
 
         },
         error: function (data) {
@@ -87,7 +87,7 @@ var userId = localStorage.getItem("userId");
 setShoppingOrder(userId);
 function setShoppingOrder(userId) {
     $.ajax({
-        url : "http://www.yitaonet.cn/shopping/select?userId=" + userId,
+        url : "/shopping/select?userId=" + userId,
         type : "GET",
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         success : function(data) {

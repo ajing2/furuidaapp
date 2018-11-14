@@ -137,7 +137,7 @@ function addOrder(userId, payPrice, isPay, payTime) {
     };
 
     $.ajax({
-        url : "http://www.yitaonet.cn/order/add",
+        url : "/order/add",
         type : "POST",
         data: JSON.stringify(data),
         dataType : 'json',
@@ -159,7 +159,7 @@ function updateUser(userId, phone, receiveName, receiveAddr){
         receiveAddr: receiveAddr
     };
     $.ajax({
-        url : "http://www.yitaonet.cn/user/update",
+        url : "/user/update",
         type : "POST",
         data: JSON.stringify(data),
         dataType : 'json',
@@ -187,7 +187,7 @@ $('#delcartid').click(function () {
         if (id != null || id != ''){
             clearShoppingCart();
         }
-        window.location.href = "http://www.yitaonet.cn/static/shoppingcart.html"
+        window.location.href = "/static/shoppingcart.html"
     }
     return false;
 });
@@ -205,7 +205,7 @@ function updateShoppingCart(userId) {
         updateTime: 1,
     };
     $.ajax({
-        url : "http://www.yitaonet.cn/shopping/update",
+        url : "/shopping/update",
         type : "POST",
         data: JSON.stringify(data),
         dataType: 'json',
@@ -231,7 +231,7 @@ function insertShoppingCart(userId) {
         updateTime: 1,
     };
     $.ajax({
-        url : "http://www.yitaonet.cn/shopping/add",
+        url : "/shopping/add",
         type : "POST",
         data: JSON.stringify(data),
         dataType : 'json',
@@ -295,12 +295,12 @@ function clearShoppingCart() {
     var userId = localStorage.getItem("userId");
 
     $.ajax({
-        url : "http://www.yitaonet.cn/shopping/delete?id=" + userId,
+        url : "/shopping/delete?id=" + userId,
         type : "GET",
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         success : function(data) {
 
-            window.location.href = "http://www.yitaonet.cn/static/shoppingcart.html";
+            window.location.href = "/static/shoppingcart.html";
 
         },
         error: function (data) {
@@ -313,7 +313,7 @@ function clearShoppingCart() {
 function selectUser(userId) {
     var result;
     $.ajax({
-        url : "http://www.yitaonet.cn/user/select?userId=" + userId,
+        url : "/user/select?userId=" + userId,
         type : "GET",
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         async:false,

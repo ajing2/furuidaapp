@@ -24,7 +24,7 @@ $(document).ready(function () {
 function selectChildren(userId) {
     var result;
     $.ajax({
-        url : "http://www.yitaonet.cn/user/children?userId=" + userId,
+        url : "/user/children?userId=" + userId,
         type : "GET",
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         async:false,

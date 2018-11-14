@@ -51,4 +51,9 @@
             <aop:around method="handlerControllerMethod" pointcut-ref="target"/>
         </aop:aspect>
     </aop:config>-->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="order" value="1"></property>
+        <property name="prefix" value="/static/"></property>
+        <property name="suffix" value=".html"></property>
+    </bean>
 </beans>

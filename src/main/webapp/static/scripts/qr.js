@@ -6,7 +6,7 @@ $(document).ready(function () {
     debugger;
     if (data.length > 0 && data[0] != null) {
         if (data[0].ispayed == 1 && data[0].level > -1) {
-            var url = "http://api.k780.com:88/?app=qr.get&data=http://www.yitaonet.cn/static/login.html?parent_id=" + userId + "&level=L&size=12"
+            var url = "http://api.k780.com:88/?app=qr.get&data=/static/login.html?parent_id=" + userId + "&level=L&size=12"
             $("#img").attr("src", url);
         }else {
             alert("没有付款, 需要成为会员以后才能邀请别人");
@@ -17,7 +17,7 @@ $(document).ready(function () {
 function selectUser(userId) {
     var result;
     $.ajax({
-        url : "http://www.yitaonet.cn/user/select?userId=" + userId,
+        url : "/user/select?userId=" + userId,
         type : "GET",
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         async:false,

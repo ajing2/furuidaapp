@@ -1,8 +1,8 @@
 package com.furuida.utils;
 
 import com.furuida.model.GLpayApi;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,17 +10,17 @@ import java.util.UUID;
 
 public class PayUtil {
 
-	private static Logger logger = LogManager.getLogger();
+	private static Log logger = LogFactory.getLog(PayUtil.class);
 
-	public static String UID = "xxxxxxxxxxxx";
+	public static String UID = "11544";
 
-	public static String NOTIFY_URL = "http://您自己的域名/qpay/notifyPay";
+	public static String NOTIFY_URL = "/pays/notifyPay";
 
-	public static String RETURN_URL = "http://您自己的域名/qpay/returnPay";
+	public static String RETURN_URL = "/pays/returnPay";
 
-	public static String BASE_URL = "https://www.glpay.com/pay";
+	public static String BASE_URL = "https://www.yitaonet.cn/pay";
 
-	public static String TOKEN = "xxxxxxxxxxxx";
+	public static String TOKEN = "d5d4719cb3de15c979f9e74784313ab2";
 
 	public static Map<String, Object> payOrder(Map<String, Object> remoteMap) {
 		Map<String, Object> paramMap = new HashMap<String, Object>();

@@ -93,7 +93,7 @@ function get_parent(parentId) {
     debugger;
     var result;
     $.ajax({
-        url : "http://www.yitaonet.cn/user/parent?parentId=" + parentId,
+        url : "/user/parent?parentId=" + parentId,
         type : "GET",
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         async:false,
