@@ -2,7 +2,7 @@ var newAddress = 0;
 
 function selectShoppingCart(userId) {
     $.ajax({
-        url : "http://www.gflat.cn:8088/shopping/select?userId=" + userId,
+        url : "http://www.yitaonet.cn/shopping/select?userId=" + userId,
         type : "GET",
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         success : function(data) {
@@ -113,7 +113,7 @@ function checkvar() {
     }
 
 
-    window.location.href = "http://www.gflat.cn:8088/static/pay.html";
+    window.location.href = "http://www.yitaonet.cn/static/pay.html";
 
 return false;
 }
@@ -137,7 +137,7 @@ function addOrder(userId, payPrice, isPay, payTime) {
     };
 
     $.ajax({
-        url : "http://www.gflat.cn:8088/order/add",
+        url : "http://www.yitaonet.cn/order/add",
         type : "POST",
         data: JSON.stringify(data),
         dataType : 'json',
@@ -159,7 +159,7 @@ function updateUser(userId, phone, receiveName, receiveAddr){
         receiveAddr: receiveAddr
     };
     $.ajax({
-        url : "http://www.gflat.cn:8088/user/update",
+        url : "http://www.yitaonet.cn/user/update",
         type : "POST",
         data: JSON.stringify(data),
         dataType : 'json',
@@ -187,7 +187,7 @@ $('#delcartid').click(function () {
         if (id != null || id != ''){
             clearShoppingCart();
         }
-        window.location.href = "http://www.gflat.cn:8088/static/shoppingcart.html"
+        window.location.href = "http://www.yitaonet.cn/static/shoppingcart.html"
     }
     return false;
 });
@@ -205,7 +205,7 @@ function updateShoppingCart(userId) {
         updateTime: 1,
     };
     $.ajax({
-        url : "http://www.gflat.cn:8088/shopping/update",
+        url : "http://www.yitaonet.cn/shopping/update",
         type : "POST",
         data: JSON.stringify(data),
         dataType: 'json',
@@ -231,7 +231,7 @@ function insertShoppingCart(userId) {
         updateTime: 1,
     };
     $.ajax({
-        url : "http://www.gflat.cn:8088/shopping/add",
+        url : "http://www.yitaonet.cn/shopping/add",
         type : "POST",
         data: JSON.stringify(data),
         dataType : 'json',
@@ -295,12 +295,12 @@ function clearShoppingCart() {
     var userId = localStorage.getItem("userId");
 
     $.ajax({
-        url : "http://www.gflat.cn:8088/shopping/delete?id=" + userId,
+        url : "http://www.yitaonet.cn/shopping/delete?id=" + userId,
         type : "GET",
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         success : function(data) {
 
-            window.location.href = "http://www.gflat.cn:8088/static/shoppingcart.html";
+            window.location.href = "http://www.yitaonet.cn/static/shoppingcart.html";
 
         },
         error: function (data) {
@@ -313,7 +313,7 @@ function clearShoppingCart() {
 function selectUser(userId) {
     var result;
     $.ajax({
-        url : "http://www.gflat.cn:8088/user/select?userId=" + userId,
+        url : "http://www.yitaonet.cn/user/select?userId=" + userId,
         type : "GET",
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         async:false,

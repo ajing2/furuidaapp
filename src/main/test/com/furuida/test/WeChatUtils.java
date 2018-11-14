@@ -27,7 +27,7 @@
 //
 //public class WeChatUtils {
 //
-//    private static String getCodeUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8cba5272ec62110c&redirect_uri=http%3a%2f%2fwww.gflat.cn:8088%2fstatic%2findex.html&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect";
+//    private static String getCodeUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8cba5272ec62110c&redirect_uri=http%3a%2f%2fwww.yitaonet.cn%2fstatic%2findex.html&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect";
 //    // 微信公众号的appId以及secret
 //    private static String appId = "wxcd28872d096b833d";
 //    private static String secret = "cd684765a63d305a38085ab25b562673";

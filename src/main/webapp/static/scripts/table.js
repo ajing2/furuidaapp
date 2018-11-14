@@ -7,7 +7,7 @@ function get_cash_data() {
     $.ajax({
         type: "GET",
         timeout: 10000, // 超时时间 10 秒
-        url: "http://www.gflat.cn:8088/cashHistory/select",
+        url: "http://www.yitaonet.cn/cashHistory/select",
         xhrFields: {
             withCredentials: true
         },
@@ -82,7 +82,7 @@ function table() {
 
 function updateCashHistory(data) {
     $.ajax({
-        url : "http://www.gflat.cn:8088/cashHistory/update",
+        url : "http://www.yitaonet.cn/cashHistory/update",
         type : "POST",
         data: JSON.stringify(data),
         dataType: 'json',

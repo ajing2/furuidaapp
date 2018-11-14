@@ -33,7 +33,7 @@ function updateUser(id, userId, webchat_name, phone, receive_addr) {
 
 
     $.ajax({
-        url : "http://www.gflat.cn:8088/user/update",
+        url : "http://www.yitaonet.cn/user/update",
         type : "POST",
         data: JSON.stringify(data),
         dataType: 'json',
@@ -56,7 +56,7 @@ function updateUser(id, userId, webchat_name, phone, receive_addr) {
 function selectUser(userId) {
     var result;
     $.ajax({
-        url : "http://www.gflat.cn:8088/user/select?userId=" + userId,
+        url : "http://www.yitaonet.cn/user/select?userId=" + userId,
         type : "GET",
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         async:false,

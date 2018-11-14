@@ -104,7 +104,7 @@ function get_userinfo(code, parentId) {
     $.ajax({
         type: "GET",
         timeout: 10000, // 超时时间 10 秒
-        url: "http://www.gflat.cn:8088/user/info?code=" + code + "&parentId=" + parentId,
+        url: "http://www.yitaonet.cn/user/info?code=" + code + "&parentId=" + parentId,
         xhrFields: {
             withCredentials: true
         },

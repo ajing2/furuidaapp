@@ -38,7 +38,7 @@ function main() {
 function selectUser(userId) {
     var result;
     $.ajax({
-        url : "http://www.gflat.cn:8088/user/select?userId=" + userId,
+        url : "http://www.yitaonet.cn/user/select?userId=" + userId,
         type : "GET",
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         async:false,

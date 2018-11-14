@@ -15,12 +15,12 @@ function clearShoppingCart() {
     var userId = localStorage.getItem("userId");
 
     $.ajax({
-        url : "http://www.gflat.cn:8088/shopping/delete?id=" + userId,
+        url : "http://www.yitaonet.cn/shopping/delete?id=" + userId,
         type : "GET",
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         success : function(data) {
 
-            // window.location.href = "http://www.gflat.cn:8088/static/shoppingcart.html";
+            // window.location.href = "http://www.yitaonet.cn/static/shoppingcart.html";
 
         },
         error: function (data) {
@@ -34,7 +34,7 @@ var userId = localStorage.getItem("userId");
 setShoppingOrder(userId);
 function setShoppingOrder(userId) {
     $.ajax({
-        url : "http://www.gflat.cn:8088/shopping/select?userId=" + userId,
+        url : "http://www.yitaonet.cn/shopping/select?userId=" + userId,
         type : "GET",
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         success : function(data) {

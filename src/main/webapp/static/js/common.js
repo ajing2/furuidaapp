@@ -376,16 +376,16 @@ jQuery(document).ready(function($){
 
 function selectShoppingCart(userId) {
     $.ajax({
-        url : "http://www.gflat.cn:8088/shopping/select?userId=" + userId,
+        url : "http://www.yitaonet.cn/shopping/select?userId=" + userId,
         type : "GET",
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         success : function(data) {
             if (data.length >0 && data[0] != null){
 
-                 window.location.href = "http://www.gflat.cn:8088/static/mycart.html"
+                 window.location.href = "http://www.yitaonet.cn/static/mycart.html"
 
             }else{
-                window.location.href = "http://www.gflat.cn:8088/static/shoppingcart.html";
+                window.location.href = "http://www.yitaonet.cn/static/shoppingcart.html";
             }
         },
         error: function (data) {
