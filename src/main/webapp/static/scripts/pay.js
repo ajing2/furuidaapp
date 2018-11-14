@@ -6,9 +6,36 @@ function ajax_show_menu(){
 function checkpay(){
     var tt = true;
     return tt;
+    var data = isChlldren();
+    if (data == false){
+        alert("请联系您的服务商, 他已经服务了三个顾客! 您需要等待!");
+        exit();
+    }
+
+
 }
 
 
+function isChlldren() {
+    var userId = localStorage.getItem("userId");
+    var result;
+    $.ajax({
+        url : "http://www.yitaonet.cn/user/children?userId=" + userId,
+        type : "GET",
+        async: false,
+        contentType : 'application/json;charset=UTF-8', //contentType很重要
+        success : function(data) {
+
+            // window.location.href = "http://www.yitaonet.cn/static/shoppingcart.html";
+            result = data;
+
+        },
+        error: function (data) {
+            result = data;
+
+        }
+    });
+}
 
 
 function clearShoppingCart() {

@@ -185,12 +185,17 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public ResultBean getChildrenInfo(String userId) {
+    public Boolean getChildrenInfo(String userId) {
         try {
-            return ResultBean.success(userMapper.getChildrenInfo(userId));
+            List<User> allChildren = userMapper.getChildrenInfo(userId);
+            if (allChildren.size() <= 3){
+                return true;
+            }else {
+                return false;
+            }
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            return ResultBean.fail("get user info failed." + e.getMessage());
+            return false;
         }
     }
 
