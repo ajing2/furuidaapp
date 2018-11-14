@@ -130,8 +130,10 @@ public class UserServiceImpl implements UserService {
     }
     @Override
     public UserInfo getUserInfo(HttpSession session, String code, String parentId) {
-        String token = getSessionToken(session);
-        String openid = getSessionOpenId(session);
+//        String token = getSessionToken(session);
+//        String openid = getSessionOpenId(session);
+        String token = null;
+        String openid = null;
         UserInfo userInfo = null;
         try {
             if (null == token || "".equals(token)) {
@@ -148,26 +150,33 @@ public class UserServiceImpl implements UserService {
             userInfo = WeChatUtils.getWXUserInfoUrl(openid, token);
         }
         if (null != userInfo){
-            User user = new User();
-            user.setIspayed(0);
-            user.setLevel(-1);
-            user.setParentId(parentId);
-            user.setPhone("");
-            user.setReceiveName("");
-            user.setReceiveAddr("");
-            user.setUserId(String.valueOf(userInfo.getOpenid().hashCode()).replace("-", ""));
-            user.setWebchatName(userInfo.getNickname());
-            user.setWebchatUrl(userInfo.getHeadimgurl());
-            user.setWebchat(userInfo.getOpenid());
-            userMapper.insertSelective(user);
-            userInfo.setOpenid(user.getUserId());
+            User us = new User();
+            us.setWebchat(userInfo.getOpenid());
+            List<User> u = selectUser(us);
+            if (null == u && u.size()==0){
+                User user = new User();
+                user.setIspayed(0);
+                user.setLevel(-1);
+                user.setParentId(parentId);
+                user.setPhone("");
+                user.setReceiveName("");
+                user.setReceiveAddr("");
+                user.setUserId(String.valueOf(userInfo.getOpenid().hashCode()).replace("-", ""));
+                user.setWebchatName(userInfo.getNickname());
+                user.setWebchatUrl(userInfo.getHeadimgurl());
+                user.setWebchat(userInfo.getOpenid());
+                userMapper.insertSelective(user);
+                userInfo.setOpenid(user.getUserId());
+            }
+            userInfo.setOpenid(String.valueOf(userInfo.getOpenid().hashCode()).replace("-", ""));
+
         }
         return userInfo;
     }
 
     private String getSessionOpenId(HttpSession session) {
         //先取session中的token
-        String old_openid = (String) session.getAttribute("access_token");
+        String old_openid = (String) session.getAttribute("openid");
         if (!org.apache.commons.lang.StringUtils.isEmpty(old_openid)) {
             return old_openid;
         }

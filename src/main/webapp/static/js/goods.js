@@ -117,9 +117,8 @@ function get_parent(parentId) {
 }
 
 function addShoppingCart(goods) {
-    // var userId = localStorage.getItem("userId");
+    var userId = localStorage.getItem("userId");
     //for test
-    var userId = "121";
     debugger;
     $.ajax({
         url : "/shopping/add",
@@ -212,9 +211,9 @@ function selectShoppingCart(userId) {
 
 function tongyixieyi(){
 
-    // var userId = localStorage.getItem("userId");
+    var userId = localStorage.getItem("userId");
     //for test
-    var userId = "121";
+    // var userId = "121";
     debugger;
     var data = selectShoppingCart(userId);
     if (data!= null){

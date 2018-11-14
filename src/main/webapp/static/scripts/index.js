@@ -108,9 +108,10 @@ function get_userinfo(code, parentId) {
         xhrFields: {
             withCredentials: true
         },
-        success: function (data) {
-            if (data != null) {
-                localStorage.setItem("userId", data.openid);
+        success: function (callback) {
+            if (callback.code == 0) {
+                debugger;
+                localStorage.setItem("userId", callback.data.openid);
             }
         },
         error: function (err) {

@@ -339,9 +339,9 @@ $(document).ready(function () {
         $("#havedName").html(data[0].receiveName);
         $("#havedphone").html(data[0].phone);
         newAddress = 1;
-    } else {
-        alert("未找到用户，请联系管理员");
     }
+
+    selectShoppingCart(userId);
+
 });
 
-selectShoppingCart(userId);
