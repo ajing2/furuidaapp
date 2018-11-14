@@ -25,7 +25,7 @@ function pay(){
         {
             price : 0.01,
             istype : 2,
-
+            uid : sessionStorage.getItem("userId"),
         },
         function(data){
             if (data.data.code > 0){
