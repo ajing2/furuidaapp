@@ -113,8 +113,8 @@ public class UserController {
 
     @RequestMapping(value = "/children", method = RequestMethod.GET)
     @ResponseBody
-    private Boolean getChildrenInfo(@RequestParam String userId){
-        return userService.getChildrenInfo(userId);
+    private Boolean getChildrenInfo(@RequestParam String parentId){
+        return userService.getChildrenInfo(parentId);
     }
 
     @RequestMapping(value = "/tree", method = RequestMethod.GET)

@@ -82,9 +82,9 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public ResultBean pay(String userId, String parentId) {
         //判断下级是否已经有3个用户，若满3人则不能添加
-        List<User> uList = userMapper.selectNode();
+//        List<User> uList = userMapper.selectNode();
         try {
-            if (null != uList && uList.size() < 3) {
+//            if (null != uList && uList.size() < 3) {
                 //支付
                 if (StringUtils.isEmpty(userId) || StringUtils.isEmpty(parentId)) {
                     log.error("参数错误");
@@ -93,10 +93,10 @@ public class OrderServiceImpl implements OrderService {
                 String mess = userId + "|" + parentId;
                 CacheQueueManager.blockingDeque.put(mess);
                 return ResultBean.success();
-            } else {
-                log.error("---人数已达上限");
-                return ResultBean.fail("---人数已达上限");
-            }
+//            } else {
+//                log.error("---人数已达上限");
+//                return ResultBean.fail("---人数已达上限");
+//            }
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             return ResultBean.fail("---异常了：" + e.getMessage());

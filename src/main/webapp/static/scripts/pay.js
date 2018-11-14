@@ -15,6 +15,11 @@ function checkpay(){
 
 }
 function pay(){
+    var data = isChlldren();
+    if (data == false){
+        alert("请联系您的服务商, 他已经服务了三个顾客! 您需要联系服务商!");
+        exit();
+    };
     $.post(
         "/pays/pay",
         {
@@ -43,10 +48,10 @@ function pay(){
 }
 
 function isChlldren() {
-    var userId = localStorage.getItem("userId");
+    var parentId = localStorage.getItem("parentId");
     var result;
     $.ajax({
-        url : "/user/children?userId=" + userId,
+            url : "/user/children?parentId=" + parentId,
         type : "GET",
         async: false,
         contentType : 'application/json;charset=UTF-8', //contentType很重要

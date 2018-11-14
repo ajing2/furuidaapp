@@ -21,7 +21,7 @@ public interface UserMapper {
 
     List<User> selectByExample(UserExample example);
 
-    List<User> getChildrenInfo(@Param("userId") String userId);
+    List<User> getChildrenInfo(@Param("userId") String parentId);
 
     List<User> selectAll();
     List<User> selectNode();

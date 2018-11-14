@@ -185,9 +185,9 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public Boolean getChildrenInfo(String userId) {
+    public Boolean getChildrenInfo(String parentId) {
         try {
-            List<User> allChildren = userMapper.getChildrenInfo(userId);
+            List<User> allChildren = userMapper.getChildrenInfo(parentId);
             if (allChildren.size() <= 3){
                 return true;
             }else {

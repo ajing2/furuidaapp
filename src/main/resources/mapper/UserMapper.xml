@@ -96,7 +96,7 @@
   <select id="getChildrenInfo" parameterType="String" resultMap="BaseResultMap">
     select * from t_user
     <where>
-      parent_id = #{userId,jdbcType=VARCHAR}
+      parent_id = #{parentId,jdbcType=VARCHAR}
       and level >-1 and is_payed = 1
     </where>
   </select>
