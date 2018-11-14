@@ -327,7 +327,7 @@ function selectUser(userId) {
 
     return result;
 }
-localStorage.setItem("userId", "2-1");
+// localStorage.setItem("userId", "2-1");
 $(document).ready(function () {
     var userId = localStorage.getItem("userId");
     var data = selectUser(userId);
