@@ -212,11 +212,10 @@ function tongyixieyi(){
     var userId = localStorage.getItem("userId");
     debugger;
     var data = selectShoppingCart(userId);
-    if (data!= null){
-        window.location.href = "/static/mycart.html"
-    }else{
+    if (data!= null) {
         addShoppingCart(goods);
     }
+    window.location.href = "/static/mycart.html"
     JqueryDialog.Close();
 
 
