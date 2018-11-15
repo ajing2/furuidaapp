@@ -8,6 +8,7 @@ import com.furuida.utils.WeChatUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.omg.SendingContext.RunTime;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -205,6 +206,19 @@ public class UserServiceImpl implements UserService {
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             return false;
+        }
+    }
+    @Override
+    public ResultBean getQr(String userId){
+        try {
+            Runtime run = Runtime.getRuntime();
+//            String cmd = "python /usr/local/tomcat8/apache-tomcat-8.5.32/webapps/furuida-app/static/images/qr/postMaker.py " + userId;
+            String cmd = "python /Users/lingjing/IdeaProjects/furuidaapp/src/main/webapp/static/images/qr/postMaker.py " + userId;
+            run.exec(cmd);
+            return ResultBean.success("/static/images/qr/images/" + userId + ".jpg");
+        }catch (Exception e) {
+            log.error(e.getMessage(), e);
+            return ResultBean.success("/static/images/qr/images/error.jpg");
         }
     }
 

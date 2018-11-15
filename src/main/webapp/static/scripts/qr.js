@@ -2,28 +2,21 @@
 
 $(document).ready(function () {
     var userId = localStorage.getItem("userId");
-    userId = "191775225";
-    var data = selectUser(userId);
+    var data = findQr(userId);
     debugger;
-    if (data.length > 0 && data[0] != null) {
-        if (data[0].ispayed == 1 && data[0].level > -1) {
-            var url = "http://api.k780.com:88/?app=qr.get&data=/static/login.html?parent_id=" + userId + "&level=L&size=12"
-            $("#img").attr("src", url);
-        }else {
-            alert("没有付款, 需要成为会员以后才能邀请别人");
-        }
-    }
+    $("#img").attr("src", data);
+
 });
 
-function selectUser(userId) {
+function findQr(userId) {
     var result;
     $.ajax({
-        url : "/user/select?userId=" + userId,
+        url : "/user/qr?userId=" + userId,
         type : "GET",
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         async:false,
         success : function(data) {
-            result = data;
+            result = data.data;
         },
         error: function (data) {
             result = null;

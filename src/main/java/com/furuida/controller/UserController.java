@@ -127,4 +127,14 @@ public class UserController {
             return ResultBean.fail("get user tree failed." + e.getMessage());
         }
     }
+
+
+
+    @RequestMapping(value = "/qr", method = RequestMethod.GET)
+    @ResponseBody
+    private ResultBean getQr(@RequestParam String userId){
+        return userService.getQr(userId);
+    }
+
+
 }

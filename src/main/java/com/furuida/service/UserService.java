@@ -24,4 +24,7 @@ public interface UserService {
     UserInfo getUserInfo(HttpSession session, String code, String parentId);
 
     public Boolean getChildrenInfo(String parentId);
+
+
+    public ResultBean getQr(String userId);
 }
