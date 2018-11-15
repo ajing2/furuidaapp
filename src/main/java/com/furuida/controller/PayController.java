@@ -35,7 +35,7 @@ public class PayController {
 		remoteMap.put("code", 1);
 		remoteMap.put("price", price);
 		remoteMap.put("istype", istype);
-		remoteMap.put("orderid", uid+"|"+PayUtil.getOrderIdByUUId());
+		remoteMap.put("orderid", uid);
 		remoteMap.put("orderuid", uid);
 		remoteMap.put("goodsname", "心生爱目洗眼液");
 		resultMap.put("data", PayUtil.payOrder(remoteMap));

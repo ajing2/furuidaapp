@@ -153,7 +153,7 @@ public class UserServiceImpl implements UserService {
             User us = new User();
             us.setWebchat(userInfo.getOpenid());
             List<User> u = selectUser(us);
-            if (null == u && u.size()==0){
+            if (null == u || u.size()==0){
                 User user = new User();
                 user.setIspayed(0);
                 user.setLevel(-1);
