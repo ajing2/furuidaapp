@@ -76,16 +76,14 @@
             <div style="padding:5px;">
                 <p><b><span style="color:#e53333;font-family:NSimSun;font-size:16px;">一、速递查询:&nbsp;</span></b></p>
                 <p><b><span style="color:#e53333;font-family:NSimSun;font-size:16px;">（5天内还没收到货的，请务必电话咨询）&nbsp;</span></b></p>
-                <div><span style="color:#e53333;font-family:NSimSun;font-size:16px;"><b><span style="color:#e56600;">&nbsp; &nbsp;1、18725099018&nbsp;</span></b></span></div>
-                <div><span style="color:#e53333;font-family:NSimSun;font-size:16px;"><b><span style="color:#e56600;">&nbsp; &nbsp;2、15368025108&nbsp;</span></b></span></div>
-                <div><span style="color:#e53333;font-family:NSimSun;font-size:16px;"><b><span style="color:#e56600;">&nbsp; &nbsp;3、087165160851</span>&nbsp;</b></span></div>
+                <div><span style="color:#e53333;font-family:NSimSun;font-size:16px;"><b><span style="color:#e56600;">&nbsp; &nbsp;13691259940&nbsp;</span></b></span></div>
+                <!--<div><span style="color:#e53333;font-family:NSimSun;font-size:16px;"><b><span style="color:#e56600;">&nbsp; &nbsp;2、15368025108&nbsp;</span></b></span></div>-->
+                <!--<div><span style="color:#e53333;font-family:NSimSun;font-size:16px;"><b><span style="color:#e56600;">&nbsp; &nbsp;3、087165160851</span>&nbsp;</b></span></div>-->
                 <div><span style="color:#e53333;font-family:NSimSun;font-size:16px;"><b>二、创业咨询电话:&nbsp;</b></span></div>
-                <div><span style="color:#e53333;font-family:NSimSun;font-size:16px;"><b>&nbsp; &nbsp;<span style="color:#e56600;">131 8787 7089</span>&nbsp;</b></span></div>
+                <div><span style="color:#e53333;font-family:NSimSun;font-size:16px;"><b>&nbsp; &nbsp;<span style="color:#e56600;">13691259940</span>&nbsp;</b></span></div>
                 <div><span style="color:#e53333;font-family:NSimSun;font-size:16px;"><b>三、产品售后服务:&nbsp;</b></span></div>
                 <p><span style="color:#e53333;font-family:NSimSun;font-size:16px;"><b>&nbsp;<span style="color:#e56600;"> &nbsp;010-88937891</span></b></span></p>
-                <div><span style="color:#e53333;font-family:NSimSun;font-size:16px;"><b>四、设计部:&nbsp;</b></span></div>
-                <div><span style="color:#e53333;font-family:NSimSun;font-size:16px;"><b>&nbsp;<span style="color:#e56600;">&nbsp; 15198771168</span></b></span></div>
-                <br />
+
             </div>
             <div align="center"><b><span style="font-size:16px;color:#e53333;">识别二维码加微信客服</span></b><br />
                 <img src="/static/images/customer.jpg" alt="" border="0" /><br />
@@ -93,49 +91,6 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    function _report(a,c){
-        $.post('product.php',{action:'ajax_share',type:a,msg:c,thisurl:'/static/new.php?id=30',imgurl:'http://sy.longemont.net/',title:'客服中心'},function(data){
-        });
-    }
 
-    wx.config({
-        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-        appId: '', // 必填，公众号的唯一标识
-        timestamp: '1540540523', // 必填，生成签名的时间戳
-        nonceStr: '7myIbQc4vzKhUwPh', // 必填，生成签名的随机串
-        signature: '90ba711748dba3c88fa5151cfa9cd0a8076bad3a',// 必填，签名，见附录1
-        jsApiList: ['onMenuShareAppMessage','onMenuShareTimeline','onMenuShareQQ'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-    });
-
-    wx.ready(function () {
-        wx.onMenuShareAppMessage({
-            title: '客服中心', // 分享标题
-            desc: '客服中心', // 分享描述
-            link: '/static/new.php?id=30', // 分享链接
-            imgUrl: 'http://sy.longemont.net/', // 分享图标
-            success: function () {
-                // 用户确认分享后执行的回调函数
-                _report('send_msg', 'st:ok');
-            },
-            cancel: function () {
-                // 用户取消分享后执行的回调函数
-            }
-        });
-    });
-
-    wx.onMenuShareTimeline({
-        title: '客服中心', // 分享标题
-        link: '/static/new.php?id=30', // 分享链接
-        imgUrl: 'http://sy.longemont.net/', // 分享图标
-        success: function () {
-            // 用户确认分享后执行的回调函数
-            _report('timeline', 'st:ok');
-        },
-        cancel: function () {
-            // 用户取消分享后执行的回调函数
-        }
-    });
-</script>
 </body>
 </html>
