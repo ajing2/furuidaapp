@@ -26,9 +26,10 @@ function pay(){
         {
             price : 0.01,
             istype : 2,
-            uid : sessionStorage.getItem("userId"),
+            uid : localStorage.getItem("userId"),
         },
         function(data){
+            debugger;
             if (data.data.code > 0){
                 $("#goodsname").val(data.data.goodsname);
                 $("#istype").val(data.data.istype);
@@ -67,6 +68,7 @@ function isChlldren() {
 
         }
     });
+    return result;
 }
 
 
