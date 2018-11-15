@@ -89,17 +89,17 @@ public class NodeServiceImpl implements NodeService {
     public void payAndUpgrade(String id, String parentId) {
         try {
             //for test
-            User u = new User();
-            u.setParentId(parentId);
-            u.setUserId(id);
-            u.setPhone("1234424323");
-            u.setLevel(0);
-            u.setReceiveAddr("s");
-            u.setReceiveName("quan");
-            u.setWebchat("ssada");
-            u.setWebchatUrl("");
-            u.setWebchatName("");
-            userMapper.insertSelective(u);
+//            User u = new User();
+//            u.setParentId(parentId);
+//            u.setUserId(id);
+//            u.setPhone("1234424323");
+//            u.setLevel(0);
+//            u.setReceiveAddr("s");
+//            u.setReceiveName("quan");
+//            u.setWebchat("ssada");
+//            u.setWebchatUrl("");
+//            u.setWebchatName("");
+//            userMapper.insertSelective(u);
             initALLNode();
             Map<String, Node> allNodes = NodeCache.nMap;
             if (null == allNodes || allNodes.size() == 0) {
@@ -107,7 +107,7 @@ public class NodeServiceImpl implements NodeService {
             }
             Node current = allNodes.get(parentId);
 //            current.init(id, parentId);
-//            log.info("=============当前节点=" + current.toString());
+            log.info("=============当前节点=" + current.toString());
             if (null == current) {
                 return;
             }

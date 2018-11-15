@@ -25,14 +25,15 @@ import java.util.concurrent.BlockingDeque;
  * @ClassName: BlockQueueConsumer
  * @Description: TODO
  * @author fuzhengquan
+ *
  * @date 2018年4月18日 上午10:55:44
  *
  */
-@Component("consumer")
+//@Component("consumer")
 public class BlockQueueConsumer {
 
-    @Resource
-    NodeService nodeService;
+//    @Resource
+    NodeService nodeService = (NodeService) AppContext.getBean("nodeService");
     /** The instance. */
     private static volatile BlockQueueConsumer instance = null;
     /**
@@ -76,7 +77,7 @@ public class BlockQueueConsumer {
                         continue;
                     }
                     String userId = data.split("\\|")[0];
-                    String parentId = data.split("\\|")[1];;
+                    String parentId = data.split("\\|")[1];
                     nodeService.payAndUpgrade(userId, parentId);
                     LOG.error("---length:" + bd.size());
                 } else {
@@ -125,7 +126,7 @@ public class BlockQueueConsumer {
      * @return void    返回类型
      * @throws
      */
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         try {
             String json = "[{\"endpoint\":\"10.187.196.225\",\"metric\":\"mem.swapused.percent\",\"step\":\"5\",\"tags\":\"\",\"time\":\"1523950969\",\"type\":\"GAUGE\",\"value\":\"0\"},{\"endpoint\":\"10.187.196.225\",\"metric\":\"mem.memoryused.percent\",\"step\":\"5\",\"tags\":\"\",\"time\":\"1523950969\",\"type\":\"GAUGE\",\"value\":\"2561\"},{\"endpoint\":\"10.187.196.225\",\"metric\":\"load.1min\",\"step\":\"5\",\"tags\":\"\",\"time\":\"1523950969\",\"type\":\"GAUGE\",\"value\":\"0\"},{\"endpoint\":\"10.187.196.225\",\"metric\":\"load.1min\",\"step\":\"5\",\"tags\":\"\",\"time\":\"1523950969\",\"type\":\"GAUGE\",\"value\":\"0\"},{\"endpoint\":\"10.187.196.225\",\"metric\":\"load.5min\",\"step\":\"5\",\"tags\":\"\",\"time\":\"1523950969\",\"type\":\"GAUGE\",\"value\":\"0\"},{\"endpoint\":\"10.187.196.225\",\"metric\":\"load.15min\",\"step\":\"5\",\"tags\":\"\",\"time\":\"1523950969\",\"type\":\"GAUGE\",\"value\":\"0\"},{\"endpoint\":\"10.187.196.225\",\"metric\":\"df.bytes.used.percent\",\"step\":\"5\",\"tags\":\"\",\"time\":\"1523950969\",\"type\":\"GAUGE\",\"value\":\"4000\"}]";
             ArrayList<User> jsonArray = JSON.parseObject(json, new TypeReference<ArrayList<User>>() {
@@ -137,5 +138,5 @@ public class BlockQueueConsumer {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-    }
+    }*/
 }

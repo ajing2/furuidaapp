@@ -5,6 +5,7 @@ import com.furuida.model.User;
 import com.furuida.service.OrderService;
 import com.furuida.service.UserService;
 import com.furuida.utils.PayUtil;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
@@ -37,7 +38,7 @@ public class PayController {
 		remoteMap.put("istype", istype);
 		remoteMap.put("orderid", uid);
 		remoteMap.put("orderuid", uid);
-		remoteMap.put("goodsname", "心生爱目洗眼液");
+		remoteMap.put("goodsname", "xyy");
 		resultMap.put("data", PayUtil.payOrder(remoteMap));
 		return resultMap;
 	}
@@ -47,22 +48,27 @@ public class PayController {
 		try {
 			log.error("======================通知了。");
 			// 保证密钥一致性
-			if (PayUtil.checkPayKey(payAPI)) {
+//			if (PayUtil.checkPayKey(payAPI)) {
+			if (StringUtils.isNotEmpty(payAPI.getOrderid())) {
+				log.error("======================通知了2。");
 				User u = new User();
+				log.error("======================通知了3。" + payAPI.getOrderuid());
 				u.setUserId(payAPI.getOrderuid());
-				u.setLevel(0);
-				u.setIspayed(1);
-				userService.updateUser(u);
 				// TODO
 //			Order o = new Order();
 //			o.setUpdateTime(new Date().toLocaleString());
 //			o.set
 //			orderService.addOrder();
 				List<User> uList = userService.selectUser(u);
+				log.error("======================通知了4。" + uList.size());
 				if (null!=uList && uList.size() > 0) {
 					String uid = uList.get(0).getUserId();
 					String parentId = uList.get(0).getParentId();
+					log.error("===============uid=" + uid + ",pid=" + parentId);
 					orderService.pay(uid, parentId);
+					u.setLevel(0);
+					u.setIspayed(1);
+					userService.updateUser(u);
 					return "OK";
 				}
 				return "notOK";
@@ -82,19 +88,18 @@ public class PayController {
 		boolean isTrue = false;
 		ModelAndView view = null;
 		// 根据订单号查找相应的记录:根据结果跳转到不同的页面
-		if (orderid.split("\\|").length<1) {
-			return new ModelAndView("/payfailed");
-		}
-		String uid = orderid.split("\\|")[0];
+//		if (orderid.split("\\|").length<1) {
+//			return new ModelAndView("/payfailed");
+//		}
+		String uid = orderid;
 		User u = new User();
 		u.setUserId(uid);
-		userService.selectUser(u);
 		List<User> uList = userService.selectUser(u);
 		if (null!=uList && uList.size() > 0 && uList.get(0).getIspayed()==1) {
 			isTrue = true;
 		}
 		if (isTrue) {
-			view = new ModelAndView("/returnPay");
+			view = new ModelAndView("/index");
 		} else {
 			view = new ModelAndView("/payfailed");
 		}

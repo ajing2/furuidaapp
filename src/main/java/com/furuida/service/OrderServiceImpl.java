@@ -27,10 +27,6 @@ public class OrderServiceImpl implements OrderService {
     Log log = LogFactory.getLog(OrderServiceImpl.class);
     @Resource
     OrderMapper orderMapper;
-    @Resource
-    UserMapper userMapper;
-    @Resource
-    BlockQueueConsumer consumer;
 
     @Override
     public void addOrder(Order order) {
