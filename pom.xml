@@ -167,15 +167,11 @@
             <artifactId>jython-standalone</artifactId>
             <version>2.7.0</version>
         </dependency>
+
         <dependency>
-            <groupId>org.python</groupId>
-            <artifactId>jython</artifactId>
-            <version>jython-2.7-b1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.python</groupId>
-            <artifactId>jython</artifactId>
-            <version>jython-2.7-b1</version>
+            <groupId>com.trilead</groupId>
+            <artifactId>trilead-ssh2</artifactId>
+            <version>1.0.0-build215</version>
         </dependency>
 
     </dependencies>

@@ -5,6 +5,8 @@ import PIL.ImageDraw as ImageDraw
 import PIL.ImageFont as ImageFont
 import requests
 import sys
+import os
+
 
 class postMaker(object):
 	def __init__(self, backImg, font):
@@ -38,7 +40,7 @@ class postMaker(object):
 			backImg.paste(qrImg,(140,180))
 
 			self.post = backImg
-			backImg.save("" + userId + ".jpg", "jpeg")
+			backImg.save("images/" + userId + ".jpg", "jpeg")
 		except Exception as e:
 			print(repr(e))
 
@@ -47,6 +49,7 @@ def main(userId):
 	qrUrl = "http://api.k780.com:88/?app=qr.get&data=http://www.yitaonet.cn/static/login.html?parent_id=" + userId + "&level=L&size=8";
 	# print(qrUrl)
 	r = requests.get(qrUrl);
+	os.chdir("/usr/local/tomcat8/apache-tomcat-8.5.32/webapps/furuida-app/static/images/qr/");
 	qrImg = "qr" + userId + ".jpg"
 	with open(qrImg, "wb") as f:
 		f.write(r.content)

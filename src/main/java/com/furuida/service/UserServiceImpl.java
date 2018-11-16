@@ -3,6 +3,7 @@ package com.furuida.service;
 import com.furuida.mapper.OrderMapper;
 import com.furuida.mapper.UserMapper;
 import com.furuida.model.*;
+import com.furuida.utils.ExecCommand;
 import com.furuida.utils.WeChatAccessToken;
 import com.furuida.utils.WeChatUtils;
 import org.apache.commons.lang.StringUtils;
@@ -211,10 +212,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public ResultBean getQr(String userId){
         try {
-            Runtime run = Runtime.getRuntime();
-//            String cmd = "python /usr/local/tomcat8/apache-tomcat-8.5.32/webapps/furuida-app/static/images/qr/postMaker.py " + userId;
-            String cmd = "python /Users/lingjing/IdeaProjects/furuidaapp/src/main/webapp/static/images/qr/postMaker.py " + userId;
-            run.exec(cmd);
+            ExecCommand run = new ExecCommand();
+            String cmd = "/usr/local/tomcat8/postMaker.sh " + userId;
+//            String cmd = "python /Users/lingjing/IdeaProjects/furuidaapp/src/main/webapp/static/images/qr/postMaker.py " + userId;
+            run.runLocal(cmd);
             return ResultBean.success("/static/images/qr/images/" + userId + ".jpg");
         }catch (Exception e) {
             log.error(e.getMessage(), e);

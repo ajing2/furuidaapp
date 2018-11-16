@@ -7,12 +7,9 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.trilead.ssh2.StreamGobbler;
 import org.apache.log4j.Logger;
 
-import com.trilead.ssh2.Connection;
-import com.trilead.ssh2.SCPClient;
-import com.trilead.ssh2.Session;
-import com.trilead.ssh2.StreamGobbler;
 
 /**
  * Provides static methods for running SSH, scp as well as local commands.
