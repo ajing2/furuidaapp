@@ -143,6 +143,11 @@ public class UserServiceImpl implements UserService {
                 token = map.get("token");
                 openid = map.get("openid");
             }
+            if (null == openid || "".equals(openid)) {
+                Map<String, String> map = getToken(session, code);
+                token = map.get("token");
+                openid = map.get("openid");
+            }
             userInfo = WeChatUtils.getWXUserInfoUrl(openid, token);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
@@ -154,6 +159,7 @@ public class UserServiceImpl implements UserService {
         if (null != userInfo){
             User us = new User();
             us.setWebchat(userInfo.getOpenid());
+            String userId = String.valueOf(userInfo.getOpenid().hashCode()).replace("-", "");
             List<User> u = selectUser(us);
             if (null == u || u.size()==0){
                 User user = new User();
@@ -163,17 +169,22 @@ public class UserServiceImpl implements UserService {
                 user.setPhone("");
                 user.setReceiveName("");
                 user.setReceiveAddr("");
-                user.setUserId(String.valueOf(userInfo.getOpenid().hashCode()).replace("-", ""));
+                user.setUserId(userId);
                 user.setWebchatName(userInfo.getNickname());
                 user.setWebchatUrl(userInfo.getHeadimgurl());
                 user.setWebchat(userInfo.getOpenid());
                 userMapper.insertSelective(user);
                 userInfo.setOpenid(user.getUserId());
             }
-            userInfo.setOpenid(String.valueOf(userInfo.getOpenid().hashCode()).replace("-", ""));
+            userInfo.setOpenid(userId);
 
         }
         return userInfo;
+    }
+
+    @Override
+    public User selectByUserId(String userId) {
+        return userMapper.selectByUserId(userId);
     }
 
     private String getSessionOpenId(HttpSession session) {

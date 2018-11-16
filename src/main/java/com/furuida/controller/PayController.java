@@ -58,15 +58,16 @@ public class PayController {
 //			o.setUpdateTime(new Date().toLocaleString());
 //			o.set
 //			orderService.addOrder();
-				List<User> uList = userService.selectUser(u);
-				if (null!=uList && uList.size() > 0) {
-					String uid = uList.get(0).getUserId();
-					String parentId = uList.get(0).getParentId();
+				log.error("userId=" + payAPI.getOrderid() + ", uid=" + payAPI.getOrderuid());
+				User uList = userService.selectByUserId(payAPI.getOrderuid());
+				if (null!=uList) {
+					String uid = uList.getUserId();
+					String parentId = uList.getParentId();
 					log.error("===============uid=" + uid + ",pid=" + parentId);
 					orderService.pay(uid, parentId);
-					u.setLevel(0);
-					u.setIspayed(1);
-					userService.updateUser(u);
+					uList.setLevel(0);
+					uList.setIspayed(1);
+					userService.updateUser(uList);
 					ExecCommand run = new ExecCommand();
 					String cmd = "/usr/local/tomcat8/postMaker.sh " + uid;
 					run.runLocal(cmd);
@@ -93,14 +94,14 @@ public class PayController {
 //			return new ModelAndView("/payfailed");
 //		}
 		String uid = orderid;
-		User u = new User();
-		u.setUserId(uid);
-		List<User> uList = userService.selectUser(u);
-		if (null!=uList && uList.size() > 0 && uList.get(0).getIspayed()==1) {
+//		User u = new User();
+//		u.setUserId(uid);
+		User uList = userService.selectByUserId(uid);
+		if (null!=uList && uList.getIspayed()==1) {
 			isTrue = true;
 		}
 		if (isTrue) {
-			view = new ModelAndView("/index");
+			view = new ModelAndView("/login");
 		} else {
 			view = new ModelAndView("/payfailed");
 		}

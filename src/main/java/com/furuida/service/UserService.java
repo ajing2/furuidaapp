@@ -22,7 +22,7 @@ public interface UserService {
 
     Map<String, String> getToken(HttpSession session, String code);
     UserInfo getUserInfo(HttpSession session, String code, String parentId);
-
+    public User selectByUserId(String userId);
     public Boolean getChildrenInfo(String parentId);
 
 

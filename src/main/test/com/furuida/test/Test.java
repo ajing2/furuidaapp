@@ -4,9 +4,12 @@ import com.furuida.model.User;
 import com.furuida.service.NodeService;
 import com.furuida.service.OrderService;
 import com.furuida.service.UserService;
+import com.furuida.utils.ExecCommand;
+import org.apache.commons.lang.StringUtils;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
@@ -27,23 +30,33 @@ public class Test {
     NodeService nodeService;
     @Resource
     UserService userService;
+    @Resource
+    OrderService orderService;
 
     @org.junit.Test
     public void testStartMonitor() {
         try {
-            System.out.println("====================");
-            User u = new User();
-//            u.setId(3L);
-            u.setParentId("127");
-            u.setUserId("133");
-            u.setPhone("1234424323");
-            u.setLevel(0);
-            u.setReceiveAddr("s");
-            u.setReceiveName("quan");
-            u.setWebchat("ssada");
-            userService.addUser(u);
-            nodeService.initALLNode();
-//            nodeService.payAndUpgrade(u.getParentId());
+            String orderId = "1630316288";
+            if (StringUtils.isNotEmpty(orderId)) {
+                User u = new User();
+                u.setUserId(orderId);
+                // TODO
+                User uList = userService.selectByUserId(orderId);
+                if (null!=uList) {
+                    String uid = uList.getUserId();
+                    String parentId = uList.getParentId();
+                    System.out.println("===============uid=" + uid + ",pid=" + parentId);
+                    orderService.pay(uid, parentId);
+                    uList.setLevel(0);
+                    uList.setIspayed(1);
+                    userService.updateUser(uList);
+//                    ExecCommand run = new ExecCommand();
+//                    String cmd = "/usr/local/tomcat8/postMaker.sh " + uid;
+//                    run.runLocal(cmd);
+                }
+            } else {
+                System.out.println("================key验证失败");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
