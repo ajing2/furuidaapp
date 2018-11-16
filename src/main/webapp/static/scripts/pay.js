@@ -17,7 +17,6 @@
 
     function pay() {
         var data = isChlldren();
-        debugger;
         if (data == false) {
             alert("请联系您的服务商, 他已经服务了三个顾客! 您需要联系服务商!");
             return false;
