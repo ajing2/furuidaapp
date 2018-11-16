@@ -50,9 +50,7 @@ public class PayController {
 			// 保证密钥一致性
 //			if (PayUtil.checkPayKey(payAPI)) {
 			if (StringUtils.isNotEmpty(payAPI.getOrderid())) {
-				log.error("======================通知了2。");
 				User u = new User();
-				log.error("======================通知了3。" + payAPI.getOrderuid());
 				u.setUserId(payAPI.getOrderuid());
 				// TODO
 //			Order o = new Order();
@@ -60,7 +58,6 @@ public class PayController {
 //			o.set
 //			orderService.addOrder();
 				List<User> uList = userService.selectUser(u);
-				log.error("======================通知了4。" + uList.size());
 				if (null!=uList && uList.size() > 0) {
 					String uid = uList.get(0).getUserId();
 					String parentId = uList.get(0).getParentId();

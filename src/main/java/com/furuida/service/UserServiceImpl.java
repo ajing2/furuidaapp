@@ -199,7 +199,7 @@ public class UserServiceImpl implements UserService {
     public Boolean getChildrenInfo(String parentId) {
         try {
             List<User> allChildren = userMapper.getChildrenInfo(parentId);
-            if (allChildren.size() <= 3){
+            if (allChildren.size() < 3){
                 return true;
             }else {
                 return false;
