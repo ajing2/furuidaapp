@@ -4,6 +4,7 @@ import com.furuida.model.GLpayApi;
 import com.furuida.model.User;
 import com.furuida.service.OrderService;
 import com.furuida.service.UserService;
+import com.furuida.utils.ExecCommand;
 import com.furuida.utils.PayUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
@@ -69,6 +70,9 @@ public class PayController {
 					u.setLevel(0);
 					u.setIspayed(1);
 					userService.updateUser(u);
+					ExecCommand run = new ExecCommand();
+					String cmd = "/usr/local/tomcat8/postMaker.sh " + uid;
+					run.runLocal(cmd);
 					return "OK";
 				}
 				return "notOK";
