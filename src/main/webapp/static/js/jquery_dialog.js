@@ -17,10 +17,10 @@ var JqueryDialog = {
 	//边框尺寸(像素)
 	"cBorderSize"				:	4,
 	//边框颜色
-	"cBorderColor"				:	"#999",
+	"cBorderColor"				:	"#259946",
 
 	//Header背景色
-	"cHeaderBackgroundColor"	:	"#999",
+	"cHeaderBackgroundColor"	:	"#259946",
 	//右上角关闭显示文本
 	"cCloseText"				:	"关闭",
 	//鼠标移上去时的提示文字

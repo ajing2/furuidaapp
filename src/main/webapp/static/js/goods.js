@@ -46,13 +46,13 @@ function addToCart(goodsid, tt) {
     result = "<div style=\"font-size:14px; line-height:26px; padding:10px; text-align:left;\">\n" +
         "    <p>您的推荐服务商是：</p>\n" +
         "    <p style=\"padding-left:30px; padding-bottom:10px; line-height:20px; height:20px;\"><b style=\"color:blue\">(ID:" + parentName + ")</b></p>\n" +
-        "    <p style=\"color:#F96\">*&nbsp;请确认购买产品数量，不要重复购买，购买后无法退单。</p>\n" +
-        "    <p style=\"color:#F36\">*&nbsp;产品一经购买,除产品质量问题外,不支持无理由退货、退款！</p>\n" +
-        "    <p style=\"color:#F00\">*&nbsp;产品购买前请确认服务商是否正确，一经购买下单后将无法更改订单信息，后果将个人承担。</p>\n" +
+        "    <p style=\"\">*&nbsp;请确认购买产品数量，不要重复购买，购买后无法退单。</p>\n" +
+        "    <p style=\"\">*&nbsp;产品一经购买,除产品质量问题外,不支持无理由退货、退款！</p>\n" +
+        "    <p style=\"\">*&nbsp;产品购买前请确认服务商是否正确，一经购买下单后将无法更改订单信息，后果将个人承担。</p>\n" +
         "    <hr/>\n" +
         "    <p style=\"text-align:center; height:50px;\">\n" +
-        "        <a onclick=\"return alertb();\" style=\" float:left;display:block; width:40%; line-height:35px;height:35px;border-radius:5px; background:#f35600; text-align:center; color:#fff\">服务商正确</a>\n" +
-        "        <a onclick=\"return alerta();\" style=\" margin-left:20px;float:left;display:block; width:40%; line-height:35px; height:35px;border-radius:5px; background:#ff8f03; text-align:center; color:#fff\">服务商不对</a>\n" +
+        "        <a onclick=\"return alerta();\" style=\" float:left;display:block; width:40%; line-height:35px; height:35px; border-radius:10px;background:#ff916b; text-align:center; color:#fff\">服务商错误</a>\n" +
+        "        <a onclick=\"return alertb();\" style=\" margin-left:20px;float:left;display:block; width:40%; line-height:35px;height:35px;border-radius:5px; border-radius:10px; background:green; text-align:center; color:#fff\">服务商正确</a>\n" +
         "    </p>\n" +
         "</div>"
 
@@ -145,7 +145,7 @@ function addShoppingCart(goods) {
 }
 
 function alerta(){
-    alert('请联系推荐服务商确认推荐关系!');
+    alert('请联系推荐服务商再次扫码!');
     return false;
 }
 function alertb(){
@@ -181,7 +181,7 @@ function alertb(){
         "    <p>凡因执行本协议所发生的争议，或与本协议有关的一切争议，双方应通过友好协商解决。如果协商不成，可以向甲方住所地法院起诉。</p>\n" +
         "    <div style=\"height:14px;\"></div>\n" +
         "    <div style=\"text-align:center; position:absolute; bottom:0px; left:0px; z-index:999; width:100%; height:34px;\">\n" +
-        "        <a onclick=\"return tongyixieyi();\" style=\" display:block;border:none; height:34px; line-height:34px; background:#999; color:#fff; font-size:14px; text-align:center\">同意协议</a>\n" +
+        "        <a onclick=\"return tongyixieyi();\" style=\" display:block;border:none; height:34px; line-height:34px; background:#259946; color:#fff; font-size:14px; text-align:center\">同意协议</a>\n" +
         "    </div>\n" +
         "</div>"
         JqueryDialog.Open('商品购销协议',data,280,420);
