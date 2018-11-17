@@ -159,14 +159,15 @@ function updateUser(userId, phone, receiveName, receiveAddr){
         receiveAddr: receiveAddr
     };
     $.ajax({
-        url : "/user/update",
+        url : " localhost_access_log.2018-11-17.txt",
         type : "POST",
         data: JSON.stringify(data),
         dataType : 'json',
+        // rsync: false,
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         success : function(result) {
             debugger;
-            window.location.href = "/static/pay.html";
+            // window.location.href = "/static/pay.html";
 
 
         },
