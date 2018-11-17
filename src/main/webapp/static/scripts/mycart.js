@@ -159,7 +159,7 @@ function updateUser(userId, phone, receiveName, receiveAddr){
         receiveAddr: receiveAddr
     };
     $.ajax({
-        url : " localhost_access_log.2018-11-17.txt",
+        url : "/user/update",
         type : "POST",
         data: JSON.stringify(data),
         dataType : 'json',
