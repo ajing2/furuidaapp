@@ -175,6 +175,14 @@ public class UserServiceImpl implements UserService {
                 user.setWebchat(userInfo.getOpenid());
                 userMapper.insertSelective(user);
                 userInfo.setOpenid(user.getUserId());
+            }else{
+                String oldParentId = u.get(0).getParentId();
+                if (!oldParentId.equals(parentId)) {
+                    User uu = new User();
+                    uu.setParentId(parentId);
+                    uu.setUserId(userId);
+                    userMapper.insertSelective(uu);
+                }
             }
             userInfo.setOpenid(userId);
 
