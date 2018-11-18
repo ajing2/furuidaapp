@@ -61,7 +61,7 @@ def main(userId):
 	pMaker.create(
 		userIcon=userIcon,
 		userId = userId,
-		userName="邀请码: " + userId,
+		userName=u"邀请码: " + userId,
 		qrImg=qrImg,
 		textColor={'R': 0, 'G': 0, 'B': 0})
 
