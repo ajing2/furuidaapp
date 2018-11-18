@@ -52,10 +52,16 @@ public class PayController {
 			// 保证密钥一致性
 //			if (PayUtil.checkPayKey(payAPI)) {
 			if (StringUtils.isNotEmpty(payAPI.getOrderid())) {
+				double price = Double.parseDouble(payAPI.getRealprice());
+				log.error("price=" + price);
+				if (price < 157.9d) {
+					log.error("支付价格不正确：" + price);
+					return "OK";
+				}
 				User u = new User();
 				u.setUserId(payAPI.getOrderuid());
 				// TODO
-//			Order o = new Order();
+//			Order o = new Orde.r();
 //			o.setUpdateTime(new Date().toLocaleString());
 //			o.set
 //			orderService.addOrder();
