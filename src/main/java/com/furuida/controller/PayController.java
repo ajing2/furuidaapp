@@ -4,6 +4,7 @@ import com.furuida.model.GLpayApi;
 import com.furuida.model.User;
 import com.furuida.service.OrderService;
 import com.furuida.service.UserService;
+import com.furuida.utils.CacheOrder;
 import com.furuida.utils.ExecCommand;
 import com.furuida.utils.PayUtil;
 import org.apache.commons.lang.StringUtils;
@@ -37,7 +38,7 @@ public class PayController {
 		remoteMap.put("code", 1);
 		remoteMap.put("price", price);
 		remoteMap.put("istype", istype);
-		remoteMap.put("orderid", uid);
+		remoteMap.put("orderid", uid+","+PayUtil.getOrderIdByUUId());
 		remoteMap.put("orderuid", uid);
 		remoteMap.put("goodsname", "xyy");
 		resultMap.put("data", PayUtil.payOrder(remoteMap));
@@ -58,12 +59,16 @@ public class PayController {
 //			o.setUpdateTime(new Date().toLocaleString());
 //			o.set
 //			orderService.addOrder();
-				log.error("userId=" + payAPI.getOrderid() + ", uid=" + payAPI.getOrderuid());
+				log.error("orderId=" + payAPI.getOrderid() + ", uid=" + payAPI.getOrderuid());
+				if (CacheOrder.map.containsKey(payAPI.getOrderid()) && CacheOrder.map.get(payAPI.getOrderid()) == 1) {
+					return "OK";
+				}
 				User uList = userService.selectByUserId(payAPI.getOrderuid());
 				if (null!=uList) {
 					String uid = uList.getUserId();
 					String parentId = uList.getParentId();
 					log.error("===============uid=" + uid + ",pid=" + parentId);
+					CacheOrder.map.put(payAPI.getOrderid(), 1);
 					orderService.pay(uid, parentId);
 					uList.setLevel(0);
 					uList.setIspayed(1);
@@ -90,10 +95,10 @@ public class PayController {
 		boolean isTrue = false;
 		ModelAndView view = null;
 		// 根据订单号查找相应的记录:根据结果跳转到不同的页面
-//		if (orderid.split("\\|").length<1) {
-//			return new ModelAndView("/payfailed");
-//		}
-		String uid = orderid;
+		if (orderid.split(",").length<1) {
+			return new ModelAndView("/payfailed");
+		}
+		String uid = orderid.split(",")[0];
 //		User u = new User();
 //		u.setUserId(uid);
 		User uList = userService.selectByUserId(uid);
