@@ -46,10 +46,10 @@ function table() {
             limits: [10, 50, 100, 1000],// 设置每页显示多少条数据
             cols: [[
                 {type: 'checkbox'},
-                {field: 'userId', title: 'UserId', width: 80, sort: true},
-                {field: 'money', title: '钱数', width: 120, edit: 'text'},
-                {field: 'phone', title: '电话', width: 100, sort: true},
-                {field: 'state', title: '状态', width: 100, sort: true, templet: '.state'},
+                {field: 'userId', title: 'UserId', width: 200, sort: true},
+                {field: 'money', title: '钱数', width: 100, edit: 'text'},
+                {field: 'phone', title: '电话', width: 150, sort: true},
+                {field: 'state', title: '状态', width: 150, sort: true, templet: '.state'},
                 // {fixed: 'right', title: '操作', toolbar: '#barDemo', width: 150}
             ]],
             data: data,
