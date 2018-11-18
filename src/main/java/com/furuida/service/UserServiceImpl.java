@@ -176,8 +176,8 @@ public class UserServiceImpl implements UserService {
                 userMapper.insertSelective(user);
                 userInfo.setOpenid(user.getUserId());
             }else{
-                log.error(u.get(0).toString());
-                log.error(parentId);
+//                log.error(u.get(0).toString());
+//                log.error(parentId);
                 if (u.get(0).getIspayed() != 1 || u.get(0).getLevel() == -1) {
                     String oldParentId = u.get(0).getParentId();
                     if (!oldParentId.equals(parentId)) {
