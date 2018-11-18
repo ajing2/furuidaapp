@@ -40,7 +40,7 @@ function addToCart(goodsid, tt) {
     createwindow();
 
     var parentId = localStorage.getItem("parentId");
-    debugger;
+
     var parentName = selectUser(parentId);
 
     result = "<div style=\"font-size:14px; line-height:26px; padding:10px; text-align:left;\">\n" +
@@ -73,7 +73,7 @@ function selectUser(userId) {
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         async:false,
         success : function(data) {
-            debugger;
+
             if (data.length>0 && data[0] != null){
                 result = data[0].userId + ": " + data[0].webchatName
             }else {
@@ -90,7 +90,7 @@ function selectUser(userId) {
     return result;
 }
 function get_parent(parentId) {
-    debugger;
+
     var result;
     $.ajax({
         url : "/user/parent?parentId=" + parentId,
@@ -119,7 +119,7 @@ function get_parent(parentId) {
 function addShoppingCart(goods) {
     var userId = localStorage.getItem("userId");
     //for test
-    debugger;
+
     $.ajax({
         url : "/shopping/add",
         type : "POST",
@@ -214,7 +214,7 @@ function tongyixieyi(){
     var userId = localStorage.getItem("userId");
     //for test
     // var userId = "121";
-    debugger;
+
     var data = selectShoppingCart(userId);
     if (data!= null){
         window.location.href = "/static/mycart.html"

@@ -18,7 +18,7 @@ function get_cash_data() {
             }
         },
         error: function (err) {
-            debugger;
+
             result = null;
         },
         complete: function (XMLHttpRequest, status) { //请求完成后最终执行参数　
@@ -58,7 +58,7 @@ function table() {
 
 
         form.on('switch(statusLiveDemo)', function(obj){
-            debugger;
+
             var id = parseInt(this.value);
             var state;
             if(obj.elem.checked){
@@ -94,7 +94,7 @@ function updateCashHistory(data) {
 
         },
         error: function (result) {
-            debugger;
+
         }
     });
 }

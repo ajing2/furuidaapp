@@ -49,7 +49,7 @@ $('.showaddress').live('click', function () {
 });
 
 function checkvar() {
-    debugger;
+
 
     var userId = localStorage.getItem("userId");
 
@@ -100,12 +100,12 @@ function checkvar() {
         }
 
 
-        debugger;
+
         updateUser(userId, mobile, consignee, address);
     }
 
 
-    debugger;
+
     if (shoppingCartId != ''){
         updateShoppingCart(userId);
     }else{
@@ -166,13 +166,13 @@ function updateUser(userId, phone, receiveName, receiveAddr){
         // rsync: false,
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         success : function(result) {
-            debugger;
+
             // window.location.href = "/static/pay.html";
 
 
         },
         error: function (result) {
-            debugger;
+
         }
     });
 }
@@ -332,7 +332,7 @@ function selectUser(userId) {
 $(document).ready(function () {
     var userId = localStorage.getItem("userId");
     var data = selectUser(userId);
-    debugger;
+
 
     if (data.length>0 && data[0].phone != "" && data[0].receiveAddr != "" && data[0].receiveName != ""){
         $("#haveUser").toggle();

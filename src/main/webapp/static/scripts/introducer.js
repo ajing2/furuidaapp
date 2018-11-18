@@ -1,9 +1,9 @@
 $(document).ready(function () {
     var parentId = localStorage.getItem("parentId");
     var data = selectUser(parentId);
-    debugger;
+
     if (data.length>0 && data[0] != null){
-        debugger;
+
         $("#hd_image").attr("src", data[0].webchatUrl);
         $(".nikeName").html(data[0].webchatName);
         $("#userId").html(data[0].userId);

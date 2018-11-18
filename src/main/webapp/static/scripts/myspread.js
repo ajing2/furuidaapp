@@ -2,7 +2,7 @@
 $(document).ready(function () {
     var userId = localStorage.getItem("userId");
     var data = selectChildren(userId);
-    debugger;
+
     $('#table').bootstrapTable({
         columns: [{
             field: 'userId',

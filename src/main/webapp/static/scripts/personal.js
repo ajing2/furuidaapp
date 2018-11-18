@@ -40,13 +40,13 @@ function updateUser(id, userId, webchat_name, phone, receive_addr) {
         async:false,
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         success : function(result) {
-            debugger;
+
             alert("保存成功!")
 
         },
         error: function (result) {
 
-            debugger;
+
         }
     });
 
@@ -111,7 +111,7 @@ function SetRemainTime() {
 }
 
 function check_senddata(){
-    debugger;
+
     var weixin = $('input[name="weixin"]').val();
     var phone = $('input[name="phone"]').val();
     if(phone=="" || typeof(phone)=='undefinde'){
@@ -137,7 +137,7 @@ function check_senddata(){
     }
     var id = $('input[name="userId"]').val();
 
-    debugger;
+
     updateUser(id, weixin, name, phone, address);
 
 

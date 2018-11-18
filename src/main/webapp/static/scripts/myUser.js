@@ -6,12 +6,12 @@ $(document).ready(function () {
 
 function main() {
     var userId = localStorage.getItem("userId");
-    debugger;
+
     var data = selectUser(userId);
     if (data.length>0 && data[0] != null){
         $('#userName').html(data[0].webchatName);
         $("#InvitationCode").html(data[0].userId);
-        debugger;
+
         $("#hd_image").attr("src", data[0].webchatUrl);
         if (data[0].level == 0){
             $("#UserLevel").html("会员");
