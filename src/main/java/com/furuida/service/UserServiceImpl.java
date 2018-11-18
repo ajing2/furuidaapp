@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
     /**
      * log
      */
-    Log log = LogFactory.getLog(NodeServiceImpl.class);
+    Log log = LogFactory.getLog(UserServiceImpl.class);
     @Resource
     UserMapper userMapper;
     @Resource
@@ -176,12 +176,16 @@ public class UserServiceImpl implements UserService {
                 userMapper.insertSelective(user);
                 userInfo.setOpenid(user.getUserId());
             }else{
-                String oldParentId = u.get(0).getParentId();
-                if (!oldParentId.equals(parentId)) {
-                    User uu = new User();
-                    uu.setParentId(parentId);
-                    uu.setUserId(userId);
-                    userMapper.insertSelective(uu);
+                log.error(u.get(0).toString());
+                log.error(parentId);
+                if (u.get(0).getIspayed() != 1 || u.get(0).getLevel() == -1) {
+                    String oldParentId = u.get(0).getParentId();
+                    if (!oldParentId.equals(parentId)) {
+                        User uu = new User();
+                        uu.setParentId(parentId);
+                        uu.setUserId(userId);
+                        userMapper.updateByPrimaryKeySelective(uu);
+                    }
                 }
             }
             userInfo.setOpenid(userId);
