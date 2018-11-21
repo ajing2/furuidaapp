@@ -13,6 +13,7 @@ public interface OrderService {
     public void deleteOrder(Long id);
 
     public List selectOrder(Order order);
+    public List queryAndUser(Order order);
 
     ResultBean pay(String userId, String parentId);
 }

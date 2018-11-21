@@ -98,4 +98,15 @@ public class OrderController {
         }
     }
 
+    @RequestMapping(value = "/query", method = RequestMethod.GET)
+    @ResponseBody
+    private List<Order> queryAndUser(Order order) {
+        try {
+            return orderService.queryAndUser(order);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            return null;
+        }
+    }
+
 }

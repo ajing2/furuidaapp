@@ -8,7 +8,7 @@ function get_order_data() {
     $.ajax({
         type: "GET",
         timeout: 10000, // 超时时间 10 秒
-        url: "/order/select",
+        url: "/order/query",
         xhrFields: {
             withCredentials: true
         },
@@ -39,9 +39,9 @@ function order() {
         var form = layui.form;
         var table = layui.table;
         table.render({
-            elem: '#order',
-            id: 'table',
-            title: '打钱数据表',
+            elem: '#orderTable',
+            id: 'orderTable',
+            title: '发货数据表',
             height: 'full',
             page: true,
             even: true,
@@ -49,11 +49,13 @@ function order() {
             limits: [10, 50, 100, 1000],// 设置每页显示多少条数据
             cols: [[
                 {type: 'checkbox'},
-                {field: 'userId', title: 'UserId', width: 200, sort: true, align: 'center'},
-                {field: 'money', title: '钱数', width: 100, edit: 'text', align: 'center'},
-                {field: 'phone', title: '电话', width: 150, sort: true, align: 'center'},
-                {field: 'state', title: '状态', width: 150, sort: true, templet: '.state', align: 'center'},
-                // {fixed: 'right', title: '操作', toolbar: '#barDemo', width: 150}
+                {field: 'userId', title: 'UserId', width: 100, edit: 'text', align: 'center'},
+                {field: 'payPrice', title: '购买价格', width: 150, sort: true, align: 'center'},
+                {field: 'ispayed', title: '是否支付', width: 150, sort: true, align: 'center'},
+                {field: 'receiveName', title: '收货名字', width: 150, sort: true, align: 'center'},
+                {field: 'phone', title: '联系电话', width: 150, sort: true, align: 'center'},
+                {field: 'receiveAddr', title: '收货地址', width: 150, sort: true, align: 'center'},
+                {field: 'shipNum', title: '快递单号', width: 150, sort: true, align: 'center'},
             ]],
             data: data,
 

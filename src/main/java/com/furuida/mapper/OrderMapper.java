@@ -18,6 +18,7 @@ public interface OrderMapper {
     int insertSelective(@Param("order") Order record);
 
     List<Order> selectByExample(OrderExample example);
+    List<Order> queryAndUser(@Param("order") Order order);
 
     Order selectByPrimaryKey(Long id);
 

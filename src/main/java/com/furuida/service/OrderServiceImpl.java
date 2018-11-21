@@ -69,6 +69,10 @@ public class OrderServiceImpl implements OrderService {
         return orderMapper.selectByExample(orderExample);
     }
 
+    @Override
+    public List queryAndUser(Order order){
+        return orderMapper.queryAndUser(order);
+    }
 
     @Override
     public void updateOrder(Order order) {

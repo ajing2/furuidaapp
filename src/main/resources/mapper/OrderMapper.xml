@@ -16,6 +16,35 @@
     <result column="create_time" jdbcType="VARCHAR" property="createTime" />
     <result column="update_time" jdbcType="VARCHAR" property="updateTime" />
   </resultMap>
+
+
+  <resultMap id="BaseResultAndUserMap" type="com.furuida.model.Order">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="order_num" jdbcType="VARCHAR" property="orderNum" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="pay_price" jdbcType="INTEGER" property="payPrice" />
+    <result column="is_pay" jdbcType="BIT" property="isPay" />
+    <result column="pay_time" jdbcType="VARCHAR" property="payTime" />
+    <result column="is_ship" jdbcType="BIT" property="isShip" />
+    <result column="ship_time" jdbcType="VARCHAR" property="shipTime" />
+    <result column="is_receipt" jdbcType="BIT" property="isReceipt" />
+    <result column="receipt_time" jdbcType="VARCHAR" property="receiptTime" />
+    <result column="ship_num" jdbcType="VARCHAR" property="shipNum" />
+    <result column="create_time" jdbcType="VARCHAR" property="createTime" />
+    <result column="update_time" jdbcType="VARCHAR" property="updateTime" />
+
+    <result column="webchat" jdbcType="VARCHAR" property="webchat" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="receive_name" jdbcType="VARCHAR" property="receiveName" />
+    <result column="receive_addr" jdbcType="VARCHAR" property="receiveAddr" />
+    <result column="parent_id" jdbcType="VARCHAR" property="parentId" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="webchat_url" jdbcType="VARCHAR" property="webchatUrl" />
+    <result column="webchat_name" jdbcType="VARCHAR" property="webchatName" />
+    <result column="is_payed" jdbcType="INTEGER" property="ispayed" />
+  </resultMap>
+
+
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -93,6 +122,14 @@
       order by ${orderByClause}
     </if>
   </select>
+
+  <select id="queryAndUser" parameterType="com.furuida.model.Order" resultMap="BaseResultAndUserMap">
+    select
+    *
+    from t_order, t_user
+    where t_order.user_id = t_user.user_id and t_user.level>0 and t_user.is_payed = 1
+  </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
