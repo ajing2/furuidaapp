@@ -15,7 +15,7 @@ public class MyConfig extends WXPayConfig {
     private byte[] certData;
 
     public MyConfig() throws Exception {
-        String certPath = "D:\\apiclient_cert.p12";
+        String certPath = "/usr/local/tomcat8/apache-tomcat-8.5.32/lib/apiclient_cert.p12";
         File file = new File(certPath);
         InputStream certStream = new FileInputStream(file);
         this.certData = new byte[(int) file.length()];

@@ -110,8 +110,8 @@ function get_userinfo(code, parentId) {
         },
         success: function (callback) {
             if (callback.code == 0) {
-
-                localStorage.setItem("userId", callback.data.openid);
+                localStorage.setItem("openid", callback.data.openid);
+                localStorage.setItem("userId", callback.data.userid);
             }
         },
         error: function (err) {

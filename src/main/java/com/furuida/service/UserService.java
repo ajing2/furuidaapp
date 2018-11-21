@@ -3,6 +3,7 @@ package com.furuida.service;
 import com.furuida.model.ResultBean;
 import com.furuida.model.User;
 import com.furuida.model.UserInfo;
+import com.furuida.model.UserInfoReturn;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -21,8 +22,9 @@ public interface UserService {
     public List selectUser(User user);
 
     Map<String, String> getToken(HttpSession session, String code);
-    UserInfo getUserInfo(HttpSession session, String code, String parentId);
+    UserInfoReturn getUserInfo(HttpSession session, String code, String parentId);
     public User selectByUserId(String userId);
+    public User selectByopenId(String openId);
     public Boolean getChildrenInfo(String parentId);
 
 
