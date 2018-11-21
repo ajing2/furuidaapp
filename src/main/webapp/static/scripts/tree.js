@@ -16,6 +16,7 @@
 
 function tree() {
     $("#tree").show();
+    $("#order").hide();
     $("#table").hide();
 
     var zTreeObj;

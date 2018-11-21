@@ -89,7 +89,7 @@ public class OrderController {
 
     @RequestMapping(value = "/select", method = RequestMethod.GET)
     @ResponseBody
-    private List<Order> selectOrder(@RequestBody Order order) {
+    private List<Order> selectOrder(Order order) {
         try {
             return orderService.selectOrder(order);
         } catch (Exception e) {

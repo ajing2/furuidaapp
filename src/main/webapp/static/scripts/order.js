@@ -1,13 +1,14 @@
 $(document).ready(function(){
-    table();
+    order();
 });
 
-function get_cash_data() {
+
+function get_order_data() {
     var result;
     $.ajax({
         type: "GET",
         timeout: 10000, // 超时时间 10 秒
-        url: "/cashHistory/select",
+        url: "/order/select",
         xhrFields: {
             withCredentials: true
         },
@@ -27,12 +28,12 @@ function get_cash_data() {
     })
     return result;
 }
-
-function table() {
-    $("#table").show();
+function order() {
+    $("#table").hide();
     $("#tree").hide();
-    $("#order").hide();
-    var data = get_cash_data();
+    $("#order").show();
+
+    var data = get_order_data();
     layui.use('table', function () {
         var form = layui.form;
         var table = layui.table;
@@ -74,28 +75,5 @@ function table() {
         });
 
 
-    });
-
-
-
-}
-
-
-function updateCashHistory(data) {
-    $.ajax({
-        url : "/cashHistory/update",
-        type : "POST",
-        data: JSON.stringify(data),
-        dataType: 'json',
-        async:false,
-        contentType : 'application/json;charset=UTF-8', //contentType很重要
-        success : function(result) {
-
-            // alert("保存成功!")
-
-        },
-        error: function (result) {
-
-        }
     });
 }

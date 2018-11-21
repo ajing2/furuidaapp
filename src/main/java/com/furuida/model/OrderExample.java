@@ -434,52 +434,52 @@ public class OrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andPayTimeEqualTo(Integer value) {
+        public Criteria andPayTimeEqualTo(String value) {
             addCriterion("pay_time =", value, "payTime");
             return (Criteria) this;
         }
 
-        public Criteria andPayTimeNotEqualTo(Integer value) {
+        public Criteria andPayTimeNotEqualTo(String value) {
             addCriterion("pay_time <>", value, "payTime");
             return (Criteria) this;
         }
 
-        public Criteria andPayTimeGreaterThan(Integer value) {
+        public Criteria andPayTimeGreaterThan(String value) {
             addCriterion("pay_time >", value, "payTime");
             return (Criteria) this;
         }
 
-        public Criteria andPayTimeGreaterThanOrEqualTo(Integer value) {
+        public Criteria andPayTimeGreaterThanOrEqualTo(String value) {
             addCriterion("pay_time >=", value, "payTime");
             return (Criteria) this;
         }
 
-        public Criteria andPayTimeLessThan(Integer value) {
+        public Criteria andPayTimeLessThan(String value) {
             addCriterion("pay_time <", value, "payTime");
             return (Criteria) this;
         }
 
-        public Criteria andPayTimeLessThanOrEqualTo(Integer value) {
+        public Criteria andPayTimeLessThanOrEqualTo(String value) {
             addCriterion("pay_time <=", value, "payTime");
             return (Criteria) this;
         }
 
-        public Criteria andPayTimeIn(List<Integer> values) {
+        public Criteria andPayTimeIn(List<String> values) {
             addCriterion("pay_time in", values, "payTime");
             return (Criteria) this;
         }
 
-        public Criteria andPayTimeNotIn(List<Integer> values) {
+        public Criteria andPayTimeNotIn(List<String> values) {
             addCriterion("pay_time not in", values, "payTime");
             return (Criteria) this;
         }
 
-        public Criteria andPayTimeBetween(Integer value1, Integer value2) {
+        public Criteria andPayTimeBetween(String value1, String value2) {
             addCriterion("pay_time between", value1, value2, "payTime");
             return (Criteria) this;
         }
 
-        public Criteria andPayTimeNotBetween(Integer value1, Integer value2) {
+        public Criteria andPayTimeNotBetween(String value1, String value2) {
             addCriterion("pay_time not between", value1, value2, "payTime");
             return (Criteria) this;
         }
@@ -554,52 +554,52 @@ public class OrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andShipTimeEqualTo(Integer value) {
+        public Criteria andShipTimeEqualTo(String value) {
             addCriterion("ship_time =", value, "shipTime");
             return (Criteria) this;
         }
 
-        public Criteria andShipTimeNotEqualTo(Integer value) {
+        public Criteria andShipTimeNotEqualTo(String value) {
             addCriterion("ship_time <>", value, "shipTime");
             return (Criteria) this;
         }
 
-        public Criteria andShipTimeGreaterThan(Integer value) {
+        public Criteria andShipTimeGreaterThan(String value) {
             addCriterion("ship_time >", value, "shipTime");
             return (Criteria) this;
         }
 
-        public Criteria andShipTimeGreaterThanOrEqualTo(Integer value) {
+        public Criteria andShipTimeGreaterThanOrEqualTo(String value) {
             addCriterion("ship_time >=", value, "shipTime");
             return (Criteria) this;
         }
 
-        public Criteria andShipTimeLessThan(Integer value) {
+        public Criteria andShipTimeLessThan(String value) {
             addCriterion("ship_time <", value, "shipTime");
             return (Criteria) this;
         }
 
-        public Criteria andShipTimeLessThanOrEqualTo(Integer value) {
+        public Criteria andShipTimeLessThanOrEqualTo(String value) {
             addCriterion("ship_time <=", value, "shipTime");
             return (Criteria) this;
         }
 
-        public Criteria andShipTimeIn(List<Integer> values) {
+        public Criteria andShipTimeIn(List<String> values) {
             addCriterion("ship_time in", values, "shipTime");
             return (Criteria) this;
         }
 
-        public Criteria andShipTimeNotIn(List<Integer> values) {
+        public Criteria andShipTimeNotIn(List<String> values) {
             addCriterion("ship_time not in", values, "shipTime");
             return (Criteria) this;
         }
 
-        public Criteria andShipTimeBetween(Integer value1, Integer value2) {
+        public Criteria andShipTimeBetween(String value1, String value2) {
             addCriterion("ship_time between", value1, value2, "shipTime");
             return (Criteria) this;
         }
 
-        public Criteria andShipTimeNotBetween(Integer value1, Integer value2) {
+        public Criteria andShipTimeNotBetween(String value1, String value2) {
             addCriterion("ship_time not between", value1, value2, "shipTime");
             return (Criteria) this;
         }
@@ -674,52 +674,52 @@ public class OrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andReceiptTimeEqualTo(Integer value) {
+        public Criteria andReceiptTimeEqualTo(String value) {
             addCriterion("receipt_time =", value, "receiptTime");
             return (Criteria) this;
         }
 
-        public Criteria andReceiptTimeNotEqualTo(Integer value) {
+        public Criteria andReceiptTimeNotEqualTo(String value) {
             addCriterion("receipt_time <>", value, "receiptTime");
             return (Criteria) this;
         }
 
-        public Criteria andReceiptTimeGreaterThan(Integer value) {
+        public Criteria andReceiptTimeGreaterThan(String value) {
             addCriterion("receipt_time >", value, "receiptTime");
             return (Criteria) this;
         }
 
-        public Criteria andReceiptTimeGreaterThanOrEqualTo(Integer value) {
+        public Criteria andReceiptTimeGreaterThanOrEqualTo(String value) {
             addCriterion("receipt_time >=", value, "receiptTime");
             return (Criteria) this;
         }
 
-        public Criteria andReceiptTimeLessThan(Integer value) {
+        public Criteria andReceiptTimeLessThan(String value) {
             addCriterion("receipt_time <", value, "receiptTime");
             return (Criteria) this;
         }
 
-        public Criteria andReceiptTimeLessThanOrEqualTo(Integer value) {
+        public Criteria andReceiptTimeLessThanOrEqualTo(String value) {
             addCriterion("receipt_time <=", value, "receiptTime");
             return (Criteria) this;
         }
 
-        public Criteria andReceiptTimeIn(List<Integer> values) {
+        public Criteria andReceiptTimeIn(List<String> values) {
             addCriterion("receipt_time in", values, "receiptTime");
             return (Criteria) this;
         }
 
-        public Criteria andReceiptTimeNotIn(List<Integer> values) {
+        public Criteria andReceiptTimeNotIn(List<String> values) {
             addCriterion("receipt_time not in", values, "receiptTime");
             return (Criteria) this;
         }
 
-        public Criteria andReceiptTimeBetween(Integer value1, Integer value2) {
+        public Criteria andReceiptTimeBetween(String value1, String value2) {
             addCriterion("receipt_time between", value1, value2, "receiptTime");
             return (Criteria) this;
         }
 
-        public Criteria andReceiptTimeNotBetween(Integer value1, Integer value2) {
+        public Criteria andReceiptTimeNotBetween(String value1, String value2) {
             addCriterion("receipt_time not between", value1, value2, "receiptTime");
             return (Criteria) this;
         }
@@ -804,52 +804,52 @@ public class OrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeEqualTo(Integer value) {
+        public Criteria andCreateTimeEqualTo(String value) {
             addCriterion("create_time =", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotEqualTo(Integer value) {
+        public Criteria andCreateTimeNotEqualTo(String value) {
             addCriterion("create_time <>", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeGreaterThan(Integer value) {
+        public Criteria andCreateTimeGreaterThan(String value) {
             addCriterion("create_time >", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeGreaterThanOrEqualTo(Integer value) {
+        public Criteria andCreateTimeGreaterThanOrEqualTo(String value) {
             addCriterion("create_time >=", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeLessThan(Integer value) {
+        public Criteria andCreateTimeLessThan(String value) {
             addCriterion("create_time <", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeLessThanOrEqualTo(Integer value) {
+        public Criteria andCreateTimeLessThanOrEqualTo(String value) {
             addCriterion("create_time <=", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeIn(List<Integer> values) {
+        public Criteria andCreateTimeIn(List<String> values) {
             addCriterion("create_time in", values, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotIn(List<Integer> values) {
+        public Criteria andCreateTimeNotIn(List<String> values) {
             addCriterion("create_time not in", values, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeBetween(Integer value1, Integer value2) {
+        public Criteria andCreateTimeBetween(String value1, String value2) {
             addCriterion("create_time between", value1, value2, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotBetween(Integer value1, Integer value2) {
+        public Criteria andCreateTimeNotBetween(String value1, String value2) {
             addCriterion("create_time not between", value1, value2, "createTime");
             return (Criteria) this;
         }
@@ -864,52 +864,52 @@ public class OrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeEqualTo(Integer value) {
+        public Criteria andUpdateTimeEqualTo(String value) {
             addCriterion("update_time =", value, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeNotEqualTo(Integer value) {
+        public Criteria andUpdateTimeNotEqualTo(String value) {
             addCriterion("update_time <>", value, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeGreaterThan(Integer value) {
+        public Criteria andUpdateTimeGreaterThan(String value) {
             addCriterion("update_time >", value, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeGreaterThanOrEqualTo(Integer value) {
+        public Criteria andUpdateTimeGreaterThanOrEqualTo(String value) {
             addCriterion("update_time >=", value, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeLessThan(Integer value) {
+        public Criteria andUpdateTimeLessThan(String value) {
             addCriterion("update_time <", value, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeLessThanOrEqualTo(Integer value) {
+        public Criteria andUpdateTimeLessThanOrEqualTo(String value) {
             addCriterion("update_time <=", value, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeIn(List<Integer> values) {
+        public Criteria andUpdateTimeIn(List<String> values) {
             addCriterion("update_time in", values, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeNotIn(List<Integer> values) {
+        public Criteria andUpdateTimeNotIn(List<String> values) {
             addCriterion("update_time not in", values, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeBetween(Integer value1, Integer value2) {
+        public Criteria andUpdateTimeBetween(String value1, String value2) {
             addCriterion("update_time between", value1, value2, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeNotBetween(Integer value1, Integer value2) {
+        public Criteria andUpdateTimeNotBetween(String value1, String value2) {
             addCriterion("update_time not between", value1, value2, "updateTime");
             return (Criteria) this;
         }

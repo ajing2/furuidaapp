@@ -59,10 +59,9 @@
         <div class="layui-side-scroll">
             <ul class="layui-nav layui-nav-tree" id="index-nav" lay-filter="index-nav" style="margin-top: 25px;">
                 <li class="layui-nav-item">
-                    <a class="" href="javascript:tree();"><i
-                            class="layui-icon">&#xe770;</i>&emsp;<span>关系树</span></a>
-                    <a class="" href="javascript:table();"><i
-                            class="layui-icon">&#xe65e;</i>&emsp;<span>打钱列表</span></a>
+                    <a class="" href="javascript:tree();"><i class="layui-icon">&#xe770;</i>&emsp;<span>关系树</span></a>
+                    <a class="" href="javascript:table();"><i class="layui-icon">&#xe65e;</i>&emsp;<span>打钱列表</span></a>
+                    <a class="" href="javascript:order();"><i class="layui-icon">&#xe65e;</i>&emsp;<span>订单列表</span></a>
                 </li>
             </ul>
         </div>
@@ -73,7 +72,64 @@
             <ul id="tree" class="ztree"></ul>
         </div>
         <div id="table">
+            <form class="layui-form layui-inline">
+
+                <div class="layui-inline layui-col-md5">
+                    <label class="" >搜索：</label>
+                    <div class="layui-inline ">
+                        <input class="layui-input" name="resourceNameSearch" id="tableSearch"
+                               autocomplete="off" ， placeholder="useId">
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-col-md2">状态: </label>
+                    <div class="layui-input-inline" >
+                        <select name="level" lay-filter="level" id="tableStatue">
+                            <option value="0">未打钱</option>
+                            <option value="1">已打钱</option>
+                            <option value="">所有</option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline set-fon-size layui-col-md1">
+                    <button class="layui-btn search-btn" data-type="reload" id="alarmHistorySubmit">
+                        <i class="layui-icon"></i>
+                        <span langkey="search">查询</span>
+                    </button>
+                </div>
+            </form>
             <table class="layui-hide" id="test" lay-filter="test"></table>
+        </div>
+        <div id="order">
+            <form class="layui-form layui-inline">
+
+                <div class="layui-inline layui-col-md5">
+                    <label class="" >搜索：</label>
+                    <div class="layui-inline ">
+                        <input class="layui-input" name="resourceNameSearch" id="orderSearch"
+                               autocomplete="off" ， placeholder="useId">
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-col-md2">状态: </label>
+                    <div class="layui-input-inline" >
+                        <select name="level" lay-filter="level" id="orderStatue">
+                            <option value="0">未发货</option>
+                            <option value="1">已发货</option>
+                            <option value="">所有</option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline set-fon-size layui-col-md1">
+                    <button class="layui-btn search-btn" data-type="reload" id="orderSubmit">
+                        <i class="layui-icon"></i>
+                        <span langkey="search">查询</span>
+                    </button>
+                </div>
+            </form>
+            <table class="layui-hide" id="orderTable" lay-filter="orderTable"></table>
         </div>
     </div>
     <!-- 底部 -->
@@ -86,6 +142,7 @@
 
 <script type="text/javascript" src="/static/scripts/tree.js"></script>
 <script type="text/javascript" src="/static/scripts/table.js"></script>
+<script type="text/javascript" src="/static/scripts/order.js"></script>
 
 <!--<script type="text/html" id="barDemo">-->
     <!--<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">确认</a>-->

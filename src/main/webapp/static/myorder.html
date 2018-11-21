@@ -22,28 +22,7 @@
     <script type="text/javascript" src="/static/js/user.js?v=v1"></script>
     <script src="/static/js/layer.js"></script>
     <script type="text/javascript" src="/static/js/jweixin-1.0.0.js"></script>
-    <script type="text/javascript">
-        /*function onBridgeReady(){
-         WeixinJSBridge.call('hideOptionMenu');
-         wx.hideAllNonBaseMenuItem();
-        }
-        
-        if (typeof WeixinJSBridge == "undefined"){
-            if( document.addEventListener ){
-                document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
-            }else if (document.attachEvent){
-                document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
-                document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
-            }
-        }else{
-            onBridgeReady();
-        }
-        document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
-        
-        WeixinJSBridge.call('hideOptionMenu');
-        
-        });*/
-    </script>
+
 </head>
 <body>
 <link type="text/css" rel="stylesheet" href="/static/tpl/31/css.css" media="all" />
@@ -68,27 +47,7 @@
     }
 </script>
 <style type="text/css">
-    .pw,.pwt{
-        height:26px; line-height:26px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        background-color: #fff; padding-left:5px; padding-right:5px;
-        -moz-border-radius:5px;/*仅Firefox支持，实现圆角效果*/
-        -webkit-border-radius:5px;/*仅Safari,Chrome支持，实现圆角效果*/
-        -khtml-border-radius:5px;/*仅Safari,Chrome支持，实现圆角效果*/
-        border-radius:5px;/*仅Opera，Safari,Chrome支持，实现圆角效果*/
-    }
-    .pw{ width:90%;}
-    .usertitle{
-        height:22px; line-height:22px;color:#666; font-weight:bold; font-size:14px; padding:5px;
-        border-radius: 5px;
-        background-color: #ededed; padding-left:5px; padding-right:5px;
-        -moz-border-radius:5px;/*仅Firefox支持，实现圆角效果*/
-        -webkit-border-radius:5px;/*仅Safari,Chrome支持，实现圆角效果*/
-        -khtml-border-radius:5px;/*仅Safari,Chrome支持，实现圆角效果*/
-        border-radius:5px;/*仅Opera，Safari,Chrome支持，实现圆角效果*/
-    }
-    .pages{ margin-top:20px;}
+
     .pages a{ background:#ededed; padding:2px 4px 2px 4px; border-bottom:2px solid #ccc; border-right:2px solid #ccc; margin-right:5px;}
     #main table td{ background:#fafafa}
     #main table td:hover{ background:#efefef}
@@ -98,67 +57,45 @@
     #main table td .orderops a{ line-height:30px; height:33px;display:block; float:left;font-size:12px; width:33.3%; display:block; text-align:center;}
     #main table td .orderops a span{ display:block; border-right:1px solid #ededed;border-left:1px solid #ededed}
     #main table td .orderops a:hover{ background:#fff}
-    .tophear{ height:36px; line-height:36px; background:#FFF}
     .tophear a{ width:50%; display:block; height:34px; float:left; text-align:center}
     .tophear a.acc{ color:#ed6d2a; border-bottom:2px solid #ed6d2a}
 </style>
-<!--<p class="tophear">
-	<a href="/static/user.php?act=orderlist2">流量订单</a>
-	<a href="/static/user.php?act=orderlist" class="acc">商品订单</a>
-</p>-->
+
 <div id="main" style="min-height:300px">
     <table  width="100%" border="0" cellpadding="0" cellspacing="0" style="line-height:25px;overflow:hidden">
 
 
-        <tr>
-            <td style="border-bottom:1px solid #E0E0E0; padding-top:5px;">
-                <!--<p style="color:#5286B7; padding-left:5px; padding-right:5px;">商品名称:<font color="#60ACDC">福瑞达洗眼液(汽油版 / 一盒20瓶+2瓶)</font></p>-->
-                <p style="color:#5286B7; padding-left:5px; padding-right:5px;">订单号码:<font color="#60ACDC">96572920181540568488</font></p>
-                <p style="color:#5286B7; padding-left:5px; padding-right:5px;">订单金额:<font color="#FF0000">398.00元</font></p>
-                <p style="color:#5286B7; padding-left:5px; padding-right:5px;">下单时间:<font color="#60ACDC">2018-10-26 23:41:28</font></p>
-                <p style="color:#5286B7; padding-left:5px; padding-right:5px;">订单状态:<font color="#60ACDC">未确认,未付款,未发货</font></p>
-                <!--  -->
-                <p style="color:#5286B7; padding-left:5px; padding-right:5px; height:30px;"><a href="/static/user.php?act=orderinfo2014&order_id=301211">查看详情</a></p>
-                <div class="orderops">
-                    <!-- <a href="/static/mycart.php?type=fastpay2&oid=301211"><span>立即支付</span></a><a href="/static/mycart.php?type=pay2&oid=301211">找人代付</a> -->
-                    <div class="clear"></div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td style="border-bottom:1px solid #E0E0E0; padding-top:5px;">
-                <!--<p style="color:#5286B7; padding-left:5px; padding-right:5px;">商品名称:<font color="#60ACDC">福瑞达洗眼液(汽油版 / 一盒20瓶+2瓶)</font></p>-->
-                <p style="color:#5286B7; padding-left:5px; padding-right:5px;">订单号码:<font color="#60ACDC">96572920181540395244</font></p>
-                <p style="color:#5286B7; padding-left:5px; padding-right:5px;">订单金额:<font color="#FF0000">398.00元</font></p>
-                <p style="color:#5286B7; padding-left:5px; padding-right:5px;">下单时间:<font color="#60ACDC">2018-10-24 23:34:04</font></p>
-                <p style="color:#5286B7; padding-left:5px; padding-right:5px;">订单状态:<font color="#60ACDC">未确认,未付款,未发货</font></p>
-                <!--  -->
-                <p style="color:#5286B7; padding-left:5px; padding-right:5px; height:30px;"><a href="/static/user.php?act=orderinfo2014&order_id=295183">查看详情</a></p>
-                <div class="orderops">
-                    <!-- <a href="/static/mycart.php?type=fastpay2&oid=295183"><span>立即支付</span></a><a href="/static/mycart.php?type=pay2&oid=295183">找人代付</a> -->
-                    <div class="clear"></div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td style="border-bottom:1px solid #E0E0E0; padding-top:5px;">
-                <!--<p style="color:#5286B7; padding-left:5px; padding-right:5px;">商品名称:<font color="#60ACDC">福瑞达洗眼液(汽油版 / 一盒20瓶+2瓶)</font></p>-->
-                <p style="color:#5286B7; padding-left:5px; padding-right:5px;">订单号码:<font color="#60ACDC">96572920181540395089</font></p>
-                <p style="color:#5286B7; padding-left:5px; padding-right:5px;">订单金额:<font color="#FF0000">398.00元</font></p>
-                <p style="color:#5286B7; padding-left:5px; padding-right:5px;">下单时间:<font color="#60ACDC">2018-10-24 23:31:30</font></p>
-                <p style="color:#5286B7; padding-left:5px; padding-right:5px;">订单状态:<font color="#60ACDC">未确认,未付款,未发货</font></p>
-                <!--  -->
-                <p style="color:#5286B7; padding-left:5px; padding-right:5px; height:30px;"><a href="/static/user.php?act=orderinfo2014&order_id=295180">查看详情</a></p>
-                <div class="orderops">
-                    <!-- <a href="/static/mycart.php?type=fastpay2&oid=295180"><span>立即支付</span></a><a href="/static/mycart.php?type=pay2&oid=295180">找人代付</a> -->
-                    <div class="clear"></div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align:left; padding-bottom:20px;" class="pagesmoney">
-            </td>
-        </tr>
+        <!--<tr>-->
+            <!--<td style="border-bottom:1px solid #E0E0E0; padding-top:5px;">-->
+                <!--&lt;!&ndash;<p style="color:#5286B7; padding-left:5px; padding-right:5px;">商品名称:<font color="#60ACDC">福瑞达洗眼液(汽油版 / 一盒20瓶+2瓶)</font></p>&ndash;&gt;-->
+                <!--<p style="color:#5286B7; padding-left:5px; padding-right:5px;">订单号码:<font color="#60ACDC">96572920181540568488</font></p>-->
+                <!--<p style="color:#5286B7; padding-left:5px; padding-right:5px;">订单金额:<font color="#FF0000">398.00元</font></p>-->
+                <!--<p style="color:#5286B7; padding-left:5px; padding-right:5px;">下单时间:<font color="#60ACDC">2018-10-26 23:41:28</font></p>-->
+                <!--<p style="color:#5286B7; padding-left:5px; padding-right:5px;">订单状态:<font color="#60ACDC">未确认,未付款,未发货</font></p>-->
+                <!--&lt;!&ndash;  &ndash;&gt;-->
+                <!--<p style="color:#5286B7; padding-left:5px; padding-right:5px; height:30px;"><a href="/static/user.php?act=orderinfo2014&order_id=301211">查看详情</a></p>-->
+                <!--<div class="orderops">-->
+                    <!--&lt;!&ndash; <a href="/static/mycart.php?type=fastpay2&oid=301211"><span>立即支付</span></a><a href="/static/mycart.php?type=pay2&oid=301211">找人代付</a> &ndash;&gt;-->
+                    <!--<div class="clear"></div>-->
+                <!--</div>-->
+            <!--</td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<td style="border-bottom:1px solid #E0E0E0; padding-top:5px;">-->
+                <!--&lt;!&ndash;<p style="color:#5286B7; padding-left:5px; padding-right:5px;">商品名称:<font color="#60ACDC">福瑞达洗眼液(汽油版 / 一盒20瓶+2瓶)</font></p>&ndash;&gt;-->
+                <!--<p style="color:#5286B7; padding-left:5px; padding-right:5px;">订单号码:<font color="#60ACDC">96572920181540395244</font></p>-->
+                <!--<p style="color:#5286B7; padding-left:5px; padding-right:5px;">订单金额:<font color="#FF0000">398.00元</font></p>-->
+                <!--<p style="color:#5286B7; padding-left:5px; padding-right:5px;">下单时间:<font color="#60ACDC">2018-10-24 23:34:04</font></p>-->
+                <!--<p style="color:#5286B7; padding-left:5px; padding-right:5px;">订单状态:<font color="#60ACDC">未确认,未付款,未发货</font></p>-->
+                <!--&lt;!&ndash;  &ndash;&gt;-->
+                <!--&lt;!&ndash;<p style="color:#5286B7; padding-left:5px; padding-right:5px; height:30px;"><a href="/static/user.php?act=orderinfo2014&order_id=295183">查看详情</a></p>&ndash;&gt;-->
+                <!--<div class="orderops">-->
+                    <!--&lt;!&ndash; <a href="/static/mycart.php?type=fastpay2&oid=295183"><span>立即支付</span></a><a href="/static/mycart.php?type=pay2&oid=295183">找人代付</a> &ndash;&gt;-->
+                    <!--<div class="clear"></div>-->
+                <!--</div>-->
+            <!--</td>-->
+        <!--</tr>-->
+
     </table>
 
 </div>
