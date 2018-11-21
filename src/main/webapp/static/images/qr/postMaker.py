@@ -24,7 +24,7 @@ class postMaker(object):
 		try:
 			backImg = Image.open(self.backImg)
 			# userIcon = Image.open(userIcon)
-			font = ImageFont.truetype(self.font, 16)
+			font = ImageFont.truetype(self.font, 45)
 
 
 			# userIcon.thumbnail((88,88))
@@ -33,11 +33,11 @@ class postMaker(object):
 			draw = ImageDraw.Draw(backImg)
 			draw.ink = textColor.get('R',0) + textColor.get('G',0) * 256 + textColor.get('B',0)*256*256
 			textWidth,textHeight = font.getsize(userName)
-			draw.text([220-textWidth/2, 340], userName, font=font)
+			draw.text([530-textWidth/2, 850], userName, font=font)
 
 			qrImg = Image.open(qrImg)
-			qrImg.thumbnail((160,160))
-			backImg.paste(qrImg,(140,180))
+			qrImg.thumbnail((450,450))
+			backImg.paste(qrImg,(310,400))
 
 			self.post = backImg
 			backImg.save("images/" + userId + ".jpg", "jpeg")
@@ -46,7 +46,7 @@ class postMaker(object):
 
 def main(userId):
 	# 得到二维码
-	qrUrl = "http://api.k780.com:88/?app=qr.get&data=http://www.yitaonet.cn/static/login.html?parent_id=" + userId + "&level=L&size=8";
+	qrUrl = "http://api.k780.com:88/?app=qr.get&data=http://www.yitaonet.cn/static/login.html?parent_id=" + userId + "&level=L&size=20";
 	# print(qrUrl)
 	r = requests.get(qrUrl);
 	os.chdir("/usr/local/tomcat8/apache-tomcat-8.5.32/webapps/furuida-app/static/images/qr/");
