@@ -1,11 +1,13 @@
 package com.furuida.controller;
 
+import com.furuida.model.User;
 import com.furuida.service.OrderService;
 import com.furuida.service.UserService;
 import com.furuida.service.pay.wx.sdk.MyConfig;
 import com.furuida.service.pay.wx.sdk.WXPay;
 import com.furuida.service.pay.wx.sdk.WXPayConstants;
 import com.furuida.service.pay.wx.sdk.WXPayUtil;
+import com.furuida.utils.ExecCommand;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
@@ -98,48 +100,40 @@ public class WXPayController {
             is = request.getInputStream();//获取请求的流信息(这里是微信发的xml格式所有只能使用流来读)
             String xml = WXPayUtil.inputStream2String(is);
             Map<String, String> notifyMap = WXPayUtil.xmlToMap(xml);//将微信发的xml转map
-
-            if(notifyMap.get("return_code").equals("SUCCESS")){
-                if(notifyMap.get("result_code").equals("SUCCESS")){
-                    String ordersSn = notifyMap.get("out_trade_no");//商户订单号
-                    String amountpaid = notifyMap.get("total_fee");//实际支付的订单金额:单位 分
-                    BigDecimal amountPay = (new BigDecimal(amountpaid).divide(new BigDecimal("100"))).setScale(2);//将分转换成元-实际支付金额:元
-                    //String openid = notifyMap.get("openid");  //如果有需要可以获取
+            if(notifyMap.get("return_code").equals("SUCCESS") && notifyMap.get("result_code").equals("SUCCESS")){
+//                    String ordersSn = notifyMap.get("out_trade_no");//商户订单号
+//                    String amountpaid = notifyMap.get("total_fee");//实际支付的订单金额:单位 分
+//                    BigDecimal amountPay = (new BigDecimal(amountpaid).divide(new BigDecimal("100"))).setScale(2);//将分转换成元-实际支付金额:元
+                    String openid = notifyMap.get("openid");  //如果有需要可以获取
                     //String trade_type = notifyMap.get("trade_type");
+                    log.info("=================回调了:" + notifyMap);
+                    //以下是自己的业务处理-----
+                    User user = userService.selectByopenId(openid);
+                    if (null != user) {
+                        /**
+                         * 更新user对应字段/level/ispayed
+                         */
+                        user.setLevel(0);
+                        user.setIspayed(1);
+                        userService.updateUser(user);
+                        String uid = String.valueOf(openid.hashCode()).replace("-", "");
+                        String parentId = user.getParentId();
+                        //打钱升级逻辑
+                        orderService.pay(uid, parentId);
+                        //TODO 更新订单信息
 
-                    /*以下是自己的业务处理------仅做参考
-                     * 更新order对应字段/已支付金额/状态码
-                     */
-                    /*Orders order = ordersService.selectOrdersBySn(ordersSn);
-                    if(order != null) {
-                        order.setLastmodifieddate(new Date());
-                        order.setVersion(order.getVersion().add(BigDecimal.ONE));
-                        order.setAmountpaid(amountPay);//已支付金额
-                        order.setStatus(2L);//修改订单状态为待发货
-                        int num = ordersService.updateOrders(order);//更新order
-
-                        String amount = amountPay.setScale(0, BigDecimal.ROUND_FLOOR).toString();//实际支付金额向下取整-123.23--123
-                        *//*
-                         * 更新用户经验值
-                         *//*
-                        Member member = accountService.findObjectById(order.getMemberId());
-                        accountService.updateMemberByGrowth(amount, member);
-
-                        *//*
-                         * 添加用户积分数及添加积分记录表记录
-                         *//*
-                        pointService.updateMemberPointAndLog(amount, member, "购买商品,订单号为:"+ordersSn);
-
-                    }*/
-
-                }
+                        //生成推荐码
+                        ExecCommand run = new ExecCommand();
+                        String cmd = "/usr/local/tomcat8/postMaker.sh " + uid;
+                        run.runLocal(cmd);
+                    }
             }
 
             //告诉微信服务器收到信息了，不要在调用回调action了========这里很重要回复微信服务器信息用流发送一个xml即可
             response.getWriter().write("<xml><return_code><![CDATA[SUCCESS]]></return_code></xml>");
             is.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("===回调异常：" + e.getMessage(), e);
         }
         return null;
     }

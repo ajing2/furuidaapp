@@ -6,6 +6,7 @@ import com.furuida.model.*;
 import com.furuida.utils.ExecCommand;
 import com.furuida.utils.WeChatAccessToken;
 import com.furuida.utils.WeChatUtils;
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -131,9 +133,10 @@ public class UserServiceImpl implements UserService {
         return null;
     }
     @Override
-    public UserInfo getUserInfo(HttpSession session, String code, String parentId) {
+    public UserInfoReturn getUserInfo(HttpSession session, String code, String parentId) {
 //        String token = getSessionToken(session);
 //        String openid = getSessionOpenId(session);
+        UserInfoReturn userInfoReturn = new UserInfoReturn();
         String token = null;
         String openid = null;
         UserInfo userInfo = null;
@@ -157,9 +160,18 @@ public class UserServiceImpl implements UserService {
             userInfo = WeChatUtils.getWXUserInfoUrl(openid, token);
         }
         if (null != userInfo){
+            try {
+                BeanUtils.copyProperties(userInfoReturn, userInfo);
+            } catch (IllegalAccessException e1) {
+
+            } catch (InvocationTargetException e2) {
+
+            }
+            userInfoReturn.setOpenid(userInfo.getOpenid());
             User us = new User();
             us.setWebchat(userInfo.getOpenid());
             String userId = String.valueOf(userInfo.getOpenid().hashCode()).replace("-", "");
+            userInfoReturn.setUserid(userId);
             List<User> u = selectUser(us);
             if (null == u || u.size()==0){
                 User user = new User();
@@ -174,7 +186,6 @@ public class UserServiceImpl implements UserService {
                 user.setWebchatUrl(userInfo.getHeadimgurl());
                 user.setWebchat(userInfo.getOpenid());
                 userMapper.insertSelective(user);
-                userInfo.setOpenid(user.getUserId());
             }else{
 //                log.error(u.get(0).toString());
 //                log.error(parentId);
@@ -188,15 +199,18 @@ public class UserServiceImpl implements UserService {
                     }
                 }
             }
-            userInfo.setOpenid(userId);
-
         }
-        return userInfo;
+        return userInfoReturn;
     }
 
     @Override
     public User selectByUserId(String userId) {
         return userMapper.selectByUserId(userId);
+    }
+
+    @Override
+    public User selectByopenId(String openId) {
+        return userMapper.selectByOpenId(openId);
     }
 
     private String getSessionOpenId(HttpSession session) {

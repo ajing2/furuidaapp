@@ -106,6 +106,12 @@
     from t_user
     where user_id = #{userId,jdbcType=BIGINT}
   </select>
+  <select id="selectByOpenId" parameterType="String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_user
+    where webchat = #{openId,jdbcType=BIGINT}
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
