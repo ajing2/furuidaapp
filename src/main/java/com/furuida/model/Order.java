@@ -11,21 +11,21 @@ public class Order {
 
     private Boolean isPay;
 
-    private Integer payTime;
+    private String payTime;
 
     private Boolean isShip;
 
-    private Integer shipTime;
+    private String shipTime;
 
     private Boolean isReceipt;
 
-    private Integer receiptTime;
+    private String receiptTime;
 
     private String shipNum;
 
-    private Integer createTime;
+    private String createTime;
 
-    private Integer updateTime;
+    private String updateTime;
 
     public Long getId() {
         return id;
@@ -67,13 +67,7 @@ public class Order {
         this.isPay = isPay;
     }
 
-    public Integer getPayTime() {
-        return payTime;
-    }
 
-    public void setPayTime(Integer payTime) {
-        this.payTime = payTime;
-    }
 
     public Boolean getIsShip() {
         return isShip;
@@ -83,13 +77,6 @@ public class Order {
         this.isShip = isShip;
     }
 
-    public Integer getShipTime() {
-        return shipTime;
-    }
-
-    public void setShipTime(Integer shipTime) {
-        this.shipTime = shipTime;
-    }
 
     public Boolean getIsReceipt() {
         return isReceipt;
@@ -99,13 +86,6 @@ public class Order {
         this.isReceipt = isReceipt;
     }
 
-    public Integer getReceiptTime() {
-        return receiptTime;
-    }
-
-    public void setReceiptTime(Integer receiptTime) {
-        this.receiptTime = receiptTime;
-    }
 
     public String getShipNum() {
         return shipNum;
@@ -115,19 +95,67 @@ public class Order {
         this.shipNum = shipNum == null ? null : shipNum.trim();
     }
 
-    public Integer getCreateTime() {
+    public Boolean getPay() {
+        return isPay;
+    }
+
+    public void setPay(Boolean pay) {
+        isPay = pay;
+    }
+
+    public String getPayTime() {
+        return payTime;
+    }
+
+    public void setPayTime(String payTime) {
+        this.payTime = payTime;
+    }
+
+    public Boolean getShip() {
+        return isShip;
+    }
+
+    public void setShip(Boolean ship) {
+        isShip = ship;
+    }
+
+    public String getShipTime() {
+        return shipTime;
+    }
+
+    public void setShipTime(String shipTime) {
+        this.shipTime = shipTime;
+    }
+
+    public Boolean getReceipt() {
+        return isReceipt;
+    }
+
+    public void setReceipt(Boolean receipt) {
+        isReceipt = receipt;
+    }
+
+    public String getReceiptTime() {
+        return receiptTime;
+    }
+
+    public void setReceiptTime(String receiptTime) {
+        this.receiptTime = receiptTime;
+    }
+
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Integer createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 
-    public Integer getUpdateTime() {
+    public String getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Integer updateTime) {
+    public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime;
     }
 }

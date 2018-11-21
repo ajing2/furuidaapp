@@ -34,11 +34,12 @@ function order() {
     $("#order").show();
 
     var data = get_order_data();
+    debugger;
     layui.use('table', function () {
         var form = layui.form;
         var table = layui.table;
         table.render({
-            elem: '#test',
+            elem: '#order',
             id: 'table',
             title: '打钱数据表',
             height: 'full',

@@ -11,7 +11,7 @@ import java.util.Map;
 public interface UserService {
     public void addUser(User user);
 
-    public void testTrans();
+//    public void testTrans();
     public void updateUser(User user);
 
     public void deleteUser(Long id);

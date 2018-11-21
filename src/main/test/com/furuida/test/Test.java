@@ -65,7 +65,7 @@ public class Test {
     public void testTrans() {
         try {
             System.out.println("====================");
-            userService.testTrans();
+//            userService.testTrans();
         } catch (Exception e) {
             e.printStackTrace();
         }

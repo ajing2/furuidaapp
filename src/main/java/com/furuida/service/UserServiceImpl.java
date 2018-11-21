@@ -50,33 +50,33 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    @Transactional
-    @Override
-    public void testTrans() {
-        try {
-            Order order = new Order();
-            order.setIsPay(true);
-            order.setPayPrice(100);
-//            order.setPayTime((int)new Date().getTime());
-            order.setUserId("111111111111111");
-            order.setCreateTime(1222323);
-            order.setIsReceipt(true);
-            order.setIsShip(true);
-            order.setOrderNum("sa");
-            order.setReceiptTime(232432);
-            order.setShipNum("sas");
-            order.setShipTime(35424);
-            order.setUpdateTime(888888888);
-            order.setPayTime(1);
-            orderMapper.insertSelective(order);
-            order.setUserId("test666666666666");
-//            int a = 1/0;
-            orderMapper.insertSelective(order);
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-            throw new RuntimeException(e);
-        }
-    }
+//    @Transactional
+//    @Override
+//    public void testTrans() {
+//        try {
+//            Order order = new Order();
+//            order.setIsPay(true);
+//            order.setPayPrice(100);
+////            order.setPayTime((int)new Date().getTime());
+//            order.setUserId("111111111111111");
+//            order.setCreateTime(1222323);
+//            order.setIsReceipt(true);
+//            order.setIsShip(true);
+//            order.setOrderNum("sa");
+//            order.setReceiptTime(232432);
+//            order.setShipNum("sas");
+//            order.setShipTime(35424);
+//            order.setUpdateTime(888888888);
+//            order.setPayTime(1);
+//            orderMapper.insertSelective(order);
+//            order.setUserId("test666666666666");
+////            int a = 1/0;
+//            orderMapper.insertSelective(order);
+//        } catch (Exception e) {
+//            log.error(e.getMessage(), e);
+//            throw new RuntimeException(e);
+//        }
+//    }
 
     @Override
     public void deleteUser(Long id) {
