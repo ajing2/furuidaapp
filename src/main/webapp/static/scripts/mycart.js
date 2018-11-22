@@ -99,13 +99,8 @@ function checkvar() {
             return false;
         }
 
-
-
-        updateUser(userId, mobile, consignee, address);
     }
-
-
-
+    updateUser(userId, mobile, consignee, address);
     if (shoppingCartId != ''){
         updateShoppingCart(userId);
     }else{
