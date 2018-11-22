@@ -87,7 +87,7 @@ public class WXPayController {
         String newDate=sdf.format(new Date());
         String result="";
         Random random=new Random();
-        for(int i=0;i<3;i++){
+        for(int i=0;i<6;i++){
             result+=random.nextInt(10);
         }
         return newDate+result;

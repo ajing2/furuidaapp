@@ -16,4 +16,6 @@ public interface OrderService {
     public List queryAndUser(Order order);
 
     ResultBean pay(String userId, String parentId);
+
+    public void addOrderByUser(String openId, String orderNum);
 }

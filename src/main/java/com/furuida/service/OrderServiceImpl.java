@@ -14,7 +14,10 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 /**
  * @program: furuidaapp
@@ -27,6 +30,9 @@ public class OrderServiceImpl implements OrderService {
     Log log = LogFactory.getLog(OrderServiceImpl.class);
     @Resource
     OrderMapper orderMapper;
+
+    @Resource
+    UserService userService;
 
     @Override
     public void addOrder(Order order) {
@@ -101,5 +107,40 @@ public class OrderServiceImpl implements OrderService {
             log.error(e.getMessage(), e);
             return ResultBean.fail("---异常了：" + e.getMessage());
         }
+    }
+
+    @Override
+    public void addOrderByUser(String openId, String orderNum) {
+        String nowTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());//设置日期格式
+        User user = new User();
+        user.setWebchat(openId);
+        List<User> users = userService.selectUser(user);
+        if (users != null && users.size()>0){
+            Order order = new Order();
+            order.setOrderNum(orderNum);
+            order.setUserId(users.get(0).getUserId());
+            order.setPayPrice(158);
+            order.setIsPay(true);
+            order.setPayTime(nowTime);
+            order.setIsShip(false);
+            order.setCreateTime(nowTime);
+            order.setUpdateTime(nowTime);
+            addOrder(order);
+            log.debug("增加订单成功");
+        }else {
+            log.error("支付成功, 没有新增订单成功");
+        }
+    }
+
+
+    public static String getOrderIdByTime() {
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddHHmmss");
+        String newDate=sdf.format(new Date());
+        String result="";
+        Random random=new Random();
+        for(int i=0;i<6;i++){
+            result+=random.nextInt(10);
+        }
+        return newDate+result;
     }
 }
