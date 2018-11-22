@@ -19,7 +19,7 @@ public interface CashHistoryMapper {
 
     List<CashHistory> selectByExample(CashHistoryExample example);
 
-    List<CashHistory> queryAndUser(CashHistory cashHistory);
+    List<CashHistory> queryAndUser(@Param("po") CashHistory cashHistory);
 
     CashHistory selectByPrimaryKey(Long id);
 

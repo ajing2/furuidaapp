@@ -103,7 +103,16 @@
     select
     *
     from t_cash_history, t_user
-    where t_cash_history.user_id = t_user.user_id
+    <where>
+      t_cash_history.user_id = t_user.user_id and t_user.level>-1 and t_user.is_payed = 1
+      <if test="po.userId != null and po.userId != ''">
+        <![CDATA[ AND t_cash_history.user_id = #{po.userId,jdbcType=VARCHAR} ]]>
+      </if>
+      <if test="po.state != null">
+        <![CDATA[ AND t_cash_history.state = #{po.state,jdbcType=INTEGER} ]]>
+      </if>
+
+    </where>
   </select>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">

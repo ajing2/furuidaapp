@@ -127,7 +127,20 @@
     select
     *
     from t_order, t_user
-    where t_order.user_id = t_user.user_id and t_user.level>0 and t_user.is_payed = 1
+
+    <where>
+      t_order.user_id = t_user.user_id and t_user.level>-1 and t_user.is_payed = 1
+      <if test="po.userId != null and po.userId != ''">
+        <![CDATA[ AND t_order.user_id = #{po.userId,jdbcType=VARCHAR} ]]>
+      </if>
+      <if test="po.isShip != null and po.isShip != ''">
+        <![CDATA[ AND t_order.is_ship = #{po.isShip,jdbcType=BIT} ]]>
+      </if>
+      <!--<if test="po.alarmConfirmStatus != -1">-->
+        <!--<![CDATA[ AND alarm_confirm_status = #{po.alarmConfirmStatus,jdbcType=TINYINT} ]]>-->
+      <!--</if>-->
+
+    </where>
   </select>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">

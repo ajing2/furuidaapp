@@ -4,10 +4,12 @@ $(document).ready(function(){
 
 function get_cash_data() {
     var result;
+    var userId = $("#tableSearch").val();
+    var state = $("#tableStatue").val();
     $.ajax({
         type: "GET",
         timeout: 10000, // 超时时间 10 秒
-        url: "/cashHistory/query",
+        url: "/cashHistory/query?userId=" + userId + "&state=" + state,
         xhrFields: {
             withCredentials: true
         },
@@ -49,15 +51,35 @@ function table() {
                 {type: 'checkbox'},
                 {field: 'userId', title: 'UserId', width: 150, sort: true, align: 'center'},
                 {field: 'webchatName', title: '微信昵称', width: 200, sort: true, align: 'center'},
+                {field: 'level', title: '职级', width: 100, sort: true, align: 'center'},
                 {field: 'money', title: '钱数', width: 100, align: 'center'},
                 {field: 'phone', title: '联系电话', width: 150, sort: true, align: 'center'},
-                {field: 'time', title: '时间', width: 200, sort: true, align: 'center'},
-                {field: 'level', title: '职级', width: 200, sort: true, align: 'center'},
+                {field: 'time', title: '打钱时间', width: 200, sort: true, align: 'center'},
                 {field: 'state', title: '状态', width: 150, sort: true, templet: '.state', align: 'center'},
             ]],
             data: data,
 
         });
+
+
+        var $ = layui.$, active = {
+            reload: function () {
+                table.reload("table", {
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    },
+                    data:get_cash_data()
+                })
+
+            }
+        };
+
+        $('#tableSubmit').on('click', function (e) {
+            e.preventDefault();
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+
 
 
         form.on('switch(statusLiveDemo)', function(obj){
@@ -71,7 +93,7 @@ function table() {
             }else {
                 state = 0;
             }
-            updateCashHistory({id: id, state: state, updateTime: updateTime});
+            updateCashHistory({id: id, state: state, time: updateTime});
 
             return false;//只此一句
 
