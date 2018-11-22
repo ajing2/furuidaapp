@@ -186,7 +186,7 @@ function onBridgeReady(){
             if(res.err_msg == "get_brand_wcpay_request:ok" ) {
                 console.log('支付成功');
                 //支付成功后跳转的页面
-                window.location.href="/static/login.html";
+                window.location.href="/static/login.html?parent_id=" + localStorage.getItem("parentId");
             }else if(res.err_msg == "get_brand_wcpay_request:cancel"){
                 console.log('支付取消');
             }else if(res.err_msg == "get_brand_wcpay_request:fail"){
