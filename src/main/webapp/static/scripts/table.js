@@ -7,7 +7,7 @@ function get_cash_data() {
     $.ajax({
         type: "GET",
         timeout: 10000, // 超时时间 10 秒
-        url: "/cashHistory/select",
+        url: "/cashHistory/query",
         xhrFields: {
             withCredentials: true
         },
@@ -47,11 +47,13 @@ function table() {
             limits: [10, 50, 100, 1000],// 设置每页显示多少条数据
             cols: [[
                 {type: 'checkbox'},
-                {field: 'userId', title: 'UserId', width: 200, sort: true, align: 'center'},
-                {field: 'money', title: '钱数', width: 100, edit: 'text', align: 'center'},
-                {field: 'phone', title: '电话', width: 150, sort: true, align: 'center'},
+                {field: 'userId', title: 'UserId', width: 150, sort: true, align: 'center'},
+                {field: 'webchatName', title: '微信昵称', width: 200, sort: true, align: 'center'},
+                {field: 'money', title: '钱数', width: 100, align: 'center'},
+                {field: 'phone', title: '联系电话', width: 150, sort: true, align: 'center'},
+                {field: 'time', title: '时间', width: 200, sort: true, align: 'center'},
+                {field: 'level', title: '职级', width: 200, sort: true, align: 'center'},
                 {field: 'state', title: '状态', width: 150, sort: true, templet: '.state', align: 'center'},
-                // {fixed: 'right', title: '操作', toolbar: '#barDemo', width: 150}
             ]],
             data: data,
 
@@ -62,12 +64,14 @@ function table() {
 
             var id = parseInt(this.value);
             var state;
+            var nowTime = new Date();
+            var updateTime = nowTime.getFullYear() + "-" + nowTime.getMonth() + "-" + nowTime.getDate() + " " + nowTime.getHours() + ":" + nowTime.getMinutes() + ":" + nowTime.getSeconds();
             if(obj.elem.checked){
                 state = 1;
             }else {
                 state = 0;
             }
-            updateCashHistory({id: id, state: state});
+            updateCashHistory({id: id, state: state, updateTime: updateTime});
 
             return false;//只此一句
 

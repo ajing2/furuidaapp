@@ -49,13 +49,13 @@ function order() {
             limits: [10, 50, 100, 1000],// 设置每页显示多少条数据
             cols: [[
                 {type: 'checkbox'},
-                {field: 'userId', title: 'UserId', width: 100, edit: 'text', align: 'center'},
+                {field: 'userId', title: 'UserId', width: 150, edit: 'text', align: 'center'},
                 {field: 'payPrice', title: '购买价格', width: 150, sort: true, align: 'center'},
                 {field: 'ispayed', title: '是否支付', width: 150, sort: true, align: 'center'},
                 {field: 'receiveName', title: '收货名字', width: 150, sort: true, align: 'center'},
                 {field: 'phone', title: '联系电话', width: 150, sort: true, align: 'center'},
                 {field: 'receiveAddr', title: '收货地址', width: 150, sort: true, align: 'center'},
-                {field: 'shipNum', title: '快递单号', width: 150, sort: true, align: 'center'},
+                {field: 'shipNum', title: '快递单号', width: 150, sort: true, align: 'center', edit: 'text',},
             ]],
             data: data,
 
