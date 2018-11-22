@@ -101,7 +101,7 @@ public class WXPayController {
             String xml = WXPayUtil.inputStream2String(is);
             Map<String, String> notifyMap = WXPayUtil.xmlToMap(xml);//将微信发的xml转map
             if(notifyMap.get("return_code").equals("SUCCESS") && notifyMap.get("result_code").equals("SUCCESS")){
-//                    String ordersSn = notifyMap.get("out_trade_no");//商户订单号
+                    String ordersSn = notifyMap.get("out_trade_no");//商户订单号
 //                    String amountpaid = notifyMap.get("total_fee");//实际支付的订单金额:单位 分
 //                    BigDecimal amountPay = (new BigDecimal(amountpaid).divide(new BigDecimal("100"))).setScale(2);//将分转换成元-实际支付金额:元
                     String openid = notifyMap.get("openid");  //如果有需要可以获取
@@ -120,8 +120,8 @@ public class WXPayController {
                         String parentId = user.getParentId();
                         //打钱升级逻辑
                         orderService.pay(uid, parentId);
-                        //TODO 更新订单信息
-
+                        //更新订单信息
+                        orderService.addOrderByUser(openid, ordersSn);
                         //生成推荐码
                         ExecCommand run = new ExecCommand();
                         String cmd = "/usr/local/tomcat8/postMaker.sh " + uid;

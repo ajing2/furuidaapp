@@ -131,16 +131,4 @@ public class OrderServiceImpl implements OrderService {
             log.error("支付成功, 没有新增订单成功");
         }
     }
-
-
-    public static String getOrderIdByTime() {
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddHHmmss");
-        String newDate=sdf.format(new Date());
-        String result="";
-        Random random=new Random();
-        for(int i=0;i<6;i++){
-            result+=random.nextInt(10);
-        }
-        return newDate+result;
-    }
 }
