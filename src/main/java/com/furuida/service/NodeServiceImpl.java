@@ -230,7 +230,7 @@ public class NodeServiceImpl implements NodeService {
                     le = "游客";
                     break;
             }
-            n.setName(user.getUserId() + "("+ le + ")");
+            n.setName(user.getWebchatName() + "-" + user.getUserId() + "("+ le + ")");
             n.setpId(user.getParentId());
             if (pmap.containsKey(user.getUserId())) {
                 n.setIsParent("parent");

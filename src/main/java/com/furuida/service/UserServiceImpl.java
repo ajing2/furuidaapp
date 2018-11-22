@@ -193,6 +193,8 @@ public class UserServiceImpl implements UserService {
                     String oldParentId = u.get(0).getParentId();
                     if (!oldParentId.equals(parentId)) {
                         User uu = new User();
+                        uu.setIspayed(0);
+                        uu.setLevel(-1);
                         uu.setParentId(parentId);
                         uu.setUserId(userId);
                         userMapper.updateByPrimaryKeySelective(uu);
@@ -226,7 +228,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateUser(User user) {
-        userMapper.updateByPrimaryKeySelective(user);
+        if (user!=null) { //防止level被覆盖
+            User u = userMapper.selectByUserId(user.getUserId());
+            if (null!=u) {
+                user.setLevel(u.getLevel());
+                userMapper.updateByPrimaryKeySelective(user);
+            }
+        }
     }
 
 

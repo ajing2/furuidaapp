@@ -231,7 +231,7 @@
   <select id="selectNode" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
-    from t_user where level >= 0
+    from t_user where level >= 0 and is_payed=1
   </select>
     <update id="updateByExampleSelective" parameterType="map">
     update t_user
