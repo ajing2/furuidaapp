@@ -9,6 +9,16 @@
     <result column="time" jdbcType="VARCHAR" property="time" />
     <result column="openid" jdbcType="VARCHAR" property="openid" />
     <result column="state" jdbcType="INTEGER" property="state" />
+
+    <result column="webchat" jdbcType="VARCHAR" property="webchat" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="receive_name" jdbcType="VARCHAR" property="receiveName" />
+    <result column="receive_addr" jdbcType="VARCHAR" property="receiveAddr" />
+    <result column="parent_id" jdbcType="VARCHAR" property="parentId" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="webchat_url" jdbcType="VARCHAR" property="webchatUrl" />
+    <result column="webchat_name" jdbcType="VARCHAR" property="webchatName" />
+    <result column="is_payed" jdbcType="INTEGER" property="ispayed" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -87,6 +97,15 @@
     </if>
 
   </select>
+
+
+  <select id="queryAndUser" parameterType="com.furuida.model.CashHistory" resultMap="BaseResultMap">
+    select
+    *
+    from t_cash_history, t_user
+    where t_cash_history.user_id = t_user.user_id
+  </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

@@ -28,6 +28,12 @@ public class CashHistoryServiceImpl implements CashHistoryService {
     @Resource
     CashHistoryMapper cashHistoryMapper;
 
+
+    @Override
+    public List queryAndUser(CashHistory cashHistory){
+        return cashHistoryMapper.queryAndUser(cashHistory);
+    }
+
     @Override
     public List getAllCashHistory(CashHistory cashHistory) {
         CashHistoryExample cashHistoryExample = new CashHistoryExample();

@@ -53,4 +53,15 @@ public class CashHistoryController {
         }
     }
 
+    @RequestMapping(value = "/query", method = RequestMethod.GET)
+    @ResponseBody
+    private List<CashHistory> queryAndUser(CashHistory cashHistory) {
+        try {
+            return cashHistoryService.queryAndUser(cashHistory);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            return null;
+        }
+    }
+
 }

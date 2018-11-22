@@ -14,6 +14,101 @@ public class CashHistory {
 
     private Integer state;
 
+
+    private String webchat;
+
+    private String phone;
+
+    private String receiveName;
+
+    private String receiveAddr;
+
+    private String parentId;
+
+    /**
+     * 职务
+     * level1:组长，level2:，主管，level3:副经理，level4:经理，level5:总经理
+     */
+    private int level;
+
+    private String webchatUrl;
+
+    private String webchatName;
+
+    private int ispayed;
+
+    public String getWebchat() {
+        return webchat;
+    }
+
+    public void setWebchat(String webchat) {
+        this.webchat = webchat;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getReceiveName() {
+        return receiveName;
+    }
+
+    public void setReceiveName(String receiveName) {
+        this.receiveName = receiveName;
+    }
+
+    public String getReceiveAddr() {
+        return receiveAddr;
+    }
+
+    public void setReceiveAddr(String receiveAddr) {
+        this.receiveAddr = receiveAddr;
+    }
+
+    public String getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public String getWebchatUrl() {
+        return webchatUrl;
+    }
+
+    public void setWebchatUrl(String webchatUrl) {
+        this.webchatUrl = webchatUrl;
+    }
+
+    public String getWebchatName() {
+        return webchatName;
+    }
+
+    public void setWebchatName(String webchatName) {
+        this.webchatName = webchatName;
+    }
+
+    public int getIspayed() {
+        return ispayed;
+    }
+
+    public void setIspayed(int ispayed) {
+        this.ispayed = ispayed;
+    }
+
     public Integer getState() {
         return state;
     }
