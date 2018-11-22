@@ -228,13 +228,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateUser(User user) {
-        if (user!=null) { //防止level被覆盖
-            User u = userMapper.selectByUserId(user.getUserId());
-            if (null!=u) {
-                user.setLevel(u.getLevel());
+//        if (user!=null) { //防止level被覆盖
+//            User u = userMapper.selectByUserId(user.getUserId());
+//            if (null!=u) {
+//                user.setLevel(u.getLevel());
                 userMapper.updateByPrimaryKeySelective(user);
-            }
-        }
+//            }
+//        }
     }
 
 
