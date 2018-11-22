@@ -113,7 +113,7 @@ public class NodeServiceImpl implements NodeService {
             }
             if (current.getChildList().size() == 3) {
                 //current 升组长
-                log.info("==="+current.getData().getUserId()+"升组长");
+                log.info("==="+current.getData().getWebchatName()+"升组长");
                 changeLevel(current.getData(), 1, 1, current.getData());
                 List<String> list1 = current.getAllLeafs(current, 1);
                 int level1Count = levelCount(list1, 1);
@@ -124,7 +124,7 @@ public class NodeServiceImpl implements NodeService {
                         return;
                     }
                     //升主管
-                    log.info("==="+current.getData().getUserId()+"升主管");
+                    log.info("==="+current.getData().getWebchatName()+"升主管");
                     current.getData().setLevel(2); //node 升级
                     User l2 = current.getData();
 
@@ -141,7 +141,7 @@ public class NodeServiceImpl implements NodeService {
 
                         //升副经理
                         current = current.getParentNode().getParentNode();
-                        log.info("==="+current.getData().getUserId()+"升副经理"); //收下二级主管的钱
+                        log.info("==="+current.getData().getWebchatName()+"升副经理"); //收下二级主管的钱
                         current.getData().setLevel(3); //node 升级
                         User l3 = current.getData();
                         List<String> list3 = current.getAllLeafs(current, 3);
@@ -156,7 +156,7 @@ public class NodeServiceImpl implements NodeService {
                             }
                             //升经理
                             current = current.getParentNode().getParentNode().getParentNode();
-                            log.info("==="+current.getData().getUserId()+"升经理");
+                            log.info("==="+current.getData().getWebchatName()+"升经理");
                             current.getData().setLevel(4); //node 升级
                             User l4 = current.getData();
                             List<String> list4 = current.getAllLeafs(current, 4);
@@ -171,7 +171,7 @@ public class NodeServiceImpl implements NodeService {
                                 }
                                 //升总经理
                                 current = current.getParentNode().getParentNode().getParentNode().getParentNode();
-                                log.info("==="+current.getData().getUserId()+"升总经理");
+                                log.info("==="+current.getData().getWebchatName()+"升总经理");
                                 current.getData().setLevel(5); //node 升级
                                 User l5 = current.getData();
                                 changeLevel(current.getData(), 5, level4Count, l4);
