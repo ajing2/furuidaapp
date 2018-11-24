@@ -1,7 +1,35 @@
 $(document).ready(function(){
-    order();
+    // order();
+    /**导出* */
+    // $("#exportSubmit").on('click', function () {
+    //     $.exportExcel("order/export");
+    // });
 });
+function exportExcel() {
+    // $.exportExcel("order/export");
+    // window.location.href="/order/export";
+    $.ajax({
+        type: "POST",
+        timeout: 10000, // 超时时间 10 秒
+        url: "/order/export",
+        xhrFields: {
+            withCredentials: true
+        },
+        async:false,
+        success: function (callback) {
+            if (callback.length>0) {
+                result = callback;
+            }
+        },
+        error: function (err) {
+            console.log("error了。");
+            result = null;
+        },
+        complete: function (XMLHttpRequest, status) { //请求完成后最终执行参数　
 
+        }
+    });
+}
 
 function get_order_data() {
     var result;
@@ -28,7 +56,7 @@ function get_order_data() {
         complete: function (XMLHttpRequest, status) { //请求完成后最终执行参数　
 
         }
-    })
+    });
     return result;
 }
 function order() {
@@ -87,3 +115,52 @@ function order() {
 
     });
 }
+
+
+
+jQuery.extend({
+    go:function(url){
+        window.location.href=url;
+    },
+    alert:function (msg) {
+        swal({title:msg});
+    },
+    confirm:function(msg,callback){
+        swal({
+            title : msg,
+            type : "warning",
+            showCancelButton : true,
+            confirmButtonColor : "#DD6B55",
+            confirmButtonText : "确定",
+            cancelButtonText : "取消",
+            closeOnConfirm : false
+        }, function(){
+            callback.call(this);
+        });
+    },
+    exportExcel:function(url){
+        this.exportFile("确定要导出EXCEL吗？",url,1);
+
+    },exportCsv:function(url){
+        alert(url);
+        this.exportFile("确定要导出为CSV吗？",url,2);
+
+    },exportFile:function(title,url,exportType){
+        swal({
+            title : title,
+            type : "warning",
+            showCancelButton : true,
+            confirmButtonColor : "#DD6B55",
+            confirmButtonText : "确定",
+            cancelButtonText : "取消",
+            closeOnConfirm : true
+        }, function(){
+            if(url.indexOf("?")!=-1){
+                location.href = url;
+            }else{
+                location.href = url;
+            }
+        });
+
+    }
+});
