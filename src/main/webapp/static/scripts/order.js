@@ -45,11 +45,13 @@ function order() {
             elem: '#orderTable',
             id: 'orderTable',
             title: '发货数据表',
+            // toolbar: true,
+            totalRow: true,
             height: 'full',
             page: true,
             even: true,
             limit: 15, //默认展示多少条数据
-            limits: [10, 50, 100, 1000],// 设置每页显示多少条数据
+            limits: [15, 50, 100, 1000],// 设置每页显示多少条数据
             cols: [[
                 {type: 'checkbox'},
                 {field: 'userId', title: 'UserId', width: 150, align: 'center'},
