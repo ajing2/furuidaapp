@@ -249,7 +249,7 @@ public class UserServiceImpl implements UserService {
             if (null!=u) {
                 user.setLevel(u.getLevel());
                 user.setIspayed(u.getIspayed());
-                userMapper.updateUserNoLevel(user);
+                userMapper.updateByPrimaryKeySelective(user);
                 log.debug("更新用户的其他信息, 级别和是否付款级别不做修改, userId=" + user.getUserId());
             }else {
                 log.error("没有查到用户");
