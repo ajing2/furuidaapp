@@ -34,6 +34,8 @@ public interface UserMapper {
 
     int updateByPrimaryKeySelective(User record);
 
+    int updateUserNoLevel(User record);
+
     int updateByPrimaryKey(User record);
 
     User selectByOpenId(String openId);

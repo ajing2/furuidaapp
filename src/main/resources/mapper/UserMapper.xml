@@ -313,6 +313,39 @@
     </set>
     where user_id = #{userId,jdbcType=VARCHAR}
   </update>
+
+
+  <update id="updateUserNoLevel" parameterType="com.furuida.model.User">
+    update t_user
+    <set>
+      <if test="webchat != null">
+        webchat = #{webchat,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveName != null">
+        receive_name = #{receiveName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveAddr != null">
+        receive_addr = #{receiveAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="webchatUrl != null">
+        webchat_url = #{webchatUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="webchatName != null">
+        webchat_name = #{webchatName,jdbcType=VARCHAR},
+      </if>
+
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+
+
+
   <update id="updateByPrimaryKey" parameterType="com.furuida.model.User">
     update t_user
     set
