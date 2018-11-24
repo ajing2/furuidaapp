@@ -125,11 +125,11 @@ function addShoppingCart(goods) {
         type : "POST",
         data : JSON.stringify({
             userId: userId,
-            goodsId: goods.goods_id,
-            num: goods.number,
+            goodsId: 1,
+            num: 1,
             createTime: "1",
             updateTime: "1",
-            price: parseInt($("#xiyanyanprice").html())
+            price: 158
         }), //转JSON字符串
         dataType : 'json',
         contentType : 'application/json;charset=UTF-8', //contentType很重要
@@ -138,8 +138,8 @@ function addShoppingCart(goods) {
             window.location.href = "/static/mycart.html"
         },
         error: function (result) {
-
-
+            console.log(result);
+            window.location.href = "/static/mycart.html"
         }
     });
 }

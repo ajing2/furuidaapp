@@ -57,7 +57,7 @@ public class WXPayController {
             data.put("out_trade_no", getOrderIdByTime());
             data.put("device_info", "");
             data.put("fee_type", "CNY");
-            data.put("total_fee", "1");
+            data.put("total_fee", "15800");
             data.put("spbill_create_ip", ip);
             data.put("notify_url", "http://www.yitaonet.cn/wxpay/callback");
             data.put("trade_type", "JSAPI");  // 此处指定为扫码支付
