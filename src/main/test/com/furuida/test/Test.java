@@ -164,4 +164,13 @@ public class Test {
         };
         userService.getToken(session, "081Eql3x1xWBs90nit4x1NWf3x1Eql33");
     }
+
+    @org.junit.Test
+    public void testUpdateUser() {
+        User u = new User();
+        u.setIspayed(0);
+        u.setUserId("589778865");
+        u.setReceiveAddr("北京大兴区金地格林小镇106号楼46单元");
+        userService.updateDefaultUser(u);
+    }
 }
