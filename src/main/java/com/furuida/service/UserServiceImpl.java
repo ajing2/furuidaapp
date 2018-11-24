@@ -186,6 +186,7 @@ public class UserServiceImpl implements UserService {
                 user.setWebchatUrl(userInfo.getHeadimgurl());
                 user.setWebchat(userInfo.getOpenid());
                 userMapper.insertSelective(user);
+                userInfoReturn.setParentId(parentId);
             }else{
 //                log.error(u.get(0).toString());
 //                log.error(parentId);
@@ -198,7 +199,10 @@ public class UserServiceImpl implements UserService {
                         uu.setParentId(parentId);
                         uu.setUserId(userId);
                         userMapper.updateByPrimaryKeySelective(uu);
+                        userInfoReturn.setParentId(parentId);
                     }
+                }else{
+                    userInfoReturn.setParentId(u.get(0).getParentId());
                 }
             }
         }

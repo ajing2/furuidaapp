@@ -17,6 +17,16 @@ public class UserInfoReturn {
     private String country;
     private String headimgurl;
     private Object[] privilege;
+    private String parentId;
+
+    public String getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
+    }
+
     public String getOpenid() {
         return openid;
     }
