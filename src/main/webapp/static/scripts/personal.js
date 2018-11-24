@@ -67,8 +67,6 @@ function selectUser(userId) {
             result = null;
         }
     });
-
-    return result;
 }
 
 
@@ -76,27 +74,7 @@ function selectUser(userId) {
 var InterValObj; //timer变量，控制时间
 var count =120; //间隔函数，1秒执行
 var curCount;//当前剩余秒数
-function sendMessage(){
-    phone = '';
-    phone = $('input[name="phone"]').val();
-    if(phone=="" || typeof(phone)=='undefinde'){
-        layer.msg("手机号不能为空");
-        return false;
-    }
-    var partten=/^(13[0-9]|15[0-9]|19[0-9]|18[0-9]|17[0-9]|14[0-9])\d{8}$/;
-    if (!partten.test(phone)) {
-        layer.msg('请输入正确的手机号码');
-        return  false;
-    }
 
-
-
-    curCount = count;
-    //设置button效果，开始计时
-    $("#btnSendCode").attr("disabled", "true");
-    $("#btnSendCode").val("请在" + curCount + "秒内输入");
-    InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
-}
 //timer处理函数
 function SetRemainTime() {
     if (curCount == 0) {
