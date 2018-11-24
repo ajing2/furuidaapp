@@ -33,7 +33,7 @@ function updateUser(id, userId, webchat_name, phone, receive_addr) {
 
 
     $.ajax({
-        url : "/user/update",
+        url : "/user/update/default",
         type : "POST",
         data: JSON.stringify(data),
         dataType: 'json',

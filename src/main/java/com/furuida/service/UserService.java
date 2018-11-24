@@ -14,6 +14,7 @@ public interface UserService {
 
 //    public void testTrans();
     public void updateUser(User user);
+    public void updateDefaultUser(User user);
 
     public void deleteUser(Long id);
 

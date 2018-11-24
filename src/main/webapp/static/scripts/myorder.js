@@ -13,7 +13,6 @@ $(document).ready(function () {
 function get_order_data() {
     var result;
     var userId =  localStorage.getItem("userId");
-    //
     $.ajax({
         type: "GET",
         timeout: 10000, // 超时时间 10 秒

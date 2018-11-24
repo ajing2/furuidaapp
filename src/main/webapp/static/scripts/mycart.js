@@ -154,7 +154,7 @@ function updateUser(userId, phone, receiveName, receiveAddr){
         receiveAddr: receiveAddr
     };
     $.ajax({
-        url : "/user/update",
+        url : "/user/update/default",
         type : "POST",
         data: JSON.stringify(data),
         dataType : 'json',

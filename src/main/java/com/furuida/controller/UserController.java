@@ -69,6 +69,19 @@ public class UserController {
         }
     }
 
+    @RequestMapping(value = "/update/default", method = RequestMethod.POST)
+    @ResponseBody
+    private ResultBean updateDefaultUser(@RequestBody User user) {
+        try {
+            userService.updateDefaultUser(user);
+            return ResultBean.success("ok");
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            return ResultBean.fail("error.");
+        }
+    }
+
+
     @RequestMapping(value = "/select", method = RequestMethod.GET)
     @ResponseBody
     private List<Order> selectUser(User user) {
