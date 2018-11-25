@@ -18,6 +18,15 @@ public class UserInfoReturn {
     private String headimgurl;
     private Object[] privilege;
     private String parentId;
+    private int ispayed;
+
+    public int getIspayed() {
+        return ispayed;
+    }
+
+    public void setIspayed(int ispayed) {
+        this.ispayed = ispayed;
+    }
 
     public String getParentId() {
         return parentId;

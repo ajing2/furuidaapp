@@ -50,6 +50,12 @@ $('.showaddress').live('click', function () {
 
 function checkvar() {
 
+    //若已购买直接提示并退出
+    var ispayed = localStorage.getItem("ispayed");
+    if (ispayed == 1) {
+        alert("您已购买，每位用户仅可购买一次");
+        return false;
+    }
 
     var userId = localStorage.getItem("userId");
 
