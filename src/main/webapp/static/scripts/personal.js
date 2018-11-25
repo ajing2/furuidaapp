@@ -67,6 +67,7 @@ function selectUser(userId) {
             result = null;
         }
     });
+    return result;
 }
 
 
