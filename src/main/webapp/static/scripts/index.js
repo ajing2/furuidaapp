@@ -113,6 +113,7 @@ function get_userinfo(code, parentId) {
                 localStorage.setItem("openid", callback.data.openid);
                 localStorage.setItem("userId", callback.data.userid);
                 localStorage.setItem("parentId", callback.data.parentId);
+                localStorage.setItem("ispayed", callback.data.ispayed)
             }
         },
         error: function (err) {

@@ -11,6 +11,12 @@ var goods = new Object();
  */
 function addToCart(goodsid, tt) {
 
+    //若已购买直接提示并退出
+    var ispayed = localStorage.getItem("ispayed");
+    if (ispayed == 1) {
+        alert("您已购买，每位用户仅可购买一次");
+        return false;
+    }
       //一个商品的所有属性
     var spec_arr = new Array(); //获取过来的商品属性
     var number = 1;  //购买数据
