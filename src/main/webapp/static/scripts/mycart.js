@@ -1,4 +1,3 @@
-var newAddress = 0;
 
 function selectShoppingCart(userId) {
     $.ajax({
@@ -60,7 +59,7 @@ function checkvar() {
     var userId = localStorage.getItem("userId");
 
     var shoppingCartId = $("#shoppingCartId").val();
-    if (newAddress == 0) {
+    if ($("#newAddress").attr("checked")) {
         var consignee = $('input[name="consignee"]').val();
         if (typeof(consignee) == 'undefined' || consignee == "") {
             alert("收货人不能为空！");
@@ -103,17 +102,21 @@ function checkvar() {
             alert('请输入正确的手机号码');
             return false;
         }
+        updateUser(userId, mobile, consignee, address);
 
     }
-    updateUser(userId, mobile, consignee, address);
     if (shoppingCartId != ''){
         updateShoppingCart(userId);
     }else{
         insertShoppingCart(userId);
     }
 
-
-    window.location.href = "/static/pay.html";
+    var newaddUser = selectUser(userId);
+    if (data.length>0 && data[0].phone != "" && data[0].receiveAddr != "" && data[0].receiveName != ""){
+        window.location.href = "/static/pay.html";
+    }else{
+        alert("没找到该用户!")
+    }
 
 return false;
 }
@@ -163,7 +166,7 @@ function updateUser(userId, phone, receiveName, receiveAddr){
         type : "POST",
         data: JSON.stringify(data),
         // dataType : 'json',  返回类型不是json
-        // rsync: false,
+        rsync: false,
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         success : function(result) {
 
@@ -175,7 +178,8 @@ function updateUser(userId, phone, receiveName, receiveAddr){
             // alert(XMLHttpRequest.status);
             // alert(XMLHttpRequest.readyState);
             // alert(textStatus);
-            window.location.href = "/static/mycart.html"
+            // window.location.href = "/static/mycart.html"
+            alert("收货地址没有添加成功, 必须重新添加!")
         }
     });
 }
@@ -342,7 +346,6 @@ $(document).ready(function () {
         $("#havedAddress").html(data[0].receiveAddr);
         $("#havedName").html(data[0].receiveName);
         $("#havedphone").html(data[0].phone);
-        newAddress = 1;
     }
 
     selectShoppingCart(userId);

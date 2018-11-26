@@ -46,7 +46,6 @@ function addToCart(goodsid, tt) {
     createwindow();
 
     var parentId = localStorage.getItem("parentId");
-    parentId = "1474572213";
     var parentName = selectUser(parentId);
 
     result = "<div style=\"font-size:14px; line-height:26px; padding:10px; text-align:left;\">\n" +
