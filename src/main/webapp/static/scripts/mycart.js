@@ -112,10 +112,10 @@ function checkvar() {
     }
 
     var newaddUser = selectUser(userId);
-    if (data.length>0 && data[0].phone != "" && data[0].receiveAddr != "" && data[0].receiveName != ""){
+    if (newaddUser.length>0 && newaddUser[0].phone != "" && newaddUser[0].receiveAddr != "" && newaddUser[0].receiveName != ""){
         window.location.href = "/static/pay.html";
     }else{
-        alert("没找到该用户!")
+        alert("没找到该用户或者收货地址有误!")
     }
 
 return false;
