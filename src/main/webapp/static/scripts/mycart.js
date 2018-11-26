@@ -172,9 +172,9 @@ function updateUser(userId, phone, receiveName, receiveAddr){
 
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
-            alert(XMLHttpRequest.status);
-            alert(XMLHttpRequest.readyState);
-            alert(textStatus);
+            // alert(XMLHttpRequest.status);
+            // alert(XMLHttpRequest.readyState);
+            // alert(textStatus);
             window.location.href = "/static/mycart.html"
         }
     });
