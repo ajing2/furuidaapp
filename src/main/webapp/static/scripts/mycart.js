@@ -59,7 +59,6 @@ function checkvar() {
 
     var userId = localStorage.getItem("userId");
 
-
     var shoppingCartId = $("#shoppingCartId").val();
     if (newAddress == 0) {
         var consignee = $('input[name="consignee"]').val();
@@ -172,8 +171,11 @@ function updateUser(userId, phone, receiveName, receiveAddr){
 
 
         },
-        error: function (result) {
-
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert(XMLHttpRequest.status);
+            alert(XMLHttpRequest.readyState);
+            alert(textStatus);
+            window.location.href = "/static/mycart.html"
         }
     });
 }

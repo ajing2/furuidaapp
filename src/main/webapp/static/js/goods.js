@@ -124,7 +124,6 @@ function get_parent(parentId) {
 
 function addShoppingCart(goods) {
     var userId = localStorage.getItem("userId");
-    userId = "22045805";
     //for test
 
     $.ajax({
