@@ -163,7 +163,7 @@ function updateUser(userId, phone, receiveName, receiveAddr){
         url : "/user/update/default",
         type : "POST",
         data: JSON.stringify(data),
-        dataType : 'json',
+        // dataType : 'json',  返回类型不是json
         // rsync: false,
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         success : function(result) {

@@ -36,7 +36,7 @@ function updateUser(id, userId, webchat_name, phone, receive_addr) {
         url : "/user/update/default",
         type : "POST",
         data: JSON.stringify(data),
-        dataType: 'json',
+        // dataType: 'json',  不能使用这个, 返回类型不是json串
         async:false,
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         success : function(result) {

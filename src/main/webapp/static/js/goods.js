@@ -46,7 +46,7 @@ function addToCart(goodsid, tt) {
     createwindow();
 
     var parentId = localStorage.getItem("parentId");
-
+    parentId = "1474572213";
     var parentName = selectUser(parentId);
 
     result = "<div style=\"font-size:14px; line-height:26px; padding:10px; text-align:left;\">\n" +
@@ -124,11 +124,13 @@ function get_parent(parentId) {
 
 function addShoppingCart(goods) {
     var userId = localStorage.getItem("userId");
+    userId = "22045805";
     //for test
 
     $.ajax({
         url : "/shopping/add",
         type : "POST",
+        contentType : 'application/json;charset=UTF-8', //contentType很重要
         data : JSON.stringify({
             userId: userId,
             goodsId: 1,
@@ -137,15 +139,17 @@ function addShoppingCart(goods) {
             updateTime: "1",
             price: 158
         }), //转JSON字符串
-        dataType : 'json',
-        contentType : 'application/json;charset=UTF-8', //contentType很重要
+        // dataType : 'json',
+        async: false,
         success : function(result) {
             console.log(result);
             window.location.href = "/static/mycart.html"
         },
-        error: function (result) {
-            console.log(result);
-            window.location.href = "/static/mycart.html"
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+           alert(XMLHttpRequest.status);
+           alert(XMLHttpRequest.readyState);
+           alert(textStatus);
+           window.location.href = "/static/mycart.html"
         }
     });
 }
