@@ -212,11 +212,11 @@ function updateShoppingCart(userId) {
         url : "/shopping/update",
         type : "POST",
         data: JSON.stringify(data),
-        dataType: 'json',
+        // dataType: 'json',
         contentType : 'application/json;charset=UTF-8', //contentType很重要
         success : function(result) {
 
-            window.location.href = "/static/pay.html";
+            // window.location.href = "/static/pay.html";
 
         },
         error: function (result) {
