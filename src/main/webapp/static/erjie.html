@@ -72,17 +72,17 @@
             <ul id="tree" class="ztree"></ul>
         </div>
         <div id="table">
-            <form class="layui-form layui-inline">
+            <form class="layui-form layui-inline" style="width:100%">
 
-                <div class="layui-inline layui-col-md5">
-                    <label class="" >搜索：</label>
+                <div class="layui-inline layui-col-md2">
+                    <label >搜索：</label>
                     <div class="layui-inline ">
                         <input class="layui-input" name="resourceNameSearch" id="tableSearch"
                                autocomplete="off" ， placeholder="useId">
                     </div>
                 </div>
-                <div class="layui-inline layui-col-md5">
-                    <label class="layui-col-md2">状态: </label>
+                <div class="layui-inline layui-col-md3">
+                    <label>状态: </label>
                     <div class="layui-input-inline" >
                         <select name="level" lay-filter="level" id="tableStatue">
                             <option value="0">未打钱</option>
@@ -92,7 +92,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="layui-inline set-fon-size layui-col-md1">
+                <div class="layui-inline set-fon-size layui-col-md4">
                     <button class="layui-btn search-btn" data-type="reload" id="tableSubmit">
                         <i class="layui-icon"></i>
                         <span langkey="search">查询</span>
@@ -102,17 +102,17 @@
             <table class="layui-hide" id="test" lay-filter="test"></table>
         </div>
         <div id="order">
-            <form class="layui-form layui-inline">
+            <form class="layui-form layui-inline" style="width: 100%">
 
-                <div class="layui-inline layui-col-md5">
+                <div class="layui-inline layui-col-md2">
                     <label class="" >搜索：</label>
                     <div class="layui-inline ">
                         <input class="layui-input" name="resourceNameSearch" id="orderSearch"
                                autocomplete="off" ， placeholder="useId">
                     </div>
                 </div>
-                <div class="layui-inline layui-col-md5">
-                    <label class="layui-col-md2">状态: </label>
+                <div class="layui-inline layui-col-md3">
+                    <label>状态: </label>
                     <div class="layui-input-inline" >
                         <select name="level" lay-filter="level" id="orderStatue">
                             <option value="0">未发货</option>
@@ -122,7 +122,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="layui-inline set-fon-size layui-col-md1">
+                <div class="layui-inline set-fon-size layui-col-md3">
                     <button class="layui-btn search-btn" data-type="reload" id="orderSubmit">
                         <i class="layui-icon"></i>
                         <span langkey="search">查询</span>

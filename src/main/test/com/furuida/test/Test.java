@@ -33,7 +33,7 @@ public class Test {
     @Resource
     OrderService orderService;
 
-    @org.junit.Test
+//    @org.junit.Test
     public void testStartMonitor() {
         try {
             String orderId = "1630316288";
@@ -72,9 +72,9 @@ public class Test {
     }
     @org.junit.Test
     public void testautoAddNodes() {
-        nodeService.autoAddNodes();
+//        nodeService.autoAddNodes();
     }
-    @org.junit.Test
+//    @org.junit.Test
     public void testGetToken() {
         HttpSession session = new HttpSession() {
             @Override
@@ -165,7 +165,7 @@ public class Test {
         userService.getToken(session, "081Eql3x1xWBs90nit4x1NWf3x1Eql33");
     }
 
-    @org.junit.Test
+//    @org.junit.Test
     public void testUpdateUser() {
         User u = new User();
         u.setIspayed(0);
