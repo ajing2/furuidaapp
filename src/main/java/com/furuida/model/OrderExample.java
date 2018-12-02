@@ -494,52 +494,52 @@ public class OrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andIsShipEqualTo(Boolean value) {
+        public Criteria andIsShipEqualTo(Integer value) {
             addCriterion("is_ship =", value, "isShip");
             return (Criteria) this;
         }
 
-        public Criteria andIsShipNotEqualTo(Boolean value) {
+        public Criteria andIsShipNotEqualTo(Integer value) {
             addCriterion("is_ship <>", value, "isShip");
             return (Criteria) this;
         }
 
-        public Criteria andIsShipGreaterThan(Boolean value) {
+        public Criteria andIsShipGreaterThan(Integer value) {
             addCriterion("is_ship >", value, "isShip");
             return (Criteria) this;
         }
 
-        public Criteria andIsShipGreaterThanOrEqualTo(Boolean value) {
+        public Criteria andIsShipGreaterThanOrEqualTo(Integer value) {
             addCriterion("is_ship >=", value, "isShip");
             return (Criteria) this;
         }
 
-        public Criteria andIsShipLessThan(Boolean value) {
+        public Criteria andIsShipLessThan(Integer value) {
             addCriterion("is_ship <", value, "isShip");
             return (Criteria) this;
         }
 
-        public Criteria andIsShipLessThanOrEqualTo(Boolean value) {
+        public Criteria andIsShipLessThanOrEqualTo(Integer value) {
             addCriterion("is_ship <=", value, "isShip");
             return (Criteria) this;
         }
 
-        public Criteria andIsShipIn(List<Boolean> values) {
+        public Criteria andIsShipIn(List<Integer> values) {
             addCriterion("is_ship in", values, "isShip");
             return (Criteria) this;
         }
 
-        public Criteria andIsShipNotIn(List<Boolean> values) {
+        public Criteria andIsShipNotIn(List<Integer> values) {
             addCriterion("is_ship not in", values, "isShip");
             return (Criteria) this;
         }
 
-        public Criteria andIsShipBetween(Boolean value1, Boolean value2) {
+        public Criteria andIsShipBetween(Integer value1, Integer value2) {
             addCriterion("is_ship between", value1, value2, "isShip");
             return (Criteria) this;
         }
 
-        public Criteria andIsShipNotBetween(Boolean value1, Boolean value2) {
+        public Criteria andIsShipNotBetween(Integer value1, Integer value2) {
             addCriterion("is_ship not between", value1, value2, "isShip");
             return (Criteria) this;
         }

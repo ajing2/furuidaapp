@@ -13,7 +13,7 @@ public class Order {
 
     private String payTime;
 
-    private Boolean isShip;
+    private Integer isShip;
 
     private String shipTime;
 
@@ -159,15 +159,13 @@ public class Order {
     }
 
 
-
-    public Boolean getIsShip() {
+    public Integer getIsShip() {
         return isShip;
     }
 
-    public void setIsShip(Boolean isShip) {
+    public void setIsShip(Integer isShip) {
         this.isShip = isShip;
     }
-
 
     public Boolean getIsReceipt() {
         return isReceipt;
@@ -202,13 +200,6 @@ public class Order {
         this.payTime = payTime;
     }
 
-    public Boolean getShip() {
-        return isShip;
-    }
-
-    public void setShip(Boolean ship) {
-        isShip = ship;
-    }
 
     public String getShipTime() {
         return shipTime;

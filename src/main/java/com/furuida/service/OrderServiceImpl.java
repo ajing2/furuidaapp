@@ -122,7 +122,7 @@ public class OrderServiceImpl implements OrderService {
             order.setPayPrice(158);
             order.setIsPay(true);
             order.setPayTime(nowTime);
-            order.setIsShip(false);
+            order.setIsShip(0);
             order.setCreateTime(nowTime);
             order.setUpdateTime(nowTime);
             addOrder(order);

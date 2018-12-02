@@ -25,7 +25,7 @@
     <result column="pay_price" jdbcType="INTEGER" property="payPrice" />
     <result column="is_pay" jdbcType="BIT" property="isPay" />
     <result column="pay_time" jdbcType="VARCHAR" property="payTime" />
-    <result column="is_ship" jdbcType="BIT" property="isShip" />
+    <result column="is_ship" jdbcType="INTEGER" property="isShip" />
     <result column="ship_time" jdbcType="VARCHAR" property="shipTime" />
     <result column="is_receipt" jdbcType="BIT" property="isReceipt" />
     <result column="receipt_time" jdbcType="VARCHAR" property="receiptTime" />
@@ -133,12 +133,10 @@
       <if test="po.userId != null and po.userId != ''">
         <![CDATA[ AND t_order.user_id = #{po.userId,jdbcType=VARCHAR} ]]>
       </if>
-      <if test="po.isShip != null and po.isShip != ''">
-        <![CDATA[ AND t_order.is_ship = #{po.isShip,jdbcType=BIT} ]]>
+      <if test="po.isShip != null">
+        <![CDATA[ AND t_order.is_ship = #{po.isShip,jdbcType=INTEGER} ]]>
       </if>
-      <!--<if test="po.alarmConfirmStatus != -1">-->
-        <!--<![CDATA[ AND alarm_confirm_status = #{po.alarmConfirmStatus,jdbcType=TINYINT} ]]>-->
-      <!--</if>-->
+
 
     </where>
   </select>

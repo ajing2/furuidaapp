@@ -199,8 +199,9 @@ public class UserServiceImpl implements UserService {
                         uu.setParentId(parentId);
                         uu.setUserId(userId);
                         userMapper.updateByPrimaryKeySelective(uu);
-                        userInfoReturn.setParentId(parentId);
+//                        userInfoReturn.setParentId(parentId);
                     }
+                    userInfoReturn.setParentId(parentId);
                     userInfoReturn.setIspayed(0);
                 }else{
                     userInfoReturn.setIspayed(1);

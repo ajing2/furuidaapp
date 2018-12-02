@@ -170,3 +170,10 @@
     <input type="checkbox" name="close" value="{{d.id}}" lay-skin="switch" lay-text="已打钱|未打钱"
            lay-filter="statusLiveDemo" {{ d.state== 1 ? 'checked' : '' }}>
 </script>
+
+
+<script type="text/html" class="orderConfirm">
+    <!-- 这里的 checked 的状态只是演示 -->
+    <input type="checkbox" name="close" value="{{d.id}}" lay-skin="switch" lay-text="已发货|未发货"
+           lay-filter="isShipDemo" {{ d.isShip== true ? 'checked' : '' }}>
+</script>

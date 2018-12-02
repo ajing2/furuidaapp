@@ -31,8 +31,31 @@ function exportExcel() {
     });
 }
 
+function updateOrder(data) {
+
+    $.ajax({
+        url : "/order/update",
+        type : "POST",
+        data: JSON.stringify(data),
+        dataType: 'json',
+        async:false,
+        contentType : 'application/json;charset=UTF-8', //contentType很重要
+        success : function(result) {
+
+            // alert("保存成功!")
+
+        },
+        error: function (result) {
+
+        }
+    });
+    
+}
+
+
 function get_order_data() {
     var result;
+    debugger;
     var userId = $("#orderSearch").val();
     var isShip = $("#orderStatue").val();
 
@@ -87,7 +110,8 @@ function order() {
                 {field: 'receiveName', title: '收货名字', width: 150, sort: true, align: 'center'},
                 {field: 'phone', title: '联系电话', width: 150, sort: true, align: 'center'},
                 {field: 'receiveAddr', title: '收货地址', width: 150, sort: true, align: 'center'},
-                {field: 'isShip', title: '是否发货', width: 150, sort: true, align: 'center'},
+                {field: 'payTime', title: '订单时间', width: 180, sort: true, align: 'center'},
+                {field: 'isShip', title: '是否发货', width: 150, sort: true, align: 'center', templet: '.orderConfirm'},
                 {field: 'shipNum', title: '快递单号', width: 150, sort: true, align: 'center', edit: 'text',},
             ]],
             data: data,
@@ -111,6 +135,25 @@ function order() {
             e.preventDefault();
             var type = $(this).data('type');
             active[type] ? active[type].call(this) : '';
+        });
+
+
+        form.on('switch(isShipDemo)', function(obj){
+            debugger;
+            var id = parseInt(this.value);
+            var isShip;
+            var nowTime = new Date();
+            var updateTime = nowTime.getFullYear() + "-" + nowTime.getMonth() + "-" + nowTime.getDate() + " " + nowTime.getHours() + ":" + nowTime.getMinutes() + ":" + nowTime.getSeconds();
+            if(obj.elem.checked){
+                isShip = true;
+            }else {
+                isShip = false;
+            }
+
+            updateOrder({id: id, isShip: isShip, updateTime: updateTime});
+
+            return false;//只此一句
+
         });
 
 
