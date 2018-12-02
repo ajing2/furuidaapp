@@ -6,6 +6,7 @@ import com.furuida.model.*;
 import com.furuida.utils.ExecCommand;
 import com.furuida.utils.WeChatAccessToken;
 import com.furuida.utils.WeChatUtils;
+import com.vdurmont.emoji.EmojiParser;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
@@ -182,7 +183,7 @@ public class UserServiceImpl implements UserService {
                 user.setReceiveName("");
                 user.setReceiveAddr("");
                 user.setUserId(userId);
-                user.setWebchatName(userInfo.getNickname());
+                user.setWebchatName(EmojiParser.removeAllEmojis(userInfo.getNickname()));
                 user.setWebchatUrl(userInfo.getHeadimgurl());
                 user.setWebchat(userInfo.getOpenid());
                 userMapper.insertSelective(user);
