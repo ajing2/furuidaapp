@@ -145,9 +145,9 @@ function order() {
             var nowTime = new Date();
             var updateTime = nowTime.getFullYear() + "-" + nowTime.getMonth() + "-" + nowTime.getDate() + " " + nowTime.getHours() + ":" + nowTime.getMinutes() + ":" + nowTime.getSeconds();
             if(obj.elem.checked){
-                isShip = true;
+                isShip = 1;
             }else {
-                isShip = false;
+                isShip = 0;
             }
 
             updateOrder({id: id, isShip: isShip, updateTime: updateTime});
