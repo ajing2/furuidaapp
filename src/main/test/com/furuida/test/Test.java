@@ -72,7 +72,7 @@ public class Test {
     }
     @org.junit.Test
     public void testautoAddNodes() {
-//        nodeService.autoAddNodes();
+        nodeService.autoAddNodes();
     }
 //    @org.junit.Test
     public void testGetToken() {

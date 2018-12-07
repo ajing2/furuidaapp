@@ -34,8 +34,9 @@ public class NodeServiceImpl implements NodeService {
     private void findNode() {
         initALLNode();
         Node root = NodeCache.getRootNode();
+        List<String> sL = new ArrayList<>();
         for (int i = 1;!hasZong; i++) {
-            if (i==1) {
+            /*if (i==1) {
                 payAndUpgrade((i+1) + "-1", root.getData().getUserId());
                 payAndUpgrade((i+1) + "-2", root.getData().getUserId());
                 payAndUpgrade((i+1) + "-3", root.getData().getUserId());
@@ -50,6 +51,35 @@ public class NodeServiceImpl implements NodeService {
                     payAndUpgrade((i+1) + "-" + (ii++), s);
                     payAndUpgrade((i+1) + "-" + (ii++), s);
                 }
+            }*/
+            if (i==1) {
+                payAndUpgrade((i+1) + "-1", root.getData().getUserId());
+                payAndUpgrade((i+1) + "-2", root.getData().getUserId());
+                payAndUpgrade((i+1) + "-3", root.getData().getUserId());
+                sL = new ArrayList<>();
+                sL.add((i+1) + "-1");
+                sL.add((i+1) + "-2");
+                sL.add((i+1) + "-3");
+                continue;
+            }
+            initALLNode();
+//            List<String> sL = root.getAllDownLeafs2(NodeCache.getRootNode(), i-1);
+            if (null!= sL&&sL.size()>0) {
+                int ii = 0;
+                List<String> sL2 = new ArrayList<>();
+                for (String s:sL) {
+                    String s1 = (i+1) + "-" + (ii++);
+                    String s2 = (i+1) + "-" + (ii++);
+                    String s3 = (i+1) + "-" + (ii++);
+                    payAndUpgrade(s1, s);
+                    payAndUpgrade(s2, s);
+                    payAndUpgrade(s3, s);
+                    sL2.add(s1);
+                    sL2.add(s2);
+                    sL2.add(s3);
+                }
+                sL = new ArrayList<>();
+                sL.addAll(sL2);
             }
         }
     }
@@ -89,23 +119,27 @@ public class NodeServiceImpl implements NodeService {
     public void payAndUpgrade(String id, String parentId) {
         try {
             //for test
-//            User u = new User();
-//            u.setParentId(parentId);
-//            u.setUserId(id);
-//            u.setPhone("1234424323");
-//            u.setLevel(0);
-//            u.setReceiveAddr("s");
-//            u.setReceiveName("quan");
-//            u.setWebchat("ssada");
-//            u.setWebchatUrl("");
-//            u.setWebchatName("");
-//            userMapper.insertSelective(u);
+            User u = new User();
+            u.setParentId(parentId);
+            u.setUserId(id);
+            u.setPhone("1234424323");
+            u.setLevel(0);
+            u.setReceiveAddr("s");
+            u.setReceiveName("quan");
+            u.setWebchat("ssada");
+            u.setWebchatUrl("");
+            u.setWebchatName(id);
+            u.setIspayed(1);
+            userMapper.insertSelective(u);
             initALLNode();
             Map<String, Node> allNodes = NodeCache.nMap;
             if (null == allNodes || allNodes.size() == 0) {
                 return;
             }
             Node current = allNodes.get(parentId);
+            if (null == current) {
+                log.info("=============parentId=" + parentId);
+            }
 //            current.init(id, parentId);
             log.info("=============当前节点=" + current.toString());
             if (null == current) {
@@ -113,7 +147,7 @@ public class NodeServiceImpl implements NodeService {
             }
             if (current.getChildList().size() == 3) {
                 //current 升组长
-                log.info("==="+current.getData().getWebchatName()+"升组长");
+                log.info("===【"+current.getData().getWebchatName()+"】升组长");
                 changeLevel(current.getData(), 1, 1, current.getData());
                 List<String> list1 = current.getAllLeafs(current, 1);
                 int level1Count = levelCount(list1, 1);
@@ -121,68 +155,74 @@ public class NodeServiceImpl implements NodeService {
                     //升主管
                     current = current.getParentNode();
                     if (level1Count > 2) {
+                        //给主管打130
+                    }
+                    if (current.getData().getLevel()==2) { //已经是主管
                         return;
                     }
                     //升主管
-                    log.info("==="+current.getData().getWebchatName()+"升主管");
+                    log.info("===【"+current.getData().getWebchatName()+"】升主管");
                     current.getData().setLevel(2); //node 升级
                     User l2 = current.getData();
 
+                    //先打钱
                     List<String> list2 = current.getAllLeafs(current, 2);
                     int level2Count = levelCount(list2, 2);
                     changeLevel(current.getData(), 2, level2Count, l2);
+//                    if (null != list2 && level2Count > 4) {
+//                        //给上二级主管打130
+//                        pay(current.getData(), 2, 2, 1);
+//                        return;
+//                    }
+                    //再升级
+                    int level2LCount = levelCount(current.getAllLeafs(current, 1), 2);
 
-                    if (null != list2 && (level2Count >= 4)) {
-                        if (level2Count > 4) {
-                            //给上二级主管打130
-                            pay(current.getData(), 2, 2, 1);
-                            return;
-                        }
-
+                    if (null != list2 && (level2LCount >= 2)) {
                         //升副经理
-                        current = current.getParentNode().getParentNode();
-                        log.info("==="+current.getData().getWebchatName()+"升副经理"); //收下二级主管的钱
+                        current = current.getParentNode();
+                        log.info("===【"+current.getData().getWebchatName()+"】升副经理"); //收下二级主管的钱
                         current.getData().setLevel(3); //node 升级
                         User l3 = current.getData();
                         List<String> list3 = current.getAllLeafs(current, 3);
                         int level3Count = levelCount(list3, 3);
                         changeLevel(current.getData(), 3, level3Count, l2);
-
-                        if (null != list3 && (level3Count >= 4)) {
-                            if (level3Count > 4) {
-                                //给上二级主管打130
-                                pay(current.getData(), 3, 2, 1);
-                                return;
-                            }
+//                        if (null != list3 && level3Count > 4) {
+//                            //给上二级主管打130
+//                            pay(current.getData(), 3, 2, 1);
+//                            return;
+//                        }
+                        //再升级
+                        int level3LCount = levelCount(current.getAllLeafs(current, 1), 3);
+                        if (null != list3 && (level3LCount >= 2)) {
                             //升经理
-                            current = current.getParentNode().getParentNode().getParentNode();
-                            log.info("==="+current.getData().getWebchatName()+"升经理");
+                            current = current.getParentNode();
+                            log.info("===【"+current.getData().getWebchatName()+"】升经理");
                             current.getData().setLevel(4); //node 升级
                             User l4 = current.getData();
                             List<String> list4 = current.getAllLeafs(current, 4);
                             int level4Count = levelCount(list4, 4);
                             changeLevel(current.getData(), 4, level4Count, l3);
-
-                            if (null != list4 && (level4Count >= 4)) {
-                                if (level3Count > 4) {
-                                    //给上二级主管打130
-                                    pay(current.getData(), 4, 2, 1);
-                                    return;
-                                }
+//                            if (null != list4 && level4Count > 4) {
+//                                //给上二级主管打130
+//                                pay(current.getData(), 4, 2, 1);
+//                                return;
+//                            }
+                            //再升级
+                            int level4LCount = levelCount(current.getAllLeafs(current, 1), 3);
+                            if (null != list4 && (level4LCount >= 2)) {
                                 //升总经理
-                                current = current.getParentNode().getParentNode().getParentNode().getParentNode();
-                                log.info("==="+current.getData().getWebchatName()+"升总经理");
+                                current = current.getParentNode();
+                                log.info("===【"+current.getData().getWebchatName()+"】升总经理");
                                 current.getData().setLevel(5); //node 升级
                                 User l5 = current.getData();
                                 changeLevel(current.getData(), 5, level4Count, l4);
-                                hasZong = true;
                             }
                         }
                     }
                 }
             }
         } catch (Exception e) {
-            log.error(e.getMessage(), e);
+            log.error("打钱升级异常了：" + e.getMessage(), e);
         }
     }
 
@@ -262,7 +302,8 @@ public class NodeServiceImpl implements NodeService {
         if (i == 5) {
             //总经理
             log.info("*******给：" + NodeCache.nMap.get(u.getUserId()).toString() + " 打钱：3200元");
-            pay(u, 3200);
+            pay(find(u, 5), 800);
+            hasZong = true;
             return;
         }
         if (levelCount < 4 || levelCount > 4) { //不到4个不打钱
@@ -271,7 +312,7 @@ public class NodeServiceImpl implements NodeService {
         if (ifChangeLevelPay(u, i, levelCount)) { //需要打钱,满足升级打钱条件
             //打多少钱
             pay(u, i, 1, levelCount);
-        } else {
+        }else {
             if (i>=2) {
                 User user = find(u, i); //给谁打
                 if (null!=user) {
@@ -290,6 +331,9 @@ public class NodeServiceImpl implements NodeService {
      * @param i
      */
     private void pay(User u, int i) {
+        if (null == u) {
+            return;
+        }
         CashHistory cash = new CashHistory();
         cash.setUserId(u.getUserId());
         cash.setMoney(i);
@@ -456,7 +500,7 @@ public class NodeServiceImpl implements NodeService {
         }
         for (String n : list) {
             User u = NodeCache.nMap.get(n).getData();
-            if (null != u && u.getLevel() == i) {
+            if (null != u && u.getLevel() >= i) { // >=
                 res++;
             }
         }
