@@ -15,6 +15,7 @@ public class User {
 
     private String parentId;
 
+    private int showLevel;
     /**
      * 职务
      * level1:组长，level2:，主管，level3:副经理，level4:经理，level5:总经理
@@ -130,5 +131,13 @@ public class User {
                 ", webchatName='" + webchatName + '\'' +
                 ", ispayed=" + ispayed +
                 '}';
+    }
+
+    public int getShowLevel() {
+        return showLevel;
+    }
+
+    public void setShowLevel(int showLevel) {
+        this.showLevel = showLevel;
     }
 }

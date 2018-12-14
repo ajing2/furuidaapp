@@ -13,6 +13,7 @@
     <result column="webchat_url" jdbcType="VARCHAR" property="webchatUrl" />
     <result column="webchat_name" jdbcType="VARCHAR" property="webchatName" />
     <result column="is_payed" jdbcType="INTEGER" property="ispayed" />
+    <result column="show_level" jdbcType="INTEGER" property="showLevel" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -73,7 +74,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, user_id, webchat, phone, receive_name, receive_addr, parent_id, `level`, webchat_url, webchat_name, is_payed
+    id, user_id, webchat, phone, receive_name, receive_addr, parent_id, `level`, webchat_url, webchat_name, is_payed, show_level
   </sql>
   <select id="selectByExample" parameterType="com.furuida.model.UserExample" resultMap="BaseResultMap">
     select
@@ -180,6 +181,9 @@
       <if test="ispayed != null">
         is_payed,
       </if>
+      <if test="showLevel != null">
+        show_level,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -214,6 +218,9 @@
       </if>
       <if test="ispayed != null">
         #{ispayed,jdbcType=VARCHAR},
+      </if>
+      <if test="showLevel != null">
+        #{showLevel,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -259,6 +266,9 @@
       </if>
       <if test="record.webchatName != null">
         webchat_name = #{record.webchatName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.showLevel != null">
+        show_level = #{record.showLevel,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -310,6 +320,9 @@
       <if test="parentId != null">
         parent_id = #{parentId,jdbcType=VARCHAR},
       </if>
+      <if test="showLevel != null">
+        show_level = #{showLevel,jdbcType=INTEGER},
+      </if>
     </set>
     where user_id = #{userId,jdbcType=VARCHAR}
   </update>
@@ -340,6 +353,9 @@
       <if test="parentId != null">
         parent_id = #{parentId,jdbcType=VARCHAR},
       </if>
+      <if test="showLevel != null">
+        show_level = #{showLevel,jdbcType=INTEGER},
+      </if>
     </set>
     where user_id = #{userId,jdbcType=VARCHAR}
   </update>
@@ -357,5 +373,11 @@
 --       webchat_url = #{webchatUrl,jdbcType=VARCHAR},
 --       webchat_name = #{webchatName,jdbcType=VARCHAR},
     where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateShowLevelByPrimaryKey" parameterType="map">
+    update t_user
+    set
+      show_level = #{u.showLevel,jdbcType=INTEGER}
+    where id = #{u.id,jdbcType=BIGINT}
   </update>
 </mapper>

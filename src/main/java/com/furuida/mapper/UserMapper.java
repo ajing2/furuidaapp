@@ -38,5 +38,6 @@ public interface UserMapper {
 
     int updateByPrimaryKey(User record);
 
+    int updateShowLevelByPrimaryKey(@Param("u") User record);
     User selectByOpenId(String openId);
 }

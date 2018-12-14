@@ -71,6 +71,10 @@ public class Test {
         }
     }
     @org.junit.Test
+    public void testAddNodes() {
+        nodeService.payAndUpgrade("7-479", "6-160");
+    }
+    @org.junit.Test
     public void testautoAddNodes() {
         nodeService.autoAddNodes();
     }
