@@ -14,11 +14,11 @@ public class PayUtil {
 
 	public static String UID = "11544";
 
-	public static String NOTIFY_URL = "http://www.yitaonet.cn/pays/notifyPay";
+	public static String NOTIFY_URL = "http://www.oldoak.com.cn/pays/notifyPay";
 
-	public static String RETURN_URL = "http://www.yitaonet.cn/pays/returnPay";
+	public static String RETURN_URL = "http://www.oldoak.com.cn/pays/returnPay";
 
-	public static String BASE_URL = "http://www.yitaonet.cn/pay";
+	public static String BASE_URL = "http://www.oldoak.com.cn/pay";
 
 	public static String TOKEN = "d5d4719cb3de15c979f9e74784313ab2";
 

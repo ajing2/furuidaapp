@@ -46,7 +46,7 @@ class postMaker(object):
 
 def main(userId):
 	# 得到二维码
-	qrUrl = "http://api.k780.com:88/?app=qr.get&data=http://www.yitaonet.cn/static/login.html?parent_id=" + userId + "&level=L&size=20";
+	qrUrl = "http://api.k780.com:88/?app=qr.get&data=http://www.oldoak.com.cn/static/login.html?parent_id=" + userId + "&level=L&size=20";
 	# print(qrUrl)
 	r = requests.get(qrUrl);
 	os.chdir("/usr/local/tomcat8/apache-tomcat-8.5.32/webapps/furuida-app/static/images/qr/");

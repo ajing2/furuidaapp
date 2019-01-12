@@ -25,7 +25,7 @@ import java.net.URL;
 
 public class WeChatUtils {
 
-    private static String getCodeUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxcd28872d096b833d&redirect_uri=http%3a%2f%2fwww.yitaonet.cn%2fstatic%2findex.html&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect";
+    private static String getCodeUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxcd28872d096b833d&redirect_uri=http%3a%2f%2fwww.oldoak.com.cn%2fstatic%2findex.html&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect";
     // 微信公众号的appId以及secret
     private static String appId = "wxfe535a4a8609fa17";
     private static String secret = "2cc7b317799177b0ac0ac7fce05d0ae8";
